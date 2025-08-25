@@ -1,11 +1,10 @@
-@section('og:description', 'Learn about our company, mission, and values')
-@section('description', 'Discover our story, expertise, and commitment to excellence in heavy equipment solutions')
-@section('title', 'About Our Company')
-@section('og:title', 'About Our Company')
-@section('keywords', 'heavy equipment, about us, company history, mission')
+@section('og:description', '')
+@section('description', '')
+@section('title', '')
+@section('og:title', '')
+@section('keywords', '')
 
 <x-layouts.base>
-    <!-- Hero Section with Animation -->
     <section class="py-24 md:px-0 px-6" x-data>
         <div class="px-4 relative py-10">
             <!-- Background Title -->
@@ -23,194 +22,198 @@
                 <span class="border-b-4 border-yellow-500 pb-2">OUR STORY</span>
             </h2>
         </div>
-        
-        <!-- Main Content Section -->
+
+        <!-- Page Content (single-page, no footer) -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Intro Section -->
-            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
-                <div x-intersect:enter="animate = true" x-data="{ animate: false }" x-intersect:leave="animate = false"
-                    x-intersect:options="{ threshold: 0.5 }"
-                    :class="animate ? 'opacity-100 translate-y-0 transition duration-700' : 'opacity-0 -translate-y-10'">
-                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Building the Future Together</h3>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Since our founding, we've been committed to delivering exceptional heavy equipment solutions 
-                        with integrity, innovation, and unmatched expertise. Our journey has been shaped by the trust 
-                        of our clients and the dedication of our team.
+            <!-- Compact Hero Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
+                <div>
+                    <p class="text-sm font-semibold text-yellow-600 uppercase mb-3">Trusted equipment & services</p>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-4">
+                        We move projects forward — safely and on time
+                    </h1>
+                    <p class="text-neutral-700 leading-relaxed mb-6 max-w-xl">
+                        We partner with contractors, municipalities, and developers across the Caribbean to provide
+                        reliable heavy-equipment, experienced operators, and tailored logistics — from single-day
+                        rentals to multi-month site programs.
                     </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Today, we stand as a leader in our industry, serving clients across multiple sectors with 
-                        reliable equipment and skilled operators who share our passion for quality work.
-                    </p>
-                </div>
-                <div x-intersect:enter="animate = true" x-data="{ animate: false }" x-intersect:leave="animate = false"
-                    x-intersect:options="{ threshold: 0.5 }"
-                    :class="animate ? 'opacity-100 translate-y-0 transition duration-700' : 'opacity-0 -translate-y-10'"
-                    class="relative h-96 bg-gray-100 rounded-xl overflow-hidden shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                         alt="Our team at work" 
-                         class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-            </div>
 
-            <!-- Values Section -->
-            <div class="py-16">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        The principles that guide every decision we make and every project we undertake
-                    </p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <a href="#positions"
+                            class="inline-block px-5 py-3 bg-yellow-500 text-neutral-900 font-semibold rounded-lg shadow hover:bg-yellow-400 transition">View
+                            Open Roles</a>
+                        <a href="#services"
+                            class="inline-block px-4 py-3 border border-neutral-200 rounded-lg text-sm text-neutral-700 hover:bg-neutral-50 transition">Our
+                            Services</a>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-3 gap-4 max-w-sm">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-neutral-900">1,200+</div>
+                            <div class="text-xs text-neutral-500">Hours logged / month</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-neutral-900">40+</div>
+                            <div class="text-xs text-neutral-500">Units available</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-neutral-900">95%</div>
+                            <div class="text-xs text-neutral-500">On-time completion</div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Value 1 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 translate-y-0 transition duration-500' : 'opacity-0 translate-y-10'"
-                        class="bg-white p-8 rounded-xl shadow-md text-center">
-                        <div class="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Reliability</h3>
-                        <p class="text-gray-600">
-                            We deliver on our promises with equipment and operators you can count on, project after project.
-                        </p>
+
+                <!-- Visual mosaic -->
+                <div class="grid grid-cols-2 grid-rows-2 gap-3 h-80">
+                    <div class="rounded-lg overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&w=800&q=60"
+                            alt="equipment" class="w-full h-full object-cover">
                     </div>
-                    
-                    <!-- Value 2 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 translate-y-0 transition duration-500 delay-100' : 'opacity-0 translate-y-10'"
-                        class="bg-white p-8 rounded-xl shadow-md text-center">
-                        <div class="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Innovation</h3>
-                        <p class="text-gray-600">
-                            We continuously improve our services and adopt new technologies to enhance efficiency and results.
-                        </p>
+                    <div class="rounded-lg overflow-hidden shadow-md row-span-2">
+                        <img src="https://images.unsplash.com/photo-1580901369227-308f6f40bdeb?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0"
+                            alt="team" class="w-full h-full object-cover">
                     </div>
-                    
-                    <!-- Value 3 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 translate-y-0 transition duration-500 delay-200' : 'opacity-0 translate-y-10'"
-                        class="bg-white p-8 rounded-xl shadow-md text-center">
-                        <div class="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Teamwork</h3>
-                        <p class="text-gray-600">
-                            Our collaborative approach ensures we work seamlessly with clients to achieve shared goals.
-                        </p>
+                    <div class="rounded-lg overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1595569099963-77bf7706643a?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="site" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
 
-            <!-- Expertise Section -->
-            <div class="py-16 bg-gray-50 rounded-xl px-8 py-12 mb-20">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">Our Expertise</h2>
-                    
-                    <div class="space-y-8">
-                        <!-- Expertise 1 -->
-                        <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                            :class="animate ? 'opacity-100 translate-x-0 transition duration-500' : 'opacity-0 -translate-x-10'"
-                            class="flex flex-col md:flex-row gap-6 items-center">
-                            <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Solutions</h3>
-                                <p class="text-gray-600">
-                                    We understand that every project is unique. Our team works closely with clients to develop 
-                                    tailored equipment solutions that meet specific requirements and challenges.
-                                </p>
-                            </div>
+            <!-- Values (compact) -->
+            <div class="py-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">Our Core Values</h2>
+                    <p class="text-neutral-600 max-w-2xl mx-auto mt-2">Practical, accountable, people-first — we build
+                        work that lasts.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                        <div class="mx-auto w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4" />
+                            </svg>
                         </div>
-                        
-                        <!-- Expertise 2 -->
-                        <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                            :class="animate ? 'opacity-100 translate-x-0 transition duration-500 delay-100' : 'opacity-0 -translate-x-10'"
-                            class="flex flex-col md:flex-row gap-6 items-center">
-                            <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Safety First</h3>
-                                <p class="text-gray-600">
-                                    Our rigorous safety protocols and trained operators ensure that every project is completed 
-                                    without compromise to safety standards or quality.
-                                </p>
-                            </div>
+                        <h4 class="font-semibold text-neutral-900 mb-2">Reliability</h4>
+                        <p class="text-sm text-neutral-600">Equipment and crews you can rely on — consistently
+                            maintained and safety-checked.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                        <div class="mx-auto w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 20l-5.447-2.724A2 2 0 013 15.382V8.618a2 2 0 011.553-1.894L10 4" />
+                            </svg>
                         </div>
-                        
-                        <!-- Expertise 3 -->
-                        <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                            :class="animate ? 'opacity-100 translate-x-0 transition duration-500 delay-200' : 'opacity-0 -translate-x-10'"
-                            class="flex flex-col md:flex-row gap-6 items-center">
-                            <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Timely Execution</h3>
-                                <p class="text-gray-600">
-                                    We respect project timelines and deliver efficient solutions that keep your operations 
-                                    moving forward without unnecessary delays.
-                                </p>
-                            </div>
+                        <h4 class="font-semibold text-neutral-900 mb-2">Safety</h4>
+                        <p class="text-sm text-neutral-600">Rigorous procedures and continuous training keep teams and
+                            sites safe.</p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                        <div class="mx-auto w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M7 20h5V10" />
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-neutral-900 mb-2">Partnership</h4>
+                        <p class="text-sm text-neutral-600">We coordinate closely with clients to meet timelines and
+                            budgets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expertise / Services -->
+            <div id="services" class="py-12 space-y-8">
+                <div class="max-w-4xl mx-auto text-center mb-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-neutral-900">What we do</h2>
+                    <p class="text-neutral-600 mt-2">Rentals, operators, transport and on-site support — tailored to
+                        your project.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.75 3v2.25M9.75 3h4.5M4.5 8.25h15" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-neutral-900">Equipment Rentals & Fleet</h3>
+                            <p class="text-neutral-600">Flexible day-rates, weekly, and project-long rentals with
+                                maintenance support.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:flex-row-reverse">
+                        <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7h18M3 12h18M3 17h18" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-neutral-900">Operators & Training</h3>
+                            <p class="text-neutral-600">Certified operators for short- or long-term assignments and
+                                client upskilling.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-neutral-900">Logistics & Support</h3>
+                            <p class="text-neutral-600">Transport, site setup, permitting assistance, and responsive
+                                field support.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Client Highlights -->
-            <div class="py-16">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Trusted By Industry Leaders</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        We're proud to partner with respected organizations across multiple sectors
-                    </p>
+            <!-- Clients strip (compact, non-footer) -->
+            <div class="py-8">
+                <div class="text-center mb-4">
+                    <h3 class="text-lg font-semibold text-neutral-900">Trusted by</h3>
                 </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <!-- Client 1 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 scale-100 transition duration-500' : 'opacity-0 scale-90'"
-                        class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center h-32">
-                        <img src="https://via.placeholder.com/150x80?text=Client+1" alt="Client Logo" class="max-h-16">
-                    </div>
-                    
-                    <!-- Client 2 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 scale-100 transition duration-500 delay-100' : 'opacity-0 scale-90'"
-                        class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center h-32">
-                        <img src="https://via.placeholder.com/150x80?text=Client+2" alt="Client Logo" class="max-h-16">
-                    </div>
-                    
-                    <!-- Client 3 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 scale-100 transition duration-500 delay-200' : 'opacity-0 scale-90'"
-                        class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center h-32">
-                        <img src="https://via.placeholder.com/150x80?text=Client+3" alt="Client Logo" class="max-h-16">
-                    </div>
-                    
-                    <!-- Client 4 -->
-                    <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                        :class="animate ? 'opacity-100 scale-100 transition duration-500 delay-300' : 'opacity-0 scale-90'"
-                        class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center h-32">
-                        <img src="https://via.placeholder.com/150x80?text=Client+4" alt="Client Logo" class="max-h-16">
-                    </div>
+                <div class="flex items-center justify-start gap-6 overflow-x-auto no-scrollbar py-4">
+                    <img src="https://via.placeholder.com/140x40?text=Client+1" alt="client"
+                        class="h-10 object-contain">
+                    <img src="https://via.placeholder.com/140x40?text=Client+2" alt="client"
+                        class="h-10 object-contain">
+                    <img src="https://via.placeholder.com/140x40?text=Client+3" alt="client"
+                        class="h-10 object-contain">
+                    <img src="https://via.placeholder.com/140x40?text=Client+4" alt="client"
+                        class="h-10 object-contain">
+                </div>
+            </div>
+
+            <!-- Small CTA (keeps page-focused — not a footer) -->
+            <div class="mt-10 bg-yellow-50 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="text-lg font-bold text-neutral-900">Need equipment fast?</h4>
+                    <p class="text-neutral-700 text-sm">We can mobilize crews and machines to most islands within 48–72
+                        hours for urgent jobs.</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="#positions" class="px-4 py-2 bg-neutral-900 text-white rounded-lg">Careers</a>
+                    <a href="#services" class="px-4 py-2 border border-neutral-200 rounded-lg text-neutral-700">Our
+                        Services</a>
                 </div>
             </div>
         </div>

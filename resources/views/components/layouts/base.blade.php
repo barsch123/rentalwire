@@ -21,7 +21,12 @@
     <meta property="og:image" content="@yield('og:image', asset('default-og-image.jpg'))">
     <meta property="og:site_name" content="@yield('og:site_name', config('app.name'))">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/campfire.css') }}">
 
+
+    @stack('styles')
     <!-- Canonical Link -->
     @hasSection('canonical')
         <link rel="canonical" href="@yield('canonical')">
@@ -57,19 +62,22 @@ window.addEventListener('livewire:load', () => loading = false);">
     </div>
 
     {{-- Scroll-to-top --}}
-    <div x-data="{ isVisible: false }"
-        x-init="window.addEventListener('scroll', () => isVisible = window.scrollY > 1000)" x-show="isVisible"
-        x-transition class="fixed bottom-6 right-6 rounded-full">
-        <button class="cursor-pointer" aria-label="Scroll to top"
-            x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })">
+    <div x-data="{ show: false }" x-on:scroll.window="show = window.pageYOffset >= 1000" class="fixed bottom-8 right-8">
 
-            <svg class="text-4xl text-[#ffab00]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
+        <button x-show="show" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-4" x-on:click="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="shadow-lg bg-[#d45112] p-2 rounded-full">
+
+            <svg class="text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="m11 7.825l-4.9 4.9q-.3.3-.7.288t-.7-.313q-.275-.3-.288-.7t.288-.7l6.6-6.6q.15-.15.325-.212T12 4.425q.2 0 .375.063t.325.212l6.6 6.6q.275.275.275.688t-.275.712q-.3.3-.713.3t-.712-.3L13 7.825V19q0 .425-.288.713T12 20q-.425 0-.713-.288T11 19V7.825Z" />
             </svg>
 
         </button>
     </div>
+
 
     @livewireScripts
     @stack('scripts')

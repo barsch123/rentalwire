@@ -1,99 +1,102 @@
-<div x-data="{ intersecting: false, progress: 0, updateProgress() { this.progress = Math.max(Math.min((window.innerHeight - $el.getBoundingClientRect().top) / (window.innerHeight + $el.offsetHeight), 1), 0) } }" x-intersect="intersecting = true" x-intersect:leave="intersecting = false"
-    x-on:scroll.window="if (intersecting) { updateProgress() }" x-bind:style="{ '--progress': progress }"
-    x-init="updateProgress()" class="relative border-t border-neutral-700 bg-neutral-800 text-gray-300">
-    <footer class="mt-auto w-full max-w-[85rem] py-12 px-6 sm:px-10 lg:px-16 mx-auto">
-        <!-- Existing Footer Content -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-            <div class="col-span-full hidden lg:col-span-1 lg:block">
-                <a class="font-bungee flex items-center space-x-2 font-semibold text-xl text-white focus:outline-none focus:opacity-80"
-                    href="/" aria-label="Brand">
+<div x-data="{ progress: 0, intersecting: false, updateProgress() { this.progress = Math.max(Math.min((window.innerHeight - $el.getBoundingClientRect().top) / (window.innerHeight + $el.offsetHeight), 1), 0) } }"
+    x-intersect="intersecting = true" x-intersect:leave="intersecting = false"
+    x-on:scroll.window="if (intersecting) updateProgress()" x-init="updateProgress()"
+    x-bind:style="{ '--progress': progress }" class="relative border-t border-neutral-700 bg-neutral-900 text-gray-300">
+    <footer class="w-full max-w-[85rem] py-14 px-6 sm:px-12 lg:px-20 mx-auto">
+        <!-- Top: brand + socials + campfire -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+
+            <!-- Brand -->
+            <div>
+                <a href="/" class="font-bungee text-3xl font-bold text-white flex items-center space-x-2">
                     <span>Peng<span class="text-[#ffab00]">ui</span>n</span>
                 </a>
-                <p class="mt-3 text-xs sm:text-sm text-gray-400">
-                    &copy; {{ Date('Y') }} Penguin. All rights reserved.
-                </p>
-                <!-- Social Media Links -->
-                <div class="mt-4 flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-[#ffab00] transition">
-                        <i class="fab fa-facebook text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-[#ffab00] transition">
-                        <i class="fab fa-instagram text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-[#ffab00] transition">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-[#ffab00] transition">
-                        <i class="fab fa-youtube text-2xl"></i>
-                    </a>
-                    <a href="javascript:void(0)" class="text-gray-400 hover:text-[#ffab00] transition">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                    </a>
+                <p class="mt-3 text-sm text-gray-400">&copy; {{ Date('Y') }} Penguin. All rights reserved.</p>
+
+                <!-- Socials -->
+                <div class="mt-6 flex items-center space-x-5">
+                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-youtube text-xl"></i></a>
+                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-whatsapp text-xl"></i></a>
                 </div>
             </div>
 
-            <!-- Company Info -->
-            <div>
-                <h4 class="text-xs font-semibold text-white uppercase">Company</h4>
-                <div class="mt-3 space-y-3 text-sm">
-                    <p>
-                        <a class="text-gray-400 hover:text-white" href="javascript:void(0)">Newsletter</a>
-                        <span class="text-[#ffab00]">— Coming soon</span>
-                    </p>
-                    <p><a class="text-gray-400 hover:text-white" href="/about">About us</a></p>
-                    <p>
-                        <a class="text-gray-400 hover:text-white" href="/careers">Careers</a>
-                        <span class="text-[#ffab00]">— We're hiring</span>
-                    </p>
+            <!-- Campfire (updates/status) -->
+            <div class="lg:col-span-1">
+                <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-6 shadow-md">
+                    <h5 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Say Hello</h5>
+                    <x-campfire />
+                    <div class="mt-4 space-y-3 text-sm">
+                        <div class="flex items-start gap-3">
+                            <span class="h-2.5 w-2.5 rounded-full bg-green-500 mt-2"></span>
+                            <p><span class="font-semibold text-white">Server Status:</span> All systems operational.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="h-2.5 w-2.5 rounded-full bg-blue-500 mt-2"></span>
+                            <p><span class="font-semibold text-white">New Release:</span> v1.3.0 with performance
+                                improvements.</p>
+                        </div>
 
-                    <p><a class="text-gray-400 hover:text-white" href="#">Privacy Policy</a></p>
-                    <p><a class="text-gray-400 hover:text-white" href="#">Terms &amp; Conditions</a></p>
-                </div>
-            </div>
-
-            <!-- Services -->
-            <div>
-                <h4 class="text-xs font-semibold text-white uppercase">Services</h4>
-                <div class="mt-3 space-y-3 text-sm">
-                    <p><a class="text-gray-400 hover:text-white" href="{{ route('equipment-rentals') }}">Equipment for
-                            Rent</a></p>
-                    <p><a class="text-gray-400 hover:text-white" href="{{ route('projects') }}">Projects</a></p>
-                    <p><a class="text-gray-400 hover:text-white" href="{{ route('blog.index') }}">Blog</a></p>
-                </div>
-            </div>
-
-            <!-- Contact -->
-            <div>
-                <h4 class="text-xs font-semibold text-white uppercase">Contact</h4>
-                <div class="mt-3 space-y-3 text-sm">
-                    <p>
-                        <a class="text-gray-400 hover:text-white" href="javascript:void(0)">info@test.com</a>
-                    </p>
-                    <p class="text-gray-400">Lorem, ipsum dolor sit amet consectetur adipisicing</p>
-                    <p>
-                        <a class="text-gray-400 hover:text-white" href="tel:18765430747">1-123-456-7890</a>
-                    </p>
+                    </div>
+                    <p class="mt-4 text-xs text-gray-500">Community updates & live status.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Newsletter Section -->
-        <div class="border-t border-t-neutral-700 pt-8">
-            <div class="max-w-[85rem] mx-auto text-center">
-                <h4 class="text-2xl font-bold text-white">Newsletter</h4>
+        <!-- Bottom: links + newsletter -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
 
-                <form wire:submit.prevent="createNewsletter"
-                    class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <!-- Company -->
+            <div>
+                <h4 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Company</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="javascript:void(0)" class="hover:text-white transition">Newsletter <span
+                                class="text-[#ffab00] text-xs ml-1">— Coming soon</span></a></li>
+                    <li><a href="{{route('about')}}" wire:navigate class="hover:text-white transition">About us</a></li>
+                    <li><a href="{{route('careers')}}" wire:navigate class="hover:text-white transition">Careers <span
+                                class="text-[#ffab00] text-xs ml-1">— We’re hiring</span></a></li>
+                    <li><a href="javascript:void(0)" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)" class="hover:text-white transition">Terms & Conditions</a></li>
+                </ul>
+            </div>
 
-                    <!-- Email Input with Icon -->
-                    <div class="relative w-full sm:w-1/2">
-                        <flux:input icon="envelope" type="email" wire:model="email" placeholder="Enter your email" />
-                    </div>
-                    <!-- Subscribe Button -->
+            <!-- Services -->
+            <div>
+                <h4 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Maintenance</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="{{ route('equipment-rentals') }}" class="hover:text-white transition">Equipment for
+                            Rent</a></li>
+                    <li><a href="{{ route('projects') }}" wire:navigate class="hover:text-white transition">Projects</a>
+                    </li>
+                    <li><a href="{{ route('blog.index') }}" wire:navigate class="hover:text-white transition">Blog</a>
+                    </li>
+                    <li><a href="{{route('services')}}" wire:navigate class="hover:text-white transition">Services</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Contact</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="mailto:info@test.com" class="hover:text-white transition">info@test.com</a></li>
+                    <li class="text-gray-400">Head office: 123 Industrial Ave, Kingston</li>
+                    <li><a href="tel:18765430747" class="hover:text-white transition">1-123-456-7890</a></li>
+                    <li><a href="#" class="hover:text-white transition">Support Portal</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h4 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Newsletter</h4>
+                <p class="text-sm text-gray-400 mb-4">Subscribe for updates & news.</p>
+                <form wire:submit.prevent="createNewsletter" class="space-y-3">
+                    <flux:input id="footer-email" icon="envelope" type="email" wire:model="email"
+                        placeholder="Enter your email" class="w-full" />
                     <button type="submit"
-                        class="w-full sm:w-auto px-6 py-3 text-white bg-[#ffab00] rounded-lg text-sm font-semibold hover:bg-yellow-600 transition">
-                        Subscribe
-                    </button>
+                        class="w-full px-4 py-2.5 text-white bg-[#ffab00] hover:bg-yellow-600 rounded-lg text-sm font-semibold transition">Subscribe</button>
                 </form>
                 <flux:error name="email" />
             </div>
