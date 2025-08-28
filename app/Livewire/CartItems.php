@@ -3,17 +3,16 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Session;
 
-#[Layout('layouts.app')]
-class Checkout extends Component
+class CartItems extends Component
 {
     public $cart = [];
     public $selectedItems = [];
     public $total = 0;
     public function mount()
     {
+        //render the items from the session
         $this->cart = Session::get('cart', []);
     }
 
@@ -58,9 +57,8 @@ class Checkout extends Component
     {
         $this->selectedItems = [];
     }
-
     public function render()
     {
-        return view('livewire.checkout');
+        return view('livewire.cart-items');
     }
 }

@@ -28,7 +28,7 @@
             <!-- Compact Hero Row -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
                 <div>
-                    <p class="text-sm font-semibold text-yellow-600 uppercase mb-3">Trusted equipment & services</p>
+                    <p class="text-sm font-semibold text-general uppercase mb-3">Trusted equipment & services</p>
                     <h1 class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-4">
                         We move projects forward — safely and on time
                     </h1>
@@ -38,29 +38,7 @@
                         rentals to multi-month site programs.
                     </p>
 
-                    <div class="flex flex-wrap items-center gap-3">
-                        <a href="#positions"
-                            class="inline-block px-5 py-3 bg-yellow-500 text-neutral-900 font-semibold rounded-lg shadow hover:bg-yellow-400 transition">View
-                            Open Roles</a>
-                        <a href="#services"
-                            class="inline-block px-4 py-3 border border-neutral-200 rounded-lg text-sm text-neutral-700 hover:bg-neutral-50 transition">Our
-                            Services</a>
-                    </div>
 
-                    <div class="mt-8 grid grid-cols-3 gap-4 max-w-sm">
-                        <div class="text-center">
-                            <div class="text-2xl font-bold text-neutral-900">1,200+</div>
-                            <div class="text-xs text-neutral-500">Hours logged / month</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-2xl font-bold text-neutral-900">40+</div>
-                            <div class="text-xs text-neutral-500">Units available</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-2xl font-bold text-neutral-900">95%</div>
-                            <div class="text-xs text-neutral-500">On-time completion</div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Visual mosaic -->
@@ -154,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row items-center gap-6 md:flex-row-reverse">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
                         <div class="flex-shrink-0 bg-white p-4 rounded-lg shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-yellow-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -211,8 +189,10 @@
                         hours for urgent jobs.</p>
                 </div>
                 <div class="flex gap-3">
-                    <a href="#positions" class="px-4 py-2 bg-neutral-900 text-white rounded-lg">Careers</a>
-                    <a href="#services" class="px-4 py-2 border border-neutral-200 rounded-lg text-neutral-700">Our
+                    <a href="{{route('careers')}}" wire:navigate
+                        class="px-4 py-2 bg-neutral-900 text-white rounded-lg">Careers</a>
+                    <a href="{{route('services')}}" wire:navigate
+                        class="px-4 py-2 border border-neutral-200 rounded-lg text-neutral-700">Our
                         Services</a>
                 </div>
             </div>

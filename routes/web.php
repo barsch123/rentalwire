@@ -11,6 +11,7 @@ use App\Livewire\Admin\Adminupload;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectsController;
@@ -36,14 +37,14 @@ Route::get('/rentals/{slug}', [RentalController::class, 'show'])->name('equipmen
 
 
 Route::get('/careers', [CareersController::class, 'index'])->name('careers');
-Route::get('/checkout', Checkout::class)->name('checkout');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 
-Route::prefix('admin')->middleware(['auth', 'verified','admin'])->group(function () {
-        Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
-        Route::get('/rental', Adminupload::class)->name('rental.index');
-        Route::get('/blogs', Adminblog::class)->name('adminblog.index');
-    });
+Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
+    Route::get('/rental', Adminupload::class)->name('rental.index');
+    Route::get('/blogs', Adminblog::class)->name('adminblog.index');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', UserDashboard::class)->name('dashboard');

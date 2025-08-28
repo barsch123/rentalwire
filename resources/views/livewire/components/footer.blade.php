@@ -9,17 +9,24 @@
             <!-- Brand -->
             <div>
                 <a href="/" class="font-bungee text-3xl font-bold text-white flex items-center space-x-2">
-                    <span>Peng<span class="text-[#ffab00]">ui</span>n</span>
+                    <span>Peng<span class="text-general">ui</span>n</span>
                 </a>
                 <p class="mt-3 text-sm text-gray-400">&copy; {{ Date('Y') }} Penguin. All rights reserved.</p>
 
                 <!-- Socials -->
                 <div class="mt-6 flex items-center space-x-5">
-                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-facebook text-xl"></i></a>
-                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-youtube text-xl"></i></a>
-                    <a href="#" class="hover:text-[#ffab00] transition"><i class="fab fa-whatsapp text-xl"></i></a>
+                    <a href="#" class="hover:
+                    
+                    
+                    
+                    
+                    
+                    
+                    transition"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-general transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-general transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-general transition"><i class="fab fa-youtube text-xl"></i></a>
+                    <a href="#" class="hover:text-general transition"><i class="fab fa-whatsapp text-xl"></i></a>
                 </div>
             </div>
 
@@ -53,10 +60,10 @@
                 <h4 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Company</h4>
                 <ul class="space-y-3 text-sm">
                     <li><a href="javascript:void(0)" class="hover:text-white transition">Newsletter <span
-                                class="text-[#ffab00] text-xs ml-1">— Coming soon</span></a></li>
+                                class="text-general text-xs ml-1">— Coming soon</span></a></li>
                     <li><a href="{{route('about')}}" wire:navigate class="hover:text-white transition">About us</a></li>
                     <li><a href="{{route('careers')}}" wire:navigate class="hover:text-white transition">Careers <span
-                                class="text-[#ffab00] text-xs ml-1">— We’re hiring</span></a></li>
+                                class="text-general text-xs ml-1">— We’re hiring</span></a></li>
                     <li><a href="javascript:void(0)" class="hover:text-white transition">Privacy Policy</a></li>
                     <li><a href="javascript:void(0)" class="hover:text-white transition">Terms & Conditions</a></li>
                 </ul>
