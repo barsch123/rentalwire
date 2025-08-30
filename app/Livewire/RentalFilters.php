@@ -27,6 +27,8 @@ class RentalFilters extends Component
     public $tempMinPrice = null;
     public $tempMaxPrice = null;
 
+    public $toastTitle, $toastBody, $toastType;
+
     public function mount()
     {
         $this->categories = Equipmentrental::select('category')
@@ -62,17 +64,29 @@ class RentalFilters extends Component
     /**
      * Add the equipment to cart and flash a success message.
      */
+    // Livewire method
     public function addToCart($equipmentId)
     {
         $equipment = Equipmentrental::find($equipmentId);
-        if ($equipment) {
-            $cart = Session::get('cart', []);
-            $cart[] = $equipment->toArray();
-            Session::put('cart', $cart);
-            $this->dispatch('cartUpdated');
-            Session::flash('itemAdded', $equipment->name);
-        }
+        if (! $equipment) return;
+
+        $cart = Session::get('cart', []);
+        $cart[] = $equipment->toArray();
+        Session::put('cart', $cart);
+        $this->dispatch('cartUpdated');
+
+        $this->toastTitle = $equipment->name . ' added to cart';
+        $this->toastBody = '$' . number_format($equipment->price, 2);
+        // $this->toastType = "success";
+
+        $this->dispatch('toast', [
+            'title' => $this->toastTitle,
+            'body' => $this->toastBody,
+            // 'toastType' => $this->toastType,
+            'timeout' => 5000,
+        ]);
     }
+
 
     /**
      * When the user clicks the Apply Filters button,

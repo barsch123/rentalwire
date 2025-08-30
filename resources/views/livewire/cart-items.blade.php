@@ -48,7 +48,7 @@
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.6 8H19m-12 0a2 2 0 11-4 0 2 2 0 014 0zm12 0a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             <p class="text-gray-500 font-medium">Your cart is empty.</p>
-            <a href="#" class="mt-3 text-[#ffb000] font-medium hover:underline">
+            <a href="{{route('rentals')}}" class="mt-3 text-general font-medium hover:underline">
                 Continue shopping →
             </a>
         </div>

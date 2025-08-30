@@ -32,8 +32,8 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.details');
 
 
-Route::get('/rentals', [RentalController::class, 'index'])->name('equipment-rentals');
-Route::get('/rentals/{slug}', [RentalController::class, 'show'])->name('equipment.details');
+Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
+Route::get('/rentals/{slug}', [RentalController::class, 'show'])->name('rental-details');
 
 
 Route::get('/careers', [CareersController::class, 'index'])->name('careers');

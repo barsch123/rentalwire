@@ -1,5 +1,5 @@
 <x-layouts.base>
     <section>
-       <livewire:rental-filters/>
+        <livewire:rental-filters />
     </section>
 </x-layouts.base>

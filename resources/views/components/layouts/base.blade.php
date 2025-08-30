@@ -46,7 +46,7 @@
 
 <body class="font-body antialiased overflow-x-hidden!" x-data="{ loading: true }" x-init="window.addEventListener('load', () => setTimeout(() => loading = false, 500));
 window.addEventListener('livewire:navigating', () => loading = true);
-window.addEventListener('livewire:navigated', () => setTimeout(() => loading = false, 1500));
+window.addEventListener('livewire:navigated', () => setTimeout(() => loading = false, 500));
 window.addEventListener('livewire:load', () => loading = false);">
     {{-- Preloader --}}
     <div x-cloak x-show="loading" x-transition.opacity

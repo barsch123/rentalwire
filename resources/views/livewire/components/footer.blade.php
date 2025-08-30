@@ -73,7 +73,7 @@
             <div>
                 <h4 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Maintenance</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="{{ route('equipment-rentals') }}" class="hover:text-white transition">Equipment for
+                    <li><a href="{{ route('rentals') }}" class="hover:text-white transition">Equipment for
                             Rent</a></li>
                     <li><a href="{{ route('projects') }}" wire:navigate class="hover:text-white transition">Projects</a>
                     </li>

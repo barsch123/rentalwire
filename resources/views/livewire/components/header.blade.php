@@ -14,14 +14,14 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden sm:flex sm:items-center sm:space-x-6">
-                    <a href="{{ route('equipment-rentals') }}" wire:navigate @class([
+                    <a href="{{ route('rentals') }}" wire:navigate @class([
                         'px-1 py-2 text-sm font-medium transition-colors duration-200 relative',
                         'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]' => !request()->routeIs(
-                            'equipment-rentals'
+                            'rentals'
                         ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('equipment-rentals'),
+                        'text-[#ffab00] font-bold' => request()->routeIs('rentals'),
                         'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all after:duration-300',
-                        request()->routeIs('equipment-rentals')
+                        request()->routeIs('rentals')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                     ])>
@@ -236,7 +236,7 @@
 
             <!-- Mobile Navigation -->
             <nav class="space-y-1">
-                <a href="{{ route('equipment-rentals') }}" wire:navigate
+                <a href="{{ route('rentals') }}" wire:navigate
                     class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
                     Rentals
                 </a>
