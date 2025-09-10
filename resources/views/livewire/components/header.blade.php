@@ -100,7 +100,7 @@
                         Login
                     </a>
                     <div class="relative">
-                        <a href="/checkout" wire:navigate class="relative inline-block p-2">
+                        <a href="{{route('checkout')}}" wire:navigate class="relative inline-block p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
                                 class="cursor-pointer fill-white hover:fill-[#ffab00] transition-colors duration-200"
                                 viewBox="0 0 512 512">
@@ -121,8 +121,8 @@
                     <div class="ml-4 relative">
                         <button x-on:click="userDropDownIsOpen = !userDropDownIsOpen"
                             x-bind:aria-expanded="userDropDownIsOpen"
-                            class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffab00]">
-                            <img class="h-8 w-8 rounded-full border-2 border-transparent hover:border-[#ffab00] transition-colors duration-200"
+                            class="flex items-center text-sm rounded-full focus:outline-none ">
+                            <img class="h-8 w-8 mb-3 rounded-full border-2 border-transparent hover:border-[#ffab00] transition-colors duration-200"
                                 src="{{asset('img/user-1.jpg')}}" alt="User Profile">
                         </button>
 
@@ -134,14 +134,25 @@
                             x-transition:leave-end="transform opacity-0 scale-95"
                             x-on:click.outside="userDropDownIsOpen = false"
                             class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                                <p class="text-sm font-medium text-gray-900 dark:text-white">
-                                    {{Auth::check() ? Auth::user()->name : ''}}
-                                </p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">
-                                    {{Auth::check() ? Auth::user()->email : ''}}
-                                </p>
-                            </div>
+                            @if(Auth::check())
+                                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                                    <p class="text-sm font-medium text-gray-900 dark:text-white">
+                                        {{ Auth::user()->name}}
+                                    </p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                                        {{ Auth::user()->email }}
+                                    </p>
+                                </div>
+                            @else
+                                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                                        Please log in to access your account.
+                                    </p>
+                                </div>
+                            @endif
+
+
                             <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
                                 wire:navigate
                                 class="block px-4 py-2 text-sm text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:hover:bg-gray-700 dark:text-white">
@@ -248,15 +259,30 @@
                     class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
                     About
                 </a>
-                {{-- <a href="{{ route('careers') }}" wire:navigate
-                    class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
-                    Careers
-                </a> --}}
                 <a href="{{ route('contact') }}" wire:navigate
                     class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
                     Contact
                 </a>
+
+                <!-- Cart Link -->
+                <a href="{{ route('checkout') }}" wire:navigate
+                    class="flex items-center px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                        class="fill-current transition-colors duration-200" viewBox="0 0 512 512">
+                        <path
+                            d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
+                            data-original="#000000"></path>
+                    </svg>
+
+                    <!-- Cart Count Badge -->
+                    <div class="absolute top-0 left-0 max-w-xs">
+                        <livewire:components.cart-count />
+                    </div>
+
+                    <span class="ml-2"></span>
+                </a>
             </nav>
+
 
             <!-- Mobile User Menu -->
             <div class="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">

@@ -1,8 +1,8 @@
-@section('og:description', '')
+{{-- @section('og:description', '')
 @section('description', '')
 @section('title', '')
 @section('og:title', '')
-@section('keywords', '')
+@section('keywords', '') --}}
 
 <x-layouts.base>
     <section class="py-24 md:px-0 px-6" x-data>
@@ -164,23 +164,7 @@
                 </div>
             </div>
 
-            <!-- Clients strip (compact, non-footer) -->
-            <div class="py-8">
-                <div class="text-center mb-4">
-                    <h3 class="text-lg font-semibold text-neutral-900">Trusted by</h3>
-                </div>
-                <div class="flex items-center justify-start gap-6 overflow-x-auto no-scrollbar py-4">
-                    <img src="https://via.placeholder.com/140x40?text=Client+1" alt="client"
-                        class="h-10 object-contain">
-                    <img src="https://via.placeholder.com/140x40?text=Client+2" alt="client"
-                        class="h-10 object-contain">
-                    <img src="https://via.placeholder.com/140x40?text=Client+3" alt="client"
-                        class="h-10 object-contain">
-                    <img src="https://via.placeholder.com/140x40?text=Client+4" alt="client"
-                        class="h-10 object-contain">
-                </div>
-            </div>
-
+        
             <!-- Small CTA (keeps page-focused — not a footer) -->
             <div class="mt-10 bg-yellow-50 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>

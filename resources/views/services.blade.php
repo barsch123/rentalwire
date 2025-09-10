@@ -1,54 +1,17 @@
-@section('title', 'Services')
-@section('description', 'Unique equipment solutions, operators, logistics and parts — tailored for Caribbean projects.')
-@section('keywords', 'equipment rental, heavy equipment, operators, parts, transport, Caribbean')
-
-<x-layouts.base title="Services" description="" keywords="" canonical-url="{{ url()->current() }}">
-    <section class="relative overflow-hidden bg-white">
-        <!-- SPLIT HERO: large, asymmetric hero that reads differently from the rest of the site -->
+<x-layouts.base>
+    <section class="relative overflow-hidden py-32">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-20 px-6 md:px-8">
-            <!-- Left: Eyebrow + Headline + CTA -->
             <div class="md:col-span-6 z-10">
-                <p class="inline-block text-sm font-semibold text-yellow-600 uppercase mb-4">FIELD-FIRST SOLUTIONS</p>
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-neutral-900 mb-4">
                     Heavy equipment & crews — designed for the job, not the brochure.
                 </h1>
-                <p class="text-neutral-700 mb-6 max-w-lg">
-                    We plan mobilization, match the right machines and staff, and handle parts and repairs so your team
-                    keeps
-                    moving. Short notice? We specialize in rapid island mobilization.
-                </p>
-
-                <div class="flex gap-3 mb-6">
-                    <a href="#spotlight"
-                        class="inline-flex items-center px-5 py-3 bg-yellow-500 text-neutral-900 font-semibold rounded-lg shadow hover:bg-yellow-400 transition">See
-                        spotlight</a>
-                    <a href="#quote"
-                        class="inline-flex items-center px-4 py-3 border border-neutral-200 rounded-lg text-sm text-neutral-700 hover:bg-neutral-50 transition">Quick
-                        quote</a>
-                </div>
-
-                <div class="flex gap-6 text-sm text-neutral-600">
-                    <div>
-                        <div class="text-2xl font-bold text-neutral-900">40+</div>
-                        <div class="text-xs">Units available</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-neutral-900">95%</div>
-                        <div class="text-xs">On-time completion</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-neutral-900">24/7</div>
-                        <div class="text-xs">Emergency support</div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Right: Angled image block for uniqueness -->
             <div class="md:col-span-6 relative h-80 md:h-[420px]">
                 <div
-                    class="absolute inset-0 transform -skew-y-2 md:-skew-y-6 md:translate-x-8 bg-gradient-to-tr from-neutral-50 to-transparent rounded-lg shadow-lg">
+                    class="absolute inset-0 transform -skew-y-2 md:-skew-y-6 md:translate-x-8 bg-gradient-to-tr from-general to-transparent rounded-lg shadow-lg">
                 </div>
-                <img src="https://images.unsplash.com/photo-1542293787938-c9e299b8806f?auto=format&fit=crop&w=1400&q=60"
+                <img src="https://images.unsplash.com/photo-1655037477606-0e2cdfe37066?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGhlYXZ5JTIwZXF1aXBtZW50fGVufDB8fDB8fHww"
                     alt="equipment" class="relative w-full h-full object-cover rounded-lg shadow-md">
                 <!-- small badge -->
                 <span
@@ -107,71 +70,7 @@
             </div>
         </div>
 
-        <!-- SPOTLIGHT / CASE STUDY -->
-        <div id="spotlight" class="max-w-6xl mx-auto px-6 md:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">Spotlight — Port Works Turnaround</h3>
-                    <p class="text-neutral-700 mb-4">When a port client faced a delayed tidal dredge, we supplied a
-                        mixed fleet, two certified operators, and 48-hour parts mobilization. Project completed 6 days
-                        ahead of the revised schedule.</p>
-                    <div class="flex gap-4 text-sm text-neutral-600">
-                        <div><strong class="text-neutral-900 block">Outcome</strong> Reduced downtime by 72%</div>
-                        <div><strong class="text-neutral-900 block">Scope</strong> Dredging support, haulage, parts
-                        </div>
-                    </div>
-                </div>
 
-                <div class="md:col-span-1">
-                    <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-100">
-                        <h4 class="text-sm font-semibold mb-2">Quick facts</h4>
-                        <ul class="text-sm text-neutral-700 space-y-2">
-                            <li>• 2 operators embedded</li>
-                            <li>• 5 pieces of heavy equipment</li>
-                            <li>• Parts flown in within 36 hours</li>
-                        </ul>
-                        <a href="#quote"
-                            class="mt-4 inline-block text-sm font-medium text-yellow-600 hover:underline">Tell us about
-                            your project →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- HOW IT WORKS (timeline) -->
-        <div class="max-w-5xl mx-auto px-6 md:px-8 py-12">
-            <h3 class="text-xl font-bold text-center mb-6">How we work — four steps</h3>
-            <ol class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                <li class="p-6 bg-white rounded-xl shadow">
-                    <div
-                        class="mb-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 font-bold">
-                        1</div>
-                    <h5 class="font-semibold mb-1">Plan</h5>
-                    <p class="text-sm text-neutral-600">Site review & equipment mix.</p>
-                </li>
-                <li class="p-6 bg-white rounded-xl shadow">
-                    <div
-                        class="mb-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 font-bold">
-                        2</div>
-                    <h5 class="font-semibold mb-1">Mobilize</h5>
-                    <p class="text-sm text-neutral-600">Transport, permits & logistics.</p>
-                </li>
-                <li class="p-6 bg-white rounded-xl shadow">
-                    <div
-                        class="mb-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 font-bold">
-                        3</div>
-                    <h5 class="font-semibold mb-1">Operate</h5>
-                    <p class="text-sm text-neutral-600">Skilled operators meet milestones.</p>
-                </li>
-                <li class="p-6 bg-white rounded-xl shadow">
-                    <div
-                        class="mb-3 inline-flex items-center justify-center w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 font-bold">
-                        4</div>
-                    <h5 class="font-semibold mb-1">Support</h5>
-                    <p class="text-sm text-neutral-600">Parts, repairs & reporting.</p>
-                </li>
-            </ol>
-        </div>
 
         <!-- QUICK QUOTE & FAQ (interactive via Alpine) -->
         <div id="quote" class="max-w-6xl mx-auto px-6 md:px-8 py-12">
@@ -204,7 +103,7 @@
                 </div>
 
                 <!-- FAQ accordion (right) -->
-                <div class="md:col-span-2 bg-white p-6 rounded-xl shadow">
+                <div class="md:col-span-2 bg-white p-6 rounded-xl py-20 shadow">
                     <h4 class="font-semibold mb-4">Frequently asked</h4>
                     <div x-data="{ open: 0 }" class="space-y-3">
                         <div class="border rounded-lg overflow-hidden">
@@ -246,16 +145,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- SIMPLE CLIENT STRIP (no marquee, compact logos) -->
-        <div class="max-w-7xl mx-auto px-6 md:px-8 pb-20">
-            <div class="flex items-center gap-8 overflow-x-auto no-scrollbar py-6">
-                <img src="https://via.placeholder.com/140x40?text=Client+1" class="h-10 object-contain" alt="client">
-                <img src="https://via.placeholder.com/140x40?text=Client+2" class="h-10 object-contain" alt="client">
-                <img src="https://via.placeholder.com/140x40?text=Client+3" class="h-10 object-contain" alt="client">
-                <img src="https://via.placeholder.com/140x40?text=Client+4" class="h-10 object-contain" alt="client">
-            </div>
-        </div>
-
     </section>
 </x-layouts.base>
