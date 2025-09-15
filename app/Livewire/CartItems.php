@@ -12,7 +12,6 @@ class CartItems extends Component
     public $total = 0;
     public function mount()
     {
-        //render the items from the session
         $this->cart = Session::get('cart', []);
     }
 
@@ -34,7 +33,6 @@ class CartItems extends Component
         $this->cart = array_values($this->cart); // Re-index the array
         Session::put('cart', $this->cart);
         $this->dispatch('cartUpdated');
-
         $this->selectedItems = [];
     }
 
@@ -44,7 +42,6 @@ class CartItems extends Component
         $this->cart = [];
         Session::put('cart', []);
         $this->dispatch('cartUpdated');
-
         $this->selectedItems = [];
     }
 
