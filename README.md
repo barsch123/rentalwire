@@ -59,6 +59,18 @@ npm run dev
 -   Register or log in to manage your rentals and orders
 -   Use the admin dashboard for advanced management (requires admin account)
 
+
+## Screenshots
+
+Below are some screenshots of the application:
+
+<p align="center">
+	<img src="screenshots/image.png" alt="Main UI" width="600" />
+	<img src="screenshots/image1.png" alt="Feature 1" width="600" />
+	<img src="screenshots/image2.png" alt="Feature 2" width="600" />
+	<img src="screenshots/image3.png" alt="Feature 3" width="600" />
+</p>
+
 ## Project Structure
 
 -   `app/Livewire/` — Livewire components (Cart, OrderSummary, Filters, Admin, etc.)
