@@ -59,7 +59,6 @@ npm run dev
 -   Register or log in to manage your rentals and orders
 -   Use the admin dashboard for advanced management (requires admin account)
 
-
 ## Screenshots
 
 Below are some screenshots of the application:
