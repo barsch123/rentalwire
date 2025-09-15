@@ -2,26 +2,73 @@
 
 # Rentalwire
 
-Livewire web app originally named "Template1" for convenience, now built as a rental web app
+Rentalwire is a modern web application for equipment rental, built with Laravel, Livewire, TailwindCSS, and Vite. It features a dynamic cart, checkout flow, user authentication, admin dashboard, newsletter, blog, and more.
 
-# Installation
+## Features
+
+-   Equipment rental listing and filtering
+-   Dynamic cart and order summary (Livewire)
+-   Checkout and payment flow
+-   User authentication and profile management
+-   Admin dashboard for managing rentals, blogs, users, and settings
+-   Newsletter subscription and email system
+-   Blog management and tagging
+-   Responsive UI with TailwindCSS
+-   Real-time updates with Livewire events
+-   Comprehensive test suite (Pest, PHPUnit)
+
+## Tech Stack
+
+-   **Backend:** Laravel 12, Livewire, PHP 8.3
+-   **Frontend:** TailwindCSS, Vite
+-   **Database:** SQLite (default), migrations for users, products, rentals, blogs, tags, newsletter, jobs
+-   **Testing:** Pest, PHPUnit
+
+## Installation
 
 ```bash
-Clone the repository
+# Clone the repository
 git clone https://github.com/barsch123/rentalwire.git
-
-Navigate into the project directory
 cd rentalwire
 
-Install dependencies
+# Install PHP dependencies
+composer install
+
+# Install Node dependencies
 npm install
 
-Copy the example environment file and update it with your own values
+# Copy and configure environment variables
 cp .env.example .env
+# Edit .env with your database and mail settings
 
-Run database migrations (if using a DB)
-npx prisma migrate dev   # or php artisan migrate (if Laravel)
+# Run database migrations
+php artisan migrate
 
-Start the development server
+# (Optional) Seed the database
+php artisan db:seed
+
+# Start the development server
+php artisan serve
+# In another terminal, start Vite for frontend assets
 npm run dev
 ```
+
+## Usage
+
+-   Access the app at `http://localhost:8000`
+-   Register or log in to manage your rentals and orders
+-   Use the admin dashboard for advanced management (requires admin account)
+
+## Project Structure
+
+-   `app/Livewire/` — Livewire components (Cart, OrderSummary, Filters, Admin, etc.)
+-   `resources/views/` — Blade views for pages and components
+-   `routes/` — Route definitions (`web.php`, `auth.php`, `console.php`)
+-   `database/migrations/` — Database schema
+-   `public/` — Public assets (images, icons, CSS, JS)
+-   `tests/` — Feature and unit tests
+-   `config/` — Laravel configuration files
+
+## License
+
+MIT
