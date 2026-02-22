@@ -1,26 +1,25 @@
 <div class="bg-neutral-800 p-4">
     <div class="container pt-20 mx-auto px-10 relative space-y-10 mb-10">
-        <!-- Background Text with Intersection Animation -->
-        <h2 class="section-title absolute inset-0 md:text-7xl text-5xl font-extrabold text-gray-200 uppercase tracking-wide leading-none"
-            x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-            x-intersect:options="{ threshold: 0.5 }"
-            :class="animate
-                ?
-                'opacity-50 translate-y-0 transition duration-700' :
-                'opacity-0 translate-y-10'">
-            THE BEST EQUIPMENT
-        </h2>
+         <div class="container mx-auto px-4 relative my-4">
+            <!-- Background Text -->
+            <h2 x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
+                x-intersect:options="{ threshold: 0.5 }"
+                :class="animate ? 'opacity-50 translate-x-0 transition duration-700' : 'opacity-0 translate-x-10'"
+                class="text-gray-100 section-title absolute inset-0 md:text-6xl lg:text-7xl text-5xl font-extrabold  border-gray-200 opacity-50 uppercase tracking-wide leading-none">
+                THE BEST EQUIPMENT
+            </h2>
 
-        <!-- Foreground Text with Intersection Animation -->
-        <h2 class="relative text-4xl md:text-5xl font-extrabold text-white" x-data="{ animate: false }"
-            x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-            x-intersect:options="{ threshold: 0.5 }"
-            :class="animate
-                ?
-                'opacity-100 translate-y-0 transition duration-700' :
-                'opacity-0 translate-y-10'">
-            VIEW OUR <span class="block text-yellow-500 border-b-4 border-yellow-500 w-max">EQUIPMENT</span>
-        </h2>
+            <!-- Foreground Text -->
+            <h2 x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
+                x-intersect:options="{ threshold: 0.5 }"
+                :class="animate
+                    ?
+                    'opacity-100 translate-x-0 transition duration-700' :
+                    'opacity-0 translate-x-10'"
+                class="text-white relative text-4xl md:text-5xl font-extrabold ">
+                VIEW OUR <span class="block text-yellow-500 border-b-4 border-yellow-500 w-max"> EQUIPMENT</span>
+            </h2>
+        </div>
     </div>
     <!-- Image Grid -->
     <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">

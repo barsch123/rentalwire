@@ -104,6 +104,10 @@ class RentalFilters extends Component
         $this->resetPage();
     }
 
+    public function resetFilters(){
+        $this->resetPage();
+    }
+
     /**
      * Compute the filtered equipment list based on the active filters.
      */

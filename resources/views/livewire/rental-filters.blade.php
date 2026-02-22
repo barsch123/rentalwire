@@ -43,13 +43,15 @@
                         @if (!empty($subcategories))
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Subcategory</label>
-                                <select wire:model="tempSelectedSubcategory"
+                                <flux:select wire:model="tempSelectedSubcategory"
                                     class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm rounded-md">
                                     <option value="">All Subcategories</option>
                                     @foreach ($subcategories as $subcategory)
-                                        <option value="{{ $subcategory }}">{{ $subcategory }}</option>
+                                        <flux:select.option value="{{ $subcategory }}">{{ $subcategory }}
+                                            
+                                        </flux:select.option>
                                     @endforeach
-                                </select>
+                                </flux:select>
                             </div>
                         @endif
 

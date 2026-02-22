@@ -42,7 +42,7 @@
             </div>
         </form>
     @else
-
+        <span class="text-sm italic text-gray-400">Please login to see the form</span>
     @endif
 
 </div>

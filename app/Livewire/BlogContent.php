@@ -35,7 +35,7 @@ class BlogContent extends Component
             });
         }
 
-        $blogs = $query->paginate(5);
+        $blogs = $query->latest()->paginate(5);
         $tags = Tag::whereNotNull('name')->where('name', '!=', '')->limit(5)->latest()->get();
         return view('livewire.blog-content',[
             'blogs' => $blogs,

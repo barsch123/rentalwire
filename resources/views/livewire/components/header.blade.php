@@ -6,7 +6,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Brand Logo -->
                 <div class="flex-shrink-0">
-                    <a href="/"
+                    <a href="/" wire:navigate
                         class="flex items-center text-2xl font-bold text-white hover:text-[#ffab00] transition-colors duration-200">
                         <span>Peng<span class="text-[#ffab00]">ui</span>n</span>
                     </a>

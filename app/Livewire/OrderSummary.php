@@ -32,8 +32,8 @@ class OrderSummary extends Component
     }
     public function mount(){
         $this->auth = Auth::user();
-        $this->name = $this->auth->name;
-        $this->email = $this->auth->email;
+        $this->name = $this->auth->name ?? 'No name provided';
+        $this->email = $this->auth->email ?? 'No email provided';
         $this->cart = session()->get('cart', []);
     }
 }
