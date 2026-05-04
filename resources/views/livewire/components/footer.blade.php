@@ -15,13 +15,7 @@
 
                 <!-- Socials -->
                 <div class="mt-6 flex items-center space-x-5">
-                    <a href="#" class="hover:
-                    
-                    
-                    
-                    
-                    
-                    
+                    <a href="#" class="hover:    
                     transition"><i class="fab fa-facebook text-xl"></i></a>
                     <a href="#" class="hover:text-general transition"><i class="fab fa-instagram text-xl"></i></a>
                     <a href="#" class="hover:text-general transition"><i class="fab fa-linkedin text-xl"></i></a>
@@ -29,27 +23,7 @@
                     <a href="#" class="hover:text-general transition"><i class="fab fa-whatsapp text-xl"></i></a>
                 </div>
             </div>
-
-            <!-- Campfire (updates/status) -->
-            <div class="lg:col-span-1">
-                <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-6 shadow-md">
-                    <h5 class="text-sm font-semibold uppercase tracking-wide text-white mb-4">Say Hello</h5>
-                    <x-campfire />
-                    <div class="mt-4 space-y-3 text-sm">
-                        <div class="flex items-start gap-3">
-                            <span class="h-2.5 w-2.5 rounded-full bg-green-500 mt-2"></span>
-                            <p><span class="font-semibold text-white">Server Status:</span> All systems operational.</p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <span class="h-2.5 w-2.5 rounded-full bg-blue-500 mt-2"></span>
-                            <p><span class="font-semibold text-white">New Release:</span> v1.3.0 with performance
-                                improvements.</p>
-                        </div>
-
-                    </div>
-                    <p class="mt-4 text-xs text-gray-500">Community updates & live status.</p>
-                </div>
-            </div>
+             <x-campfire />
         </div>
 
         <!-- Bottom: links + newsletter -->

@@ -4,7 +4,7 @@
 
         <!-- Background gradient + grain -->
         <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-black opacity-95"></div>
+            <div class="absolute inset-0 bg-linear-to-br from-neutral-900 via-neutral-800 to-black opacity-95"></div>
             <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" aria-hidden="true">
                 <filter id="grain">
                     <feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
@@ -35,13 +35,7 @@
 
             <!-- Left: Content -->
             <div class="w-full md:w-6/12 max-w-2xl space-y-6 md:space-y-8 text-center md:text-left">
-                <p
-                    class="inline-flex items-center gap-3 text-sm md:text-base text-yellow-400 font-semibold tracking-wide">
-                    <span class="inline-block w-3 h-3 rounded-full bg-yellow-400 animate-pulse"
-                        aria-hidden="true"></span>
-                    HEAVY EQUIPMENT SOLUTIONS
-                </p>
-
+               
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
                     Powering Your Projects With
                     <div class="mt-2 inline-block text-yellow-500" aria-live="polite">
