@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Blogs extends Model
 {
@@ -16,6 +16,7 @@ class Blogs extends Model
         'published_at' => 'date',
         'modified_at' => 'datetime:Y-m-d H:i:s',
     ];
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'blog_tag', 'blog_id', 'tag_id');
