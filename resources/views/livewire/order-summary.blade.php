@@ -1,48 +1,23 @@
-<div class=" rounded-2xl shadow-lg p-6 sm:p-8">
-    <h2 class="text-2xl font-bold text-neutral-900 mb-6">Customer Information</h2>
-    @if (Auth::check())
-        <form>
-            <div class="mb-6">
-                <label class="sr-only block text-gray-700 mb-2 text-sm font-medium">First Name</label>
-                <flux:input label="Name" wire:model="name" type="text" readonly aria-readonly="true" />
+<div>
+    <aside class="hidden lg:sticky lg:top-28 lg:block">
+        @include('livewire.partials.order-summary-body')
+    </aside>
+
+    <div x-cloak x-show="summaryOpen" x-transition.opacity class="fixed inset-0 z-50 lg:hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-neutral-950/55 backdrop-blur-sm" x-on:click="summaryOpen = false"></div>
+
+        <div x-transition:enter="transition ease-out duration-200" x-transition:enter-start="translate-y-6 opacity-0"
+            x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-6 opacity-0"
+            class="absolute inset-x-0 bottom-0 z-10 max-h-[88dvh] overflow-y-auto rounded-t-2xl border border-neutral-200 bg-white p-5 shadow-2xl">
+            <div class="mb-5 flex items-center justify-between">
+                <h2 class="text-lg font-bold text-neutral-950">Order Summary</h2>
+                <button type="button" x-on:click="summaryOpen = false" class="rounded-md p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-950" aria-label="Close summary">
+                    <flux:icon.x-mark class="size-5" />
+                </button>
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 mb-2 text-sm font-medium">Email Address</label>
-                <flux:input type="email" wire:model="email" readonly aria-readonly="true" />
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 mb-2 text-sm font-medium">Contact</label>
-                <flux:input wire:model="contact" />
-            </div>
 
-            <!-- Order Summary -->
-            <div class="border-t pt-6 mt-6">
-                <h3 class="text-xl font-bold mb-4">Order Summary</h3>
-                @if (!empty($cart))
-                    <div class="space-y-2">
-                        @foreach ($cart as $item)
-                            <div class="flex justify-between text-gray-700">
-                                <span>{{ $item['name'] }}</span>
-                                <span>${{ number_format($item['price'], 2) }}</span>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="flex justify-between text-lg font-bold mt-4">
-                        <span>Total</span>
-                        <span class="text-[#ffb000]">${{ number_format($total, 2) }}</span>
-                    </div>
-                @endif
-
-
-
-                {{-- <button type="submit"
-                    class="w-full bg-[#ffb000] text-neutral-100 py-3 rounded-lg mt-6 font-semibold hover:bg-[#e0a000] transition-colors">
-                    Continue to Payment →
-                </button> --}}
-            </div>
-        </form>
-    @else
-        <span class="text-sm italic text-gray-400">Please login to see the form</span>
-    @endif
-
+            @include('livewire.partials.order-summary-body')
+        </div>
+    </div>
 </div>

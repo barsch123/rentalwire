@@ -29,9 +29,9 @@
     @stack('styles')
     <!-- Canonical Link -->
     @hasSection('canonical')
-        <link rel="canonical" href="@yield('canonical')">
+    <link rel="canonical" href="@yield('canonical')">
     @else
-        <link rel="canonical" href="{{ request()->fullUrl() }}">
+    <link rel="canonical" href="{{ request()->fullUrl() }}">
     @endif
 
     {{-- Prevent FOUC --}}
@@ -41,34 +41,32 @@
         }
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @fluxAppearance
     @livewireStyles
 </head>
 
-<body class="font-body antialiased overflow-x-hidden!" x-data="{ loading: true }" x-init="window.addEventListener('load', () => setTimeout(() => loading = false, 500));
-window.addEventListener('livewire:navigating', () => loading = true);
-window.addEventListener('livewire:navigated', () => setTimeout(() => loading = false, 500));
-window.addEventListener('livewire:load', () => loading = false);">
-    {{-- Preloader --}}
-    <div x-cloak x-show="loading" x-transition.opacity
-        class="fixed inset-0 z-50 flex items-center justify-center bg-white">
+<body class="font-body antialiased overflow-x-hidden!" x-data="delayedLoader">
+    
+    <div x-cloak x-show="visible" x-transition.opacity role="status" aria-label="Loading"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm">
         <div class="loader"></div>
     </div>
 
-    {{-- Main Content --}}
-    <div x-cloak x-show="!loading" x-transition.opacity>
-        @livewire('components.header')
+    <div>
+        <livewire:components.header />
         {{ $slot }}
-        @livewire('components.footer')
+        <livewire:components.footer />
     </div>
 
-    {{-- Scroll-to-top --}}
+    <flux:toast />
+
     <div x-data="{ show: false }" x-on:scroll.window="show = window.pageYOffset >= 1000" class="fixed bottom-8 right-8">
 
         <button x-show="show" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-4" x-on:click="window.scrollTo({top: 0, behavior: 'smooth'})"
-            class="shadow-lg bg-[#d45112] p-2 rounded-full">
+            class="rounded-full bg-general p-2 shadow-lg">
 
             <svg class="text-neutral-200" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -78,9 +76,8 @@ window.addEventListener('livewire:load', () => loading = false);">
         </button>
     </div>
 
-
     @livewireScripts
+    @fluxScripts
     @stack('scripts')
 </body>
-
 </html>

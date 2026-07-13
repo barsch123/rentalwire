@@ -1,5 +1,5 @@
 <x-layouts.base>
-    <div class="py-24">
+    <main class="bg-[#f7f7f5] py-20 text-zinc-900">
         <livewire:blog-content />
-    </div>
+    </main>
 </x-layouts.base>

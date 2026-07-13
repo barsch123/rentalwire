@@ -2,38 +2,49 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class OrderSummary extends Component
 {
-    public $name, $email;
+    public $name;
+
+    public $email;
+
+    public $contact = '';
 
     public array $cart = [];
-    public float $total;
+
+    public float $total = 0;
+
     protected $listeners = ['cartUpdated' => 'refreshCart'];
+
     public function render()
     {
-                $this->calculateCart();
+        $this->calculateCart();
 
         return view('livewire.order-summary');
     }
 
-    public function refreshCart(){
+    public function refreshCart()
+    {
         $this->cart = session()->get('cart', []);
     }
 
-    public function calculateCart(){
-       $this->total = 0;
+    public function calculateCart()
+    {
+        $this->total = 0;
 
-       foreach($this->cart as $item){
-           $this->total += $item['price'];
-       }
+        foreach ($this->cart as $item) {
+            $this->total += $item['price'] * ($item['quantity'] ?? 1);
+        }
     }
-    public function mount(){
-        $this->auth = Auth::user();
-        $this->name = $this->auth->name ?? 'No name provided';
-        $this->email = $this->auth->email ?? 'No email provided';
+
+    public function mount()
+    {
+        $user = Auth::user();
+        $this->name = $user->name ?? 'No name provided';
+        $this->email = $user->email ?? 'No email provided';
         $this->cart = session()->get('cart', []);
     }
 }

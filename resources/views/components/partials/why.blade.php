@@ -1,94 +1,103 @@
-<section x-data="{ animate: false }" class="py-10 px-6 md:px-12 lg:px-24 text-neutral-800">
-    <div class="max-w-7xl mx-auto">
-        <!-- Title Section -->
-        <div class="container mx-auto px-4 relative my-4">
-            <!-- Background Text -->
-            <h2 x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                x-intersect:options="{ threshold: 0.5 }"
-                :class="animate ? 'opacity-50 translate-x-0 transition duration-700' : 'opacity-0 translate-x-10'"
-                class="section-title absolute inset-0 md:text-6xl lg:text-7xl text-5xl font-extrabold  border-gray-200 opacity-50 uppercase tracking-wide leading-none">
-                WHY CHOOSE PENGUIN?
-            </h2>
+@php
+    $products = [
+        [
+            'name' => 'Residential Solar Kit',
+            'category' => 'Complete kit',
+            'price' => '$450,000',
+            'image' => 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80',
+            'alt' => 'Residential rooftop solar panels',
+            'details' => ['Panels + inverter', 'Monitoring ready', 'Small homes'],
+        ],
+        [
+            'name' => 'Hybrid Inverter Package',
+            'category' => 'Inverter',
+            'price' => '$380,000',
+            'image' => 'https://images.unsplash.com/photo-1624397640148-949b1732bb0a?auto=format&fit=crop&w=900&q=80',
+            'alt' => 'Solar inverter and battery equipment',
+            'details' => ['Grid support', 'Battery ready', 'Generator input'],
+        ],
+        [
+            'name' => 'Battery Backup Bundle',
+            'category' => 'Storage',
+            'price' => '$720,000',
+            'image' => 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80',
+            'alt' => 'Home battery backup system',
+            'details' => ['Critical loads', 'Night use', 'Outage support'],
+        ],
+        [
+            'name' => 'Commercial Solar Array',
+            'category' => 'Business system',
+            'price' => '$2,500,000',
+            'image' => 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=900&q=80',
+            'alt' => 'Commercial solar panel array',
+            'details' => ['High-output panels', 'Production monitoring', 'Business scale'],
+        ],
+    ];
+@endphp
 
-            <!-- Foreground Text -->
-            <h2 x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                x-intersect:options="{ threshold: 0.5 }"
-                :class="animate
-                    ?
-                    'opacity-100 translate-x-0 transition duration-700' :
-                    'opacity-0 translate-x-10'"
-                class="relative text-4xl md:text-5xl font-extrabold text-gray-900">
-                WHY CHOOSE <span class="block text-yellow-500 border-b-4 border-yellow-500 w-max"> PENGUIN?</span>
-            </h2>
-        </div>
+<section class="px-6 py-20 bg-white text-neutral-900 md:px-12 md:py-24 lg:px-24">
+    <div class="mx-auto max-w-7xl">
+        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+                <h2 class="text-4xl font-extrabold leading-tight md:text-5xl">
+                    Featured solar products
+                </h2>
+                <p class="mt-5 max-w-2xl text-base leading-7 text-neutral-600">
+                    Shop ready-to-estimate solar kits, storage, inverters, and commercial packages with clear starting
+                    pricing.
+                </p>
+            </div>
 
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            @php
-                $features = [
-                    [
-                        'icon' => 'fa-wrench',
-                        'title' => 'Well-Maintained Equipment',
-                        'desc' => 'Regular servicing and maintenance ensures reliable performance on every project.',
-                    ],
-                    [
-                        'icon' => 'fa-user-tie',
-                        'title' => 'Experienced Operators',
-                        'desc' => 'Skilled professionals with extensive project management expertise.',
-                    ],
-                    [
-                        'icon' => 'fa-map-marked-alt',
-                        'title' => 'Islandwide Service',
-                        'desc' => 'Comprehensive coverage throughout the Caribbean region.',
-                    ],
-                    [
-                        'icon' => 'fa-shield-alt',
-                        'title' => 'Fully Licensed & Insured',
-                        'desc' => 'Complete peace of mind with comprehensive insurance coverage.',
-                    ],
-                ];
-            @endphp
-
-            @foreach ($features as $feature)
-                <div x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-                    x-intersect:options="{ threshold: 0.5 }"
-                    :class="animate
-                        ?
-                        'opacity-100 translate-x-0 transition duration-700' :
-                        'opacity-0 translate-x-10'"
-                    class="bg-white/90 backdrop-blur-lg p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div
-                        class="flex items-center justify-center bg-yellow-500 text-white rounded-full w-16 h-16 mb-6 shadow-md">
-                        <i class="fas {{ $feature['icon'] }} text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">{{ $feature['title'] }}</h3>
-                    <p class="text-gray-600">{{ $feature['desc'] }}</p>
-                </div>
-            @endforeach
-        </div>
-
-        <!-- CTA Button -->
-        <div class="w-full flex justify-center py-10" x-data="{ animate: false }" x-intersect:enter="animate = true"
-            x-intersect:leave="animate = false" x-intersect:options="{ threshold: 0.5 }"
-            :class="animate
-                ?
-                'opacity-100 translate-y-0 transition duration-700' :
-                'opacity-0 translate-y-10'">
-            <a class="relative inline-flex items-center justify-center gap-2 rounded-sm bg-[#ffab00] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600
-   before:absolute before:-z-10 before:top-1 before:left-1 before:w-full before:h-full before:rounded-sm before:bg-neutral-800
-    before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
-                href="#">
-                <span class="relative z-10">LEARN MORE</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-4 w-4" viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                </svg>
+            <a href="{{ route('rentals') }}" wire:navigate
+                class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 w-max rounded-sm! px-4!">
+                View all products
+                <i class="fas fa-arrow-right text-xs"></i>
             </a>
-            {{-- <button class="bg-[#ffab00] hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg text-lg">
-            Request Quote
-        </button> --}}
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            @foreach ($products as $product)
+                <article
+                    class="transition-all duration-300 ease-out hover:-translate-y-1 hover:border-general hover:shadow-xl group overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
+                    <a href="{{ route('rentals') }}" wire:navigate class="block">
+                        <div class="aspect-4/3 overflow-hidden bg-neutral-100">
+                            <img src="{{ $product['image'] }}" alt="{{ $product['alt'] }}"
+                                class="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-105"
+                                loading="lazy" decoding="async">
+                        </div>
+
+                        <div class="p-5">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-[#9a6700]">
+                                        {{ $product['category'] }}
+                                    </p>
+                                    <h3 class="mt-2 text-lg font-bold leading-snug text-neutral-950">
+                                        {{ $product['name'] }}
+                                    </h3>
+                                </div>
+                                <p class="shrink-0 text-right text-lg font-extrabold text-neutral-950">
+                                    {{ $product['price'] }}
+                                </p>
+                            </div>
+
+                            <ul class="mt-5 space-y-2 text-sm text-neutral-600">
+                                @foreach ($product['details'] as $detail)
+                                    <li class="flex items-center gap-2">
+                                        <i class="fas fa-check text-xs text-[#9a6700]"></i>
+                                        <span>{{ $detail }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            <div class="mt-6 flex items-center justify-between border-t border-neutral-100 pt-4">
+                                <span class="text-sm font-semibold text-neutral-950">View product</span>
+                                <i class="fas fa-arrow-right text-sm text-neutral-400 transition group-hover:translate-x-1 group-hover:text-[#9a6700]"></i>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            @endforeach
         </div>
     </div>
 </section>

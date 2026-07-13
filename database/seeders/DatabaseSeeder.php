@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Blogs;
+use App\Models\Equipmentrental;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Newsletter;
+use App\Models\Product;
 use App\Models\Tag;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Blogs;
-use App\Models\Product;
-use App\Models\Newsletter;
-use App\Models\Equipmentrental;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,16 +25,16 @@ class DatabaseSeeder extends Seeder
 
         // Create tags first
         $tagNames = [
-            'Heavy Equipment',
-            'Construction Tips',
-            'Equipment Rental',
+            'Solar Energy',
+            'Battery Storage',
+            'Energy Savings',
             'Industry',
-            'Industry Insights',
+            'Renewable Insights',
             'Project Success Stories',
             'Maintenance',
             'Safety',
             'Technology',
-            'Sustainability'
+            'Sustainability',
         ];
 
         $tags = collect($tagNames)->map(function ($name) {
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'usertype' => 'admin'
+            'usertype' => 'admin',
         ]);
     }
 }

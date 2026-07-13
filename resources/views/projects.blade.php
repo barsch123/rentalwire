@@ -22,7 +22,7 @@
                 x-intersect:options="{ threshold: 0.5 }"
                 :class="animate ? 'opacity-50 translate-x-0 transition duration-700' : 'opacity-0 translate-x-10'"
                 class="section-title absolute inset-0 md:text-6xl lg:text-7xl text-5xl font-extrabold border-gray-200 opacity-50 uppercase tracking-wide leading-none select-none">
-                BUILD WITH US
+                POWER WITH US
             </h2>
 
             <!-- Foreground Text -->
@@ -41,29 +41,29 @@
                 x-intersect:leave="show=false" :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
                 class="transform transition duration-500 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div class="relative h-52 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?auto=format&fit=crop&w=1200&q=80"
-                        alt="Metro Highway Upgrade"
+                    <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80"
+                        alt="Residential solar installation"
                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <span
-                        class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wide">INFRASTRUCTURE</span>
+                        class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wide">RESIDENTIAL</span>
                 </div>
                 <div class="p-5">
-                    <h3 class="text-xl font-bold text-gray-900">Metro Highway Upgrade</h3>
-                    <p class="text-gray-600 mt-2">20 km expressway expansion — drainage, paving & night works.</p>
+                    <h3 class="text-xl font-bold text-gray-900">Kingston Rooftop Solar Retrofit</h3>
+                    <p class="text-gray-600 mt-2">Hybrid rooftop system with battery backup and monitoring.</p>
                     <div class="mt-5 flex items-center justify-between text-sm">
-                        <span class="text-gray-500 font-medium">Completed • Mar 2024</span>
+                        <span class="text-gray-500 font-medium">Completed - Mar 2024</span>
                         <button @click="openModal({
-                title:'Metro Highway Upgrade',
-                tag:'Infrastructure',
+                title:'Kingston Rooftop Solar Retrofit',
+                tag:'Residential',
                 date:'Mar 2024',
                 status:'Completed',
-                image:'https://images.unsplash.com/photo-1605106702734-205df224ecce?auto=format&fit=crop&w=1600&q=80',
-                summary:'Phased 20 km expressway upgrade with new drainage, eco paving mixes and night-shift execution to minimize disruption.',
-                highlights:['30% faster transit times','Eco-friendly paving','Zero lost-time incidents'],
-                cost:'£6.2M',
-                duration:'9 months',
-                co2:'320t (estimated)'
+                image:'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=80',
+                summary:'A rooftop solar retrofit with hybrid inverter, battery backup, and app-based monitoring for lower bills and improved resilience.',
+                highlights:['Lower daytime grid draw','Battery backup for critical loads','Remote production monitoring'],
+                cost:'JMD 1.8M',
+                duration:'4 weeks',
+                co2:'18t avoided yearly'
               })" class="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center group">
                             View case <span class="ml-1 group-hover:translate-x-1 transition-transform">→</span>
                         </button>
@@ -76,29 +76,29 @@
                 x-intersect:leave="show=false" :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
                 class="transform transition duration-500 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div class="relative h-52 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-                        alt="Harbor Expansion"
+                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80"
+                        alt="Commercial solar array"
                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <span
-                        class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wide">INDUSTRIAL</span>
+                        class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wide">COMMERCIAL</span>
                 </div>
                 <div class="p-5">
-                    <h3 class="text-xl font-bold text-gray-900">Harbor Expansion — Pier 7</h3>
-                    <p class="text-gray-600 mt-2">Capacity upgrade with new cranes and eco dredging controls.</p>
+                    <h3 class="text-xl font-bold text-gray-900">Montego Bay Warehouse Array</h3>
+                    <p class="text-gray-600 mt-2">Commercial roof array sized for cooling and daytime operations.</p>
                     <div class="mt-5 flex items-center justify-between text-sm">
-                        <span class="text-gray-500 font-medium">Completed • Nov 2023</span>
+                        <span class="text-gray-500 font-medium">Completed - Nov 2023</span>
                         <button @click="openModal({
-                title:'Harbor Expansion — Pier 7',
-                tag:'Industrial',
+                title:'Montego Bay Warehouse Array',
+                tag:'Commercial',
                 date:'Nov 2023',
                 status:'Completed',
-                image:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
-                summary:'Two new piers with modern bulk-handling cranes, optimized material flow and managed sediment controls to protect local ecology.',
-                highlights:['+40% handling capacity','Improved berth turnaround','Environmental dredging plan implemented'],
-                cost:'£9.4M',
-                duration:'14 months',
-                co2:'480t (estimated)'
+                image:'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=80',
+                summary:'A commercial solar array built around daytime refrigeration, warehouse lighting, and office loads.',
+                highlights:['Reduced peak utility demand','Live performance dashboard','Maintenance plan included'],
+                cost:'JMD 8.6M',
+                duration:'10 weeks',
+                co2:'96t avoided yearly'
               })" class="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center group">
                             View case <span class="ml-1 group-hover:translate-x-1 transition-transform">→</span>
                         </button>
@@ -111,29 +111,29 @@
                 x-intersect:leave="show=false" :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
                 class="transform transition duration-500 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div class="relative h-52 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&w=1200&q=80"
-                        alt="Bauxite Logistics"
+                    <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=80"
+                        alt="Solar farm"
                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <span
-                        class="absolute top-4 right-4 bg-green-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wide">MINING</span>
+                        class="absolute top-4 right-4 bg-green-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wide">MICROGRID</span>
                 </div>
                 <div class="p-5">
-                    <h3 class="text-xl font-bold text-gray-900">Bauxite Logistics & Access</h3>
-                    <p class="text-gray-600 mt-2">Site access, logistics yard and high-throughput export design.</p>
+                    <h3 class="text-xl font-bold text-gray-900">St. Elizabeth Solar Microgrid</h3>
+                    <p class="text-gray-600 mt-2">Solar and storage design for resilient community facilities.</p>
                     <div class="mt-5 flex items-center justify-between text-sm">
                         <span class="text-gray-500 font-medium">Ongoing</span>
                         <button @click="openModal({
-                title:'Bauxite Logistics & Access',
-                tag:'Mining',
+                title:'St. Elizabeth Solar Microgrid',
+                tag:'Microgrid',
                 date:'Ongoing',
                 status:'Active',
-                image:'https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&w=1600&q=80',
-                summary:'Staged access road construction, loading yard optimization and traffic routing to support continuous export operations.',
-                highlights:['Optimized truck turntimes','Ramped up throughput','Staged construction to avoid downtime'],
-                cost:'£3.1M (phase 1)',
+                image:'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=80',
+                summary:'A phased solar microgrid with battery storage to support refrigeration, communications, and emergency operations.',
+                highlights:['Critical-load backup','Expandable battery storage','Community energy monitoring'],
+                cost:'JMD 12.4M (phase 1)',
                 duration:'phase-based',
-                co2:'210t (est. phase 1)'
+                co2:'140t avoided yearly'
               })" class="text-yellow-600 font-semibold hover:text-yellow-700 flex items-center group">
                             View case <span class="ml-1 group-hover:translate-x-1 transition-transform">→</span>
                         </button>
@@ -146,22 +146,22 @@
         <div
             class="mt-16 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-8 text-white shadow-xl">
             <div class="text-center">
-                <div class="text-4xl font-bold text-yellow-400">£1.8M</div>
-                <div class="text-sm text-gray-300 mt-1">Estimated Saved Costs</div>
+                <div class="text-4xl font-bold text-yellow-400">JMD 18M</div>
+                <div class="text-sm text-gray-300 mt-1">Estimated Energy Savings</div>
             </div>
             <div class="text-center">
-                <div class="text-4xl font-bold text-yellow-400">4.2 months</div>
-                <div class="text-sm text-gray-300 mt-1">Avg. Time Saved per Project</div>
+                <div class="text-4xl font-bold text-yellow-400">11 weeks</div>
+                <div class="text-sm text-gray-300 mt-1">Avg. Installation Window</div>
             </div>
             <div class="text-center">
-                <div class="text-4xl font-bold text-yellow-400">1,200t</div>
-                <div class="text-sm text-gray-300 mt-1">CO₂ Reduction (est.)</div>
+                <div class="text-4xl font-bold text-yellow-400">254t</div>
+                <div class="text-sm text-gray-300 mt-1">Annual CO2 Avoided</div>
             </div>
         </div>
 
         <!-- CTA -->
         <div class="mt-16 text-center">
-            <a href="mailto:info@yourcompany.com?subject=Request%20a%20Quote"
+            <a href="mailto:info@solara.example?subject=Request%20a%20Quote"
                 class="inline-block px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition transform hover:-translate-y-1 shadow-md hover:shadow-lg">
                 Request a Quote
             </a>
@@ -169,7 +169,7 @@
 
         <!-- Enhanced Case Study Modal -->
         <div x-show="modalOpen" x-cloak @keydown.window.escape="closeModal()" x-transition.opacity.duration.300
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 md:p-6">
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md md:p-6">
 
             <div x-transition.scale.duration.300 role="dialog" aria-modal="true" aria-labelledby="modal-title"
                 class="w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden transform md:max-h-[90vh] flex flex-col">
@@ -218,7 +218,7 @@
                                 <div class="font-bold text-gray-900 text-lg mt-1" x-text="modalProject.duration"></div>
                             </div>
                             <div class="text-center">
-                                <div class="text-xs text-gray-500 uppercase tracking-wide font-semibold">CO₂ Emissions
+                                <div class="text-xs text-gray-500 uppercase tracking-wide font-semibold">CO2 Impact
                                 </div>
                                 <div class="font-bold text-gray-900 text-lg mt-1" x-text="modalProject.co2"></div>
                             </div>
@@ -244,7 +244,7 @@
                         </template>
 
                         <div class="mt-8 flex flex-col sm:flex-row gap-3 pt-4">
-                            <a :href="`mailto:info@yourcompany.com?subject=Inquiry about ${encodeURIComponent(modalProject.title)}`"
+                            <a :href="`mailto:info@solara.example?subject=Inquiry about ${encodeURIComponent(modalProject.title)}`"
                                 class="px-5 py-3 bg-yellow-500 text-gray-900 rounded-lg font-semibold hover:bg-yellow-400 transition text-center flex-1">
                                 Contact about this project
                             </a>

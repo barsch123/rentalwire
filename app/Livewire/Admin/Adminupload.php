@@ -2,51 +2,65 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Component;
-use Illuminate\Support\Str;
-use Livewire\WithFileUploads;
 use App\Models\Equipmentrental;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Layout('components.layouts.app')]
 class Adminupload extends Component
 {
     use WithFileUploads;
 
-    public $photo, $name, $price, $description, $category = '', $subcategory = '', $currentSubcategories = [], $slug;
-    protected $rules = [
-        'photo' => 'required|image|max:2048',  // This is correct for file uploads
-        'name' => 'required|string|max:255',
-        'price' => 'required|integer|min:0',
-        'description' => 'required|string',
-        'category' => 'required|string|max:255',
-        'subcategory' => 'required|string|max:255'
-    ];
+    public $photo;
 
-    public $allSubcategories = [
-        'Dozers' => ['Small Dozers', 'Medium Dozers', 'Large Dozers'],
-        'Excavators' => ['Mini Excavators', 'Medium Excavators', 'Large Excavators'],
-        'Loaders' => ['Skid Steer Loaders', 'Compact Track Loaders', 'Multi Terrain Loaders'],
-        'Scrapers' => ['Open Bowl Scrapers', 'Elevating Scrapers', 'Towed Scrapers'],
-        'Graders' => ['Motor Graders', 'Compact Graders'],
-        'Compactors' => ['Soil Compactors', 'Asphalt Compactors', 'Landfill Compactors'],
-        'Dump Trucks' => ['Articulated Dump Trucks', 'Rigid Dump Trucks'],
-        'Cranes' => ['Mobile Cranes', 'Tower Cranes', 'Crawler Cranes'],
-        'Trenchers' => ['Chain Trenchers', 'Wheel Trenchers'],
-        'Pavers' => ['Asphalt Pavers', 'Concrete Pavers'],
-        'Drilling Equipment' => ['Rotary Drilling Rigs', 'Down-the-Hole Drills', 'Top Hammer Drills'],
-    ];
+    public $name;
 
-    public function updatedCategory($value)
+    public $price;
+
+    public $description;
+
+    public $category = '';
+
+    public $subcategory = '';
+
+    public $currentSubcategories = [];
+
+    public $slug;
+
+    #[Locked]
+    public $allSubcategories = [];
+
+    public function mount(): void
+    {
+        $this->allSubcategories = collect(config('solar.catalog', []))
+            ->map(fn (array $category): array => $category['subcategories'])
+            ->all();
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'photo' => ['required', 'image', 'max:2048'],
+            'name' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'integer', 'min:0'],
+            'description' => ['required', 'string'],
+            'category' => ['required', Rule::in(array_keys($this->allSubcategories))],
+            'subcategory' => ['required', Rule::in($this->allSubcategories[$this->category] ?? [])],
+        ];
+    }
+
+    public function updatedCategory(string $value): void
     {
         $this->subcategory = '';
         $this->currentSubcategories = $this->allSubcategories[$value] ?? [];
     }
 
-    
-
-
-    public function save()
+    public function save(): void
     {
         $this->validate();
         $this->generateSlug($this->name);
@@ -60,25 +74,22 @@ class Adminupload extends Component
                 'price' => $this->price,
                 'description' => $this->description,
                 'category' => $this->category,
-                'subcategory' => $this->subcategory
+                'subcategory' => $this->subcategory,
             ]);
 
-            session()->flash('message', 'Product successfully added.');
-            $this->reset(['photo', 'name', 'price', 'description', 'category', 'subcategory', 'slug']);
+            session()->flash('message', 'Solution successfully added.');
+            $this->reset(['photo', 'name', 'price', 'description', 'category', 'subcategory', 'slug', 'currentSubcategories']);
         } catch (\Exception $e) {
-            session()->flash('error', 'Error saving product: ' . $e->getMessage());
+            session()->flash('error', 'Error saving solution: '.$e->getMessage());
         }
     }
 
-
-
-    public function generateSlug($name)
+    public function generateSlug(string $name): void
     {
         $this->slug = Str::slug($name);
     }
 
-
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.adminupload');
     }

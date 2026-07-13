@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 @import "../../vendor/livewire/flux/dist/flux.css";
 
@@ -11,11 +10,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
-    --font-bungee: "Bungee", sans-serif;
-    --font-marker: "Permanent Marker", cursive;
+    --font-bungee: "Roboto", ui-sans-serif, sans-serif;
+    --font-marker: "Roboto", ui-sans-serif, sans-serif;
+    --font-display: "Roboto", ui-sans-serif, sans-serif;
 
     
     --color-general: #ffab00;
@@ -65,10 +65,42 @@
     @apply !mb-0 !leading-tight;
 }
 
+[data-flux-input] input[data-flux-control],
+select[data-flux-control],
+textarea[data-flux-control] {
+    @apply border-neutral-300! border-b-neutral-300! bg-white! text-neutral-950! shadow-sm! placeholder:text-neutral-400!;
+}
+
+[data-flux-input] input[data-flux-control]:disabled,
+select[data-flux-control]:disabled,
+textarea[data-flux-control]:disabled {
+    @apply cursor-not-allowed! border-neutral-200! bg-neutral-100! text-neutral-500!;
+}
+
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply border-general! outline-hidden ring-2 ring-general/20 ring-offset-0;
+}
+
+[data-flux-button][class*="bg-[var(--color-accent)]"] {
+    @apply border-black/10! bg-general! text-neutral-950!;
+}
+
+[data-flux-button][class*="bg-[var(--color-accent)]"]:hover {
+    @apply brightness-95!;
+}
+
+[data-flux-pagination] [aria-current="page"] {
+    @apply bg-neutral-950! text-white! shadow-sm!;
+}
+
+[data-flux-pagination] button:hover {
+    @apply bg-neutral-950! text-white!;
+}
+
+[data-flux-pagination] > div:not(:first-child) {
+    @apply border-neutral-300! bg-white!;
 }
 
 /* \[:where(&)\]:size-4 {
@@ -138,5 +170,11 @@ select:focus[data-flux-control] {
     100% {
         box-shadow: 0 10px 0 #f2f2f2, -35px 50px 0 #f2f2f2, -70px 90px 0 #f2f2f2,
             -70px 90px 0 rgba(0, 0, 0, 0);
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -22;
     }
 }

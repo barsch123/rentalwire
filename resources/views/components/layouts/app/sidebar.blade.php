@@ -23,7 +23,7 @@
 
 
                     <flux:navlist.item class="mt-2" icon="plus-circle" :href="route('rental.index')"
-                        :current="request()->routeIs('rental.index')" wire:navigate>{{ __('Rentals') }}
+                        :current="request()->routeIs('rental.index')" wire:navigate>{{ __('Solutions') }}
                     </flux:navlist.item>
 
                     <flux:navlist.item class="mt-2" icon="cube-transparent" :href="route('adminblog.index')"

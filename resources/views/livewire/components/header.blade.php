@@ -1,120 +1,112 @@
 <div x-data="{ mobileMenuIsOpen: false, userDropDownIsOpen: false }"
     x-on:keydown.escape.window="mobileMenuIsOpen = false; userDropDownIsOpen = false">
     <header
-        class="font-bungee fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-neutral-900 to-neutral-800 w-full py-3 shadow-lg transition-colors duration-300">
+        class="fixed top-0 left-0 right-0 z-50 bg-linear-to-r from-neutral-900 to-neutral-800 w-full py-3 shadow-lg transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-16">
                 <!-- Brand Logo -->
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                     <a href="/" wire:navigate
-                        class="flex items-center text-2xl font-bold text-white hover:text-[#ffab00] transition-colors duration-200">
-                        <span>Peng<span class="text-[#ffab00]">ui</span>n</span>
+                        class="flex items-center text-2xl font-bold text-white hover:text-general transition-colors duration-200">
+                        <img class="md:size-50 size-35 " src="{{ asset('img/logo-dark.svg') }}" alt="Logo">
                     </a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden sm:flex sm:items-center sm:space-x-6">
-                    <a href="{{ route('rentals') }}" wire:navigate @class([
-                        'px-1 py-2 text-sm font-medium transition-colors duration-200 relative',
-                        'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]' => !request()->routeIs(
-                            'rentals'
+                    <a href="{{ route('rentals') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'rentals'
                         ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('rentals'),
-                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all after:duration-300',
+                        'text-general font-bold' => request()->routeIs('rentals'),
+                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
                         request()->routeIs('rentals')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
-                    ])>
-                        Rentals
+                        ])>
+                        Solutions
                     </a>
 
-                    <a href="{{ route('blog.index') }}" wire:navigate @class([
-                        'px-1 py-2 text-sm font-medium transition-colors duration-200 relative',
-                        'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]' => !request()->routeIs(
-                            'blog.index'
+                    <a href="{{ route('blog.index') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'blog.index'
                         ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('blog.index'),
-                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all after:duration-300',
+                        'text-general font-bold' => request()->routeIs('blog.index'),
+                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
                         request()->routeIs('blog.index')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
-                    ])>
+                        ])>
                         Blog
                     </a>
 
-                    <a href="{{ route('about') }}" wire:navigate @class([
-                        'px-1 py-2 text-sm font-medium transition-colors duration-200 relative',
-                        'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]' => !request()->routeIs(
-                            'about'
+                    <a href="{{ route('about') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'about'
                         ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('about'),
-                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all after:duration-300',
+                        'text-general font-bold' => request()->routeIs('about'),
+                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
                         request()->routeIs('about')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
-                    ])>
+                        ])>
                         About
                     </a>
 
                     {{-- <a href="{{ route('careers') }}" wire:navigate
-                        @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative'
-                        , 'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]'=> !request()->routeIs(
-                        'careers'
-                        ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('careers'),
-                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all
-                        after:duration-300',
-                        request()->routeIs('careers')
-                        ? 'after:w-full'
-                        : 'after:w-0 hover:after:w-full',
-                        ])>
-                        Careers
+                    @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative'
+                    , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                    'careers'
+                    ),
+                    'text-general font-bold' => request()->routeIs('careers'),
+                    'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all
+                    after:duration-300',
+                    request()->routeIs('careers')
+                    ? 'after:w-full'
+                    : 'after:w-0 hover:after:w-full',
+                    ])>
+                    Careers
                     </a> --}}
 
 
-                    <a href="{{ route('contact') }}" wire:navigate @class([
-                        'px-1 py-2 text-sm font-medium transition-colors duration-200 relative',
-                        'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]' => !request()->routeIs(
-                            'contact'
+                    <a href="{{ route('contact') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'contact'
                         ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('contact'),
-                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all after:duration-300',
+                        'text-general font-bold' => request()->routeIs('contact'),
+                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
                         request()->routeIs('contact')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
-                    ])>
+                        ])>
                         Contact
                     </a>
 
-                    <a href="{{ route('login') }}" wire:navigate @class([
-                        'px-1 py-2 text-sm font-medium transition-colors duration-200 relative',
-                        'text-white hover:text-[#ffab00] dark:hover:text-[#ffab00]' => !request()->routeIs(
-                            'login'
+                    @if (Auth::check())
+                    <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
+                        wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'dashboard'
                         ),
-                        'text-[#ffab00] font-bold' => request()->routeIs('login'),
-                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#ffab00] after:transition-all after:duration-300',
+                        'text-general font-bold' => request()->routeIs('dashboard'),
+                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
+                        request()->routeIs('dashboard')
+                        ? 'after:w-full'
+                        : 'after:w-0 hover:after:w-full',
+                        ])>
+                        Dashboard
+                    </a>
+                    @else
+                    <a href="{{ route('login') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'login'
+                        ),
+                        'text-general font-bold' => request()->routeIs('login'),
+                        'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
                         request()->routeIs('login')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
-                    ])>
+                        ])>
                         Login
                     </a>
-                    <div class="relative">
-                        <a href="{{route('checkout')}}" wire:navigate class="relative inline-block p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
-                                class="cursor-pointer fill-white hover:fill-[#ffab00] transition-colors duration-200"
-                                viewBox="0 0 512 512">
-                                <path
-                                    d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
-                                    data-original="#000000"></path>
-                            </svg>
 
-                            <!-- Cart count badge -->
-                            <div class="absolute -top-1 -right-1">
-                                @livewire('components.cart-count')
-                            </div>
-                        </a>
-                    </div>
+                    @endif
+
+                    @livewire('components.cart-count')
 
 
                     <!-- User Dropdown -->
@@ -122,7 +114,7 @@
                         <button x-on:click="userDropDownIsOpen = !userDropDownIsOpen"
                             x-bind:aria-expanded="userDropDownIsOpen"
                             class="flex items-center text-sm rounded-full focus:outline-none ">
-                            <img class="h-8 w-8 mb-3 rounded-full border-2 border-transparent hover:border-[#ffab00] transition-colors duration-200"
+                            <img class="h-8 w-8 mb-3 rounded-full border-2 border-transparent hover:border-general transition-colors duration-200"
                                 src="{{asset('img/user-1.jpg')}}" alt="User Profile">
                         </button>
 
@@ -133,41 +125,41 @@
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
                             x-on:click.outside="userDropDownIsOpen = false"
-                            class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-black ring-opacity-5 focus:outline-none">
+                            class="absolute right-0 mt-2 w-56 origin-top-right overflow-hidden rounded-lg border border-neutral-200 bg-white py-1 text-neutral-900 shadow-lg ring-1 ring-black/5 focus:outline-none">
                             @if(Auth::check())
-                                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                                    <p class="text-sm font-medium text-gray-900 dark:text-white">
-                                        {{ Auth::user()->name}}
-                                    </p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">
-                                        {{ Auth::user()->email }}
-                                    </p>
-                                </div>
+                            <div class="border-b border-neutral-200 px-4 py-3">
+                                <p class="text-sm font-semibold text-neutral-950">
+                                    {{ Auth::user()->name}}
+                                </p>
+                                <p class="text-xs text-neutral-500">
+                                    {{ Auth::user()->email }}
+                                </p>
+                            </div>
                             @else
-                                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                            <div class="border-b border-neutral-200 px-4 py-3">
 
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">
-                                        Please log in to access your account.
-                                    </p>
-                                </div>
+                                <p class="text-xs leading-5 text-neutral-500">
+                                    Please log in to access your account.
+                                </p>
+                            </div>
                             @endif
 
 
                             <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
                                 wire:navigate
-                                class="block px-4 py-2 text-sm text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:hover:bg-gray-700 dark:text-white">
+                                class="block px-4 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-general/10 hover:text-neutral-950">
                                 Dashboard
                             </a>
 
 
                             </a>
                             @if(Auth::check())
-                                <div class="border-t border-gray-200 dark:border-gray-700 mt-1">
-                                    <a href="#" wire:click.prevent="logout"
-                                        class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-red-500 dark:hover:bg-gray-700">
-                                        Sign Out
-                                    </a>
-                                </div>
+                            <div class="mt-1 border-t border-neutral-200">
+                                <a href="#" wire:click.prevent="logout"
+                                    class="block px-4 py-2.5 text-sm font-medium text-red-700 transition hover:bg-red-50">
+                                    Sign Out
+                                </a>
+                            </div>
                             @endif
 
 
@@ -216,15 +208,15 @@
         x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in-out duration-300" x-transition:leave-start="translate-x-0"
         x-transition:leave-end="-translate-x-full"
-        class="font-bungee fixed inset-y-0 left-0 z-70 w-64 border-r max-w-sm bg-white shadow-xl overflow-y-auto"
+        class="font-bungee fixed inset-y-0 left-0 z-70 flex w-[min(19rem,calc(100vw-1rem))] max-h-dvh flex-col overflow-hidden border-r border-neutral-200 bg-white shadow-2xl"
         @click.away="mobileMenuIsOpen = false">
 
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-            <a href="/" class="text-xl font-bold text-gray-900 dark:text-white">
-                <span>Peng<span class="text-[#ffab00]">ui</span>n</span>
+        <div class="flex items-center justify-between border-b border-neutral-200 px-4 py-4">
+            <a href="/" wire:navigate class="text-xl font-bold text-neutral-950">
+                <span>Sol<span class="text-general">ara</span></span>
             </a>
             <button x-on:click="mobileMenuIsOpen = false"
-                class="p-2 rounded-md text-white hover:text-[#ffab00] hover:bg-gray-100 dark:hover:bg-gray-700">
+                class="rounded-md p-2 text-neutral-500 hover:bg-neutral-100 hover:text-general">
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -232,74 +224,67 @@
             </button>
         </div>
 
-        <div class="px-4 py-6">
-            <!-- User Profile -->
-            <div class="flex items-center space-x-3 mb-6 px-2">
-                <img class="h-10 w-10 rounded-full border-2 border-[#ffab00]" src="{{asset('img/user-1.jpg')}}"
-                    alt="User Profile">
-                <div>
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">
-                        {{Auth::check() ? Auth::user()->name : ''}}
-                    </p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">{{Auth::check() ? Auth::user()->email : ''}}</p>
+        <div class="flex-1 overflow-y-auto px-3 py-4">
+            <div class="mb-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3">
+                <div class="flex items-center gap-3">
+                    <img class="h-10 w-10 rounded-full border-2 border-general" src="{{asset('img/user-1.jpg')}}"
+                        alt="User Profile">
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-semibold text-neutral-950">
+                            {{ Auth::check() ? Auth::user()->name : 'Guest' }}
+                        </p>
+                        <p class="truncate text-xs text-neutral-500">
+                            {{ Auth::check() ? Auth::user()->email : 'Sign in to manage your account' }}
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <!-- Mobile Navigation -->
             <nav class="space-y-1">
                 <a href="{{ route('rentals') }}" wire:navigate
-                    class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
-                    Rentals
+                    x-on:click="mobileMenuIsOpen = false"
+                    class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
+                    Solutions
                 </a>
                 <a href="{{ route('blog.index') }}" wire:navigate
-                    class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
+                    x-on:click="mobileMenuIsOpen = false"
+                    class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
                     Blog
                 </a>
                 <a href="{{ route('about') }}" wire:navigate
-                    class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
+                    x-on:click="mobileMenuIsOpen = false"
+                    class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
                     About
                 </a>
                 <a href="{{ route('contact') }}" wire:navigate
-                    class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
+                    x-on:click="mobileMenuIsOpen = false"
+                    class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
                     Contact
                 </a>
 
-                <!-- Cart Link -->
+                <!-- Estimate Link -->
                 <a href="{{ route('checkout') }}" wire:navigate
-                    class="flex items-center px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700 relative">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
-                        class="fill-current transition-colors duration-200" viewBox="0 0 512 512">
-                        <path
-                            d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
-                            data-original="#000000"></path>
-                    </svg>
-
-                    <!-- Cart Count Badge -->
-                    <div class="absolute top-0 left-0 max-w-xs">
-                        <livewire:components.cart-count />
-                    </div>
-
-                    <span class="ml-2"></span>
+                    x-on:click="mobileMenuIsOpen = false"
+                    class="flex items-center gap-3 rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
+                    <flux:icon.shopping-cart class="size-5" />
+                    <span>Estimate</span>
                 </a>
             </nav>
 
-
-            <!-- Mobile User Menu -->
-            <div class="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="mt-4 border-t border-neutral-200 pt-4">
                 <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
                     wire:navigate
-                    class="block px-3 py-2 rounded-md text-base font-medium text-neutral-900 hover:bg-gray-100 hover:text-[#ffab00] dark:text-white dark:hover:bg-gray-700">
+                    x-on:click="mobileMenuIsOpen = false"
+                    class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
                     Dashboard
                 </a>
 
-
-                @if(Auth::check())
-                    <flux:button wire:click="" class="bg-[#ffab00]! text-white! hover:bg-[#ffab00]/90!">Sign Out
-                    </flux:button>
+                @if (Auth::check())
+                <flux:button wire:click="logout" variant="primary" class="mt-3 w-full justify-center rounded-xl">
+                    Sign Out
+                </flux:button>
                 @endif
-
-
-
             </div>
         </div>
     </div>

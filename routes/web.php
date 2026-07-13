@@ -1,25 +1,22 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CareersController;
-use App\Livewire\Checkout;
-use App\Http\Controllers\Welcome;
-use App\Livewire\Admin\Adminblog;
-use App\Livewire\Settings\Profile;
-use App\Livewire\Admin\Adminupload;
-use App\Livewire\Settings\Password;
-use App\Livewire\Settings\Appearance;
-use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\RentalController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\RentalController;
 use App\Http\Controllers\ServicesController;
-use App\Livewire\User\Dashboard as userDashboard;
+use App\Http\Controllers\Welcome;
+use App\Livewire\Admin\Adminblog;
+use App\Livewire\Admin\Adminupload;
 use App\Livewire\Admin\Dashboard;
-
-
+use App\Livewire\Settings\Appearance;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Profile;
+use App\Livewire\User\Dashboard as UserDashboard;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Welcome::class, 'index'])->name('welcome');
 Route::get('/services', [ServicesController::class, 'index'])->name('services');
@@ -31,14 +28,15 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.details');
 
-
-Route::get('/rentals', [RentalController::class, 'index'])->name('rentals');
-Route::get('/rentals/{slug}', [RentalController::class, 'show'])->name('rental-details');
-
+Route::redirect('/rentals', '/solutions');
+Route::redirect('/solution', '/solutions');
+Route::get('/solutions', [RentalController::class, 'index'])->name('rentals');
+Route::get('/solutions/{slug}', [RentalController::class, 'show'])->name('rental-details');
+Route::post('/solutions/{slug}/estimate', [RentalController::class, 'addToEstimate'])->name('solutions.estimate.store');
 
 Route::get('/careers', [CareersController::class, 'index'])->name('careers');
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-
+Route::redirect('/checkout', '/estimate');
+Route::get('/estimate', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
@@ -54,4 +52,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

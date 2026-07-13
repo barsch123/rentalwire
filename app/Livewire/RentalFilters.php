@@ -2,118 +2,225 @@
 
 namespace App\Livewire;
 
+use App\Models\Equipmentrental;
+use Flux\Flux;
+use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Equipmentrental;
-use Illuminate\Support\Facades\Session;
 
 class RentalFilters extends Component
 {
     use WithPagination;
+
+    private const SORT_OPTIONS = [
+        'newest',
+        'priceLowHigh',
+        'priceHighLow',
+        'nameAZ',
+        'nameZA',
+    ];
+
     public $categories = [];
+
+    public $categoryDetails = [];
+
+    public $categoryCounts = [];
+
     public $subcategories = [];
+
+    public int $priceFloor = 0;
+
+    public int $priceCeiling = 0;
+
+    public int $priceStep = 100;
+
+    #[Url(as: 'q')]
+    public string $search = '';
 
     // Active filters used in the query
     public $selectedCategory = null;
+
     public $selectedSubcategory = null;
+
     public $sortOption = 'newest';
+
     public $minPrice = null;
+
     public $maxPrice = null;
 
     // Temporary properties for filter input fields
     public $tempSelectedCategory = null;
+
     public $tempSelectedSubcategory = null;
+
     public $tempSortOption = 'newest';
+
     public $tempMinPrice = null;
+
     public $tempMaxPrice = null;
 
-    public $toastTitle, $toastBody, $toastType;
-
-    public function mount()
+    public function mount(): void
     {
-        $this->categories = Equipmentrental::select('category')
-            ->distinct()
-            ->pluck('category')
-            ->toArray();
+        $this->categoryDetails = config('solar.catalog', []);
+        $this->categories = array_keys($this->categoryDetails);
+        $this->categoryCounts = Equipmentrental::query()
+            ->whereIn('category', $this->categories)
+            ->selectRaw('category, count(*) as total')
+            ->groupBy('category')
+            ->pluck('total', 'category')
+            ->map(fn ($total): int => (int) $total)
+            ->all();
+        $this->priceFloor = 0;
+        $this->priceCeiling = (int) ceil((float) Equipmentrental::query()->whereIn('category', $this->categories)->max('price'));
 
         // Initialize temporary values with active filter values.
         $this->tempSelectedCategory = $this->selectedCategory;
         $this->tempSelectedSubcategory = $this->selectedSubcategory;
         $this->tempSortOption = $this->sortOption;
-        $this->tempMinPrice = $this->minPrice;
-        $this->tempMaxPrice = $this->maxPrice;
+        $this->tempMinPrice = $this->minPrice ?? $this->priceFloor;
+        $this->tempMaxPrice = $this->maxPrice ?? $this->priceCeiling;
     }
 
-    /**
-     * When a category is selected in the filters,
-     * load the associated subcategories.
-     */
-    public function loadSubcategories()
+    public function updatedTempSelectedCategory(): void
     {
-        if ($this->tempSelectedCategory) {
-            $this->subcategories = Equipmentrental::where('category', $this->tempSelectedCategory)
-                ->select('subcategory')
-                ->distinct()
-                ->pluck('subcategory')
-                ->toArray();
-        } else {
-            $this->subcategories = [];
+        $this->loadSubcategories();
+    }
+
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function loadSubcategories(): void
+    {
+        $this->tempSelectedSubcategory = null;
+
+        $this->subcategories = $this->categoryDetails[$this->tempSelectedCategory]['subcategories'] ?? [];
+    }
+
+    public function selectCategory(string $category): void
+    {
+        if (! in_array($category, $this->categories, true)) {
+            return;
         }
+
+        $this->tempSelectedCategory = $category;
+        $this->selectedCategory = $category;
+        $this->tempSelectedSubcategory = null;
+        $this->selectedSubcategory = null;
+        $this->loadSubcategories();
+        $this->resetPage();
     }
 
     /**
-     * Add the equipment to cart and flash a success message.
+     * Add the solution to the estimate list and flash a success message.
      */
     // Livewire method
-    public function addToCart($equipmentId)
+    public function addToCart($equipmentId): void
     {
         $equipment = Equipmentrental::find($equipmentId);
-        if (! $equipment) return;
+        if (! $equipment) {
+            return;
+        }
 
         $cart = Session::get('cart', []);
-        $cart[] = $equipment->toArray();
+        $existingIndex = collect($cart)->search(
+            fn (array $item): bool => (int) ($item['id'] ?? 0) === $equipment->id
+        );
+
+        if ($existingIndex === false) {
+            $cart[] = [...$equipment->toArray(), 'quantity' => 1];
+        } else {
+            $cart[$existingIndex]['quantity'] = (int) ($cart[$existingIndex]['quantity'] ?? 1) + 1;
+        }
+
         Session::put('cart', $cart);
         $this->dispatch('cartUpdated');
 
-        $this->toastTitle = $equipment->name . ' added to cart';
-        $this->toastBody = '$' . number_format($equipment->price, 2);
-        // $this->toastType = "success";
-
-        $this->dispatch('toast', [
-            'title' => $this->toastTitle,
-            'body' => $this->toastBody,
-            // 'toastType' => $this->toastType,
-            'timeout' => 5000,
-        ]);
+        Flux::toast(
+            text: $equipment->name,
+            heading: 'Added to estimate',
+            variant: 'success',
+        );
     }
-
 
     /**
      * When the user clicks the Apply Filters button,
      * copy temporary values to the active filter properties.
      */
-    public function applyFilters()
+    public function applyFilters(): void
     {
-        $this->selectedCategory    = $this->tempSelectedCategory;
-        $this->selectedSubcategory = $this->tempSelectedSubcategory;
-        $this->sortOption          = $this->tempSortOption;
-        $this->minPrice            = $this->tempMinPrice;
-        $this->maxPrice            = $this->tempMaxPrice;
+        if ($this->tempSelectedCategory && ! in_array($this->tempSelectedCategory, $this->categories, true)) {
+            $this->tempSelectedCategory = null;
+            $this->tempSelectedSubcategory = null;
+        }
 
-        // Reset pagination if needed
+        $this->selectedCategory = filled($this->tempSelectedCategory) ? $this->tempSelectedCategory : null;
+        $this->selectedSubcategory = filled($this->tempSelectedSubcategory) ? $this->tempSelectedSubcategory : null;
+        $this->sortOption = in_array($this->tempSortOption, self::SORT_OPTIONS, true)
+            ? $this->tempSortOption
+            : 'newest';
+
+        $normalizedMinPrice = $this->normalizePriceFilter($this->tempMinPrice);
+        $normalizedMaxPrice = $this->normalizePriceFilter($this->tempMaxPrice);
+
+        $this->minPrice = $normalizedMinPrice > $this->priceFloor ? $normalizedMinPrice : null;
+        $this->maxPrice = $normalizedMaxPrice < $this->priceCeiling ? $normalizedMaxPrice : null;
+
+        if ($normalizedMinPrice !== null && $normalizedMaxPrice !== null && $normalizedMinPrice > $normalizedMaxPrice) {
+            [$normalizedMinPrice, $normalizedMaxPrice] = [$normalizedMaxPrice, $normalizedMinPrice];
+            [$this->tempMinPrice, $this->tempMaxPrice] = [$normalizedMinPrice, $normalizedMaxPrice];
+            $this->minPrice = $normalizedMinPrice > $this->priceFloor ? $normalizedMinPrice : null;
+            $this->maxPrice = $normalizedMaxPrice < $this->priceCeiling ? $normalizedMaxPrice : null;
+        }
+
+        if ($this->selectedCategory && $this->selectedSubcategory) {
+            $subcategoryExists = Equipmentrental::where('category', $this->selectedCategory)
+                ->where('subcategory', $this->selectedSubcategory)
+                ->exists();
+
+            if (! $subcategoryExists) {
+                $this->selectedSubcategory = null;
+                $this->tempSelectedSubcategory = null;
+            }
+        }
+
         $this->resetPage();
     }
 
-    public function resetFilters(){
+    public function resetFilters(): void
+    {
+        $this->search = '';
+        $this->selectedCategory = null;
+        $this->selectedSubcategory = null;
+        $this->sortOption = 'newest';
+        $this->minPrice = null;
+        $this->maxPrice = null;
+        $this->tempSelectedCategory = null;
+        $this->tempSelectedSubcategory = null;
+        $this->tempSortOption = 'newest';
+        $this->tempMinPrice = $this->priceFloor;
+        $this->tempMaxPrice = $this->priceCeiling;
+        $this->subcategories = [];
         $this->resetPage();
     }
 
-    /**
-     * Compute the filtered equipment list based on the active filters.
-     */
     public function getFilteredEquipmentProperty()
     {
-        $query = Equipmentrental::query();
+        $query = Equipmentrental::query()->whereIn('category', $this->categories);
+
+        if (filled($this->search)) {
+            $search = trim($this->search);
+
+            $query->where(function ($query) use ($search): void {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%")
+                    ->orWhere('subcategory', 'like', "%{$search}%");
+            });
+        }
 
         if ($this->selectedCategory) {
             $query->where('category', $this->selectedCategory);
@@ -150,10 +257,19 @@ class RentalFilters extends Component
                 break;
         }
 
-        return $query->paginate(5);
+        return $query->paginate(9);
     }
 
-    public function render()
+    private function normalizePriceFilter($value): ?float
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        return max(0, (float) $value);
+    }
+
+    public function render(): View
     {
         return view('livewire.rental-filters', [
             'equipmentList' => $this->filteredEquipment,

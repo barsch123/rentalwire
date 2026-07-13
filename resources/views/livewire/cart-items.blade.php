@@ -1,56 +1,50 @@
-<!-- Cart Section -->
-<div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-    <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold text-neutral-900 flex items-center gap-2">
-            <span class="text-sm text-gray-500 font-normal">({{ count($cart ?? []) }} items)</span>
-        </h2>
-
-        @if(!empty($cart))
-            <button wire:click="removeAllItems"
-                class="px-4 py-2 rounded-lg border border-red-400 text-red-500 hover:bg-red-500 hover:text-white transition-colors text-sm font-medium">
-                Remove All
-            </button>
+<section class="space-y-5">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+            <p class="text-sm font-black uppercase tracking-[0.2em] text-[#9a6700]">Your selection</p>
+            <h2 class="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Selected solutions</h2>
+            <p class="mt-1 text-base text-neutral-500">{{ count($cart ?? []) }} {{ Str::plural('item', count($cart ?? [])) }} in your review list</p>
+        </div>
+        @if (! empty($cart))
+            <button wire:click="removeAllItems" class="rounded-full border border-neutral-300 px-4 py-2 text-sm font-bold text-neutral-600 transition hover:border-red-300 hover:bg-red-50 hover:text-red-700 data-loading:pointer-events-none data-loading:opacity-50">Clear all</button>
         @endif
     </div>
 
-    @if (!empty($cart))
+    @if (! empty($cart))
         <div class="space-y-4">
             @foreach ($cart as $index => $item)
-                <div class="flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:shadow-md transition">
-                    <div class="flex items-center">
-                        <input type="checkbox" wire:model="selectedItems" value="{{ $index }}"
-                            class="h-4 w-4 text-[#ffb000] border-gray-300 rounded">
-
-                        <img src="{{ asset('storage/' . $item['photo']) }}" alt="{{ $item['name'] }}"
-                            class="w-20 h-20 object-cover rounded-lg ml-4 shadow-sm">
-
-                        <div class="ml-4">
-                            <h3 class="text-base font-semibold text-neutral-900">{{ $item['name'] }}</h3>
-                            <p class="text-gray-500 text-sm">${{ number_format($item['price'], 2) }}</p>
+                <article wire:key="checkout-item-{{ $item['id'] ?? $index }}-{{ $index }}" class="grid gap-4 rounded-2xl border border-neutral-200 bg-white p-4 transition hover:border-general sm:grid-cols-[6.5rem_minmax(0,1fr)_auto] sm:items-center sm:p-5">
+                    <div class="relative overflow-hidden rounded-xl bg-neutral-100">
+                        <img src="{{ Str::startsWith($item['photo'] ?? '', 'http') ? $item['photo'] : asset('storage/'.($item['photo'] ?? '')) }}" alt="{{ $item['name'] }}" class="aspect-square h-full w-full object-cover">
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-sm font-bold text-[#9a6700]">{{ $item['subcategory'] ?? 'Solar solution' }}</p>
+                        <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $item['name'] }}</h3>
+                        <p class="mt-2 line-clamp-2 text-base leading-7 text-neutral-500">{{ $item['description'] ?? 'Selected for estimate review and final sizing.' }}</p>
+                        <div class="mt-3 flex flex-wrap gap-2 text-sm font-bold uppercase tracking-wide text-neutral-500">
+                            <span class="rounded-full bg-general/15 px-2.5 py-1 text-[#9a6700]">Qty {{ $item['quantity'] ?? 1 }}</span>
+                            <span class="rounded-full bg-neutral-100 px-2.5 py-1">{{ $item['category'] ?? 'Solar' }}</span>
                         </div>
                     </div>
-
-                    <button wire:click="removeFromCart({{ $index }})" class="text-red-500 hover:text-red-700 transition"
-                        title="Remove item">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 1024 1024">
-                            <path
-                                d="M960 160H668.8a160 160 0 0 0-313.6 0H64a32 32 0 0 0 0 64h896a32 32 0 0 0 0-64zM512 96a96 96 0 0 1 90.24 64H421.76A96 96 0 0 1 512 96zM832 416a32 32 0 0 0-32 32v416a32 32 0 0 1-64 0V448a32 32 0 0 0-64 0v416a32 32 0 0 1-64 0V448a32 32 0 0 0-64 0v416a32 32 0 0 1-64 0V448a32 32 0 0 0-64 0v416a32 32 0 0 1-64 0V448a32 32 0 0 0-64 0v416a96 96 0 0 0 96 96h512a96 96 0 0 0 96-96V448a32 32 0 0 0-32-32z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
+                    <div class="flex items-center justify-between gap-4 border-t border-neutral-100 pt-4 sm:block sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0 sm:text-right">
+                        <div>
+                            <span class="text-sm font-black uppercase tracking-wider text-neutral-400">{{ ($item['quantity'] ?? 1) > 1 ? 'Line total' : 'Starting at' }}</span>
+                            <strong class="mt-1 block text-2xl font-semibold">${{ number_format($item['price'] * ($item['quantity'] ?? 1), 0) }}</strong>
+                        </div>
+                        <button wire:click="removeFromCart({{ $index }})" aria-label="Remove {{ $item['name'] }}" class="mt-0 rounded-full p-2 text-neutral-400 transition hover:bg-red-50 hover:text-red-600 data-loading:pointer-events-none data-loading:opacity-40 sm:mt-5">
+                            <flux:icon.trash class="size-5" />
+                        </button>
+                    </div>
+                </article>
             @endforeach
         </div>
+        <a href="{{ route('rentals') }}" wire:navigate class="inline-flex items-center gap-2 text-base font-semibold text-neutral-700 underline decoration-general decoration-2 underline-offset-4 hover:text-neutral-950"><flux:icon.plus class="size-4" /> Add another solution</a>
     @else
-        <div class="flex flex-col items-center justify-center text-center py-10">
-            <svg class="w-12 h-12 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.6 8H19m-12 0a2 2 0 11-4 0 2 2 0 014 0zm12 0a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <p class="text-gray-500 font-medium">Your cart is empty.</p>
-            <a href="{{route('rentals')}}" class="mt-3 text-general font-medium hover:underline">
-                Continue shopping →
-            </a>
+        <div class="rounded-2xl border border-dashed border-neutral-300 bg-white px-6 py-14 text-center">
+            <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-general/15 text-[#9a6700]"><flux:icon.bolt class="size-7" /></div>
+            <h3 class="mt-5 text-2xl font-bold">Your energy plan is empty</h3>
+            <p class="mx-auto mt-2 max-w-md text-base leading-7 text-neutral-500">Explore panels, storage, inverters, and complete solar kits to start a focused consultation.</p>
+            <flux:button :href="route('rentals')" wire:navigate variant="primary" class="mt-6 rounded-full! px-6!">Explore Solutions</flux:button>
         </div>
     @endif
-</div>
+</section>

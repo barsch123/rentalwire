@@ -2,21 +2,38 @@
 
 namespace App\Livewire;
 
-
+use App\Models\Equipmentrental;
 use Exception;
 use Flux\Flux;
-use App\Models\Equipmentrental;
-use Livewire\Component;
 use Illuminate\Support\Str;
-use Livewire\WithPagination;
+use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+
 class RentalTable extends Component
 {
-
-    use WithPagination;
     use WithFileUploads;
+    use WithPagination;
 
-    public $name, $description, $newphoto, $category, $price, $subcategory, $equipmentId, $selectedId = null, $slug, $search = '';
+    public $name;
+
+    public $description;
+
+    public $newphoto;
+
+    public $category;
+
+    public $price;
+
+    public $subcategory;
+
+    public $equipmentId;
+
+    public $selectedId = null;
+
+    public $slug;
+
+    public $search = '';
 
     protected $rules = [
         'name' => 'nullable|string|max:255',
@@ -26,7 +43,6 @@ class RentalTable extends Component
         'subcategory' => 'nullable|string',
         'newphoto' => 'nullable|image|max:2048',
     ];
-
 
     public function editEquipment($id)
     {
@@ -74,7 +90,7 @@ class RentalTable extends Component
             Equipmentrental::findOrFail($this->selectedId)->delete();
             Flux::modal('modal')->close();
         } catch (Exception $e) {
-            throw New Exception('An error has occured please try again');
+            throw new Exception('An error has occured please try again');
         }
     }
 
@@ -83,18 +99,16 @@ class RentalTable extends Component
         $this->slug = Str::slug($value);
     }
 
-  
-
     public function render()
     {
         $query = Equipmentrental::query();
 
         if ($this->search) {
             $query->where(function ($q) {
-                $q->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%')
-                    ->orWhere('category', 'like', '%' . $this->search . '%')
-                    ->orWhere('subcategory', 'like', '%' . $this->search . '%');
+                $q->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('description', 'like', '%'.$this->search.'%')
+                    ->orWhere('category', 'like', '%'.$this->search.'%')
+                    ->orWhere('subcategory', 'like', '%'.$this->search.'%');
             });
         }
 
@@ -102,20 +116,8 @@ class RentalTable extends Component
             ->latest()
             ->paginate(5);
 
-        $columns = [
-            ['key' => 'id', 'label' => 'ID'],
-            ['key' => 'name', 'label' => 'Name'],
-            ['key' => 'description', 'label' => 'Description'],
-            ['key' => 'photo', 'label' => 'Photo'],
-            ['key' => 'price', 'label' => 'Price'],
-            ['key' => 'category', 'label' => 'Category'],
-            ['key' => 'subcategory', 'label' => 'Subcategory'],
-        ];
-
         return view('livewire.rental-table', [
-            'columns' => $columns,
-            'rentalEquipment' => $rentalEquipment
+            'rentalEquipment' => $rentalEquipment,
         ]);
     }
-
 }

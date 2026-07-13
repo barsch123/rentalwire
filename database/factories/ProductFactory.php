@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends Factory<Product>
  */
 class ProductFactory extends Factory
 {
@@ -17,14 +18,27 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->words(3, true);
+        $name = fake()->randomElement([
+            'Solar Panel Kit',
+            'Hybrid Inverter',
+            'Battery Backup',
+            'Monitoring Gateway',
+            'Panel Cleaning Plan',
+        ]);
+
         return [
             'name' => $name,
-            'slug' => \Illuminate\Support\Str::slug($name . '-' . fake()->unique()->numberBetween(1000, 9999)),
-            'price' => fake()->randomFloat(2, 10, 1000), // Generate a price between 10 and 1000
-            'description' => fake()->sentence(), // Generate a random product description
-            'photo' => fake()->imageUrl(), // Use Unsplash images
-            'category' => fake()->randomElement(['Cranes', 'Excavators', 'Cars', 'Loaders', 'Bulldozers', 'Forklift']), // Choose a category
+            'slug' => Str::slug($name.'-'.fake()->unique()->numberBetween(1000, 9999)),
+            'price' => fake()->randomFloat(2, 25000, 2500000),
+            'description' => fake()->sentence(),
+            'photo' => fake()->imageUrl(),
+            'category' => fake()->randomElement([
+                'Residential Solar',
+                'Commercial Solar',
+                'Battery Storage',
+                'Inverters',
+                'Maintenance',
+            ]),
         ];
     }
 }

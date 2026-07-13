@@ -15,23 +15,23 @@
 
                 <!-- LEFT: Story -->
                 <div class="max-w-xl">
-                    <p class="text-xs uppercase tracking-widest text-yellow-600 mb-4">
+                    <p class="mb-4 text-xs uppercase tracking-widest text-[#9a6700]">
                         About Us
                     </p>
 
                     <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-6 leading-tight">
-                        Security and tracking<br class="hidden sm:block">
+                        Solar energy systems<br class="hidden sm:block">
                         built for real conditions
                     </h2>
 
                     <p class="text-neutral-700 leading-relaxed mb-6">
-                        Patri Protect provides dependable vehicle tracking and security services
-                        designed for Jamaica's roads and real-world risks.
+                        Solara provides dependable solar design, installation, storage, and maintenance services
+                        for Jamaica's homes, businesses, and industrial sites.
                     </p>
 
                     <p class="text-neutral-700 leading-relaxed">
-                        We focus on visibility, reliability, and fast response —
-                        giving drivers and businesses confidence every day.
+                        We focus on practical system design, reliable components, and responsive aftercare so every
+                        customer can lower energy costs with confidence.
                     </p>
                 </div>
 
@@ -42,7 +42,7 @@
                             What we deliver
                         </h4>
                         <p class="text-sm text-neutral-600">
-                            Real-time GPS tracking, alerts, and recovery support.
+                            Rooftop and ground-mount solar, hybrid inverters, battery storage, and monitoring.
                         </p>
                     </div>
 
@@ -51,7 +51,7 @@
                             Why it matters
                         </h4>
                         <p class="text-sm text-neutral-600">
-                            Faster response times, reduced risk, and peace of mind.
+                            Lower utility bills, cleaner backup power, and better control over energy costs.
                         </p>
                     </div>
 
@@ -60,13 +60,13 @@
                             How we work
                         </h4>
                         <p class="text-sm text-neutral-600">
-                            Clear communication, reliable systems, and local expertise.
+                            Clear proposals, code-compliant installs, and local service after commissioning.
                         </p>
                     </div>
 
                     <div class="pt-4 border-t border-neutral-200 flex gap-3">
                         <a href="{{ route('services') }}"
-                            class="inline-flex items-center px-4 py-2 bg-neutral-900 text-white text-sm font-semibold rounded-lg">
+                            class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 px-4! py-2!">
                             Our services
                         </a>
 

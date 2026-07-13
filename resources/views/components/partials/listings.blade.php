@@ -6,7 +6,7 @@
                 x-intersect:options="{ threshold: 0.5 }"
                 :class="animate ? 'opacity-50 translate-x-0 transition duration-700' : 'opacity-0 translate-x-10'"
                 class="text-gray-100 section-title absolute inset-0 md:text-6xl lg:text-7xl text-5xl font-extrabold  border-gray-200 opacity-50 uppercase tracking-wide leading-none">
-                THE BEST EQUIPMENT
+                CLEAN ENERGY OPTIONS
             </h2>
 
             <!-- Foreground Text -->
@@ -17,7 +17,7 @@
                     'opacity-100 translate-x-0 transition duration-700' :
                     'opacity-0 translate-x-10'"
                 class="text-white relative text-4xl md:text-5xl font-extrabold ">
-                VIEW OUR <span class="block text-yellow-500 border-b-4 border-yellow-500 w-max"> EQUIPMENT</span>
+                VIEW OUR <span class="block w-max border-b-4 border-general text-general"> SOLUTIONS</span>
             </h2>
         </div>
     </div>
@@ -25,15 +25,12 @@
     <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
         <template
             x-for="img in [
-      { src: 'Bulldozer.png', alt: 'Bulldozer' },
-      { src: 'eg1.png', alt: 'Example 1' },
-      { src: 'eg2.png', alt: 'Example 2' },
-      { src: 'Elevating Scraper.png', alt: 'Elevating Scraper' },
-      { src: 'Motorgrader.png', alt: 'Motorgrader' },
-      { src: 'ft.png', alt: 'FT' },
-      { src: 'compactor.png', alt: 'Compactor' },
-      { src: 'forklift.png', alt: 'Forklift' },
-      { src: 'crane.png', alt: 'Crane' }
+      { src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80', alt: 'Residential rooftop solar panels' },
+      { src: 'https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=900&q=80', alt: 'Solar technician at work' },
+      { src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=900&q=80', alt: 'Commercial solar array' },
+      { src: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=900&q=80', alt: 'Solar inverter system' },
+      { src: 'https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=900&q=80', alt: 'Rooftop panel installation' },
+      { src: 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=900&q=80', alt: 'Solar farm under blue sky' }
     ]"
             :key="img.src">
             <div x-data="{ visible: false }" x-intersect.once="visible = true"
@@ -42,7 +39,7 @@
                     'opacity-100 translate-y-0 transition duration-700' :
                     'opacity-0 translate-y-10'"
                 class="mb-4 break-inside-avoid bg-white rounded-xl">
-                <img class="w-full rounded-xl" :src="`{{ asset('img/') }}/${img.src}`" :alt="img.alt" />
+                <img class="w-full rounded-xl" :src="img.src" :alt="img.alt" />
             </div>
         </template>
     </div>
@@ -53,8 +50,8 @@
             ?
             'opacity-100 translate-y-0 transition duration-700' :
             'opacity-0 translate-y-10'">
-        <a class="relative inline-flex items-center justify-center gap-2 rounded-sm bg-yellow-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600 before:absolute before:-z-10 before:top-1 before:left-1 before:w-full before:h-full before:rounded-sm before:bg-white before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
-            href="#">
+        <a class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 rounded-sm!"
+            href="{{ route('contact') }}">
             <span class="relative z-10">REQUEST A FREE QUOTE</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-4 w-4" viewBox="0 0 20 20"
                 fill="currentColor">

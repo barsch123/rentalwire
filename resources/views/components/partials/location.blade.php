@@ -6,11 +6,10 @@
                     Online, in-person, <br> everywhere
                 </h2>
                 <p class="text-gray-600 text-lg leading-relaxed">
-                    Choose from various vehicles from multiple brands and get in touch with our team,
+                    Choose from solar packages, storage options, and maintenance plans, then get in touch with our team,
                     or visit us at one of our dealerships today.
                 </p>
-                <button
-                    class="mt-6 bg-yellow-500 text-white font-semibold px-6 py-3 rounded-sm shadow-md hover:bg-yellow-600 transition">
+                <button class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 mt-6 rounded-sm! px-6!">
                     Visit Us
                 </button>
             </div>

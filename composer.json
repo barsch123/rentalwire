@@ -21,6 +21,7 @@
         "laravel/boost": "^2.4",
         "laravel/pail": "dev-main",
         "laravel/pint": "^1.18",
+        "laravel/telescope": "^5.20",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.4.1",
@@ -73,7 +74,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                            "laravel/telescope"
+            ]
         }
     },
     "config": {

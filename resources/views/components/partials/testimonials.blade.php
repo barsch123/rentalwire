@@ -1,57 +1,65 @@
-<section class="py-16 px-6">
-    <div class="container mx-auto px-4 relative py-10 mb-10 text-center" x-data>
-        <!-- Background Title -->
-        <h2 x-data="{ animate: false }" x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-            x-intersect:options="{ threshold: 0.5 }"
-            :class="animate
-                ?
-                'opacity-50 -translate-x-0 transition duration-700' :
-                'opacity-0 -translate-x-10'"
-            class="section-title absolute inset-0 text-5xl md:text-7xl font-extrabold text-gray-200 opacity-50 uppercase tracking-wide leading-none md:block hidden">
-            WHAT OUR CUSTOMERS SAY
-        </h2>
+@php
+    $testimonial = [
+        'quote' => 'Solara made our solar upgrade clear from the first site visit. The team explained the savings, installed on schedule, and left us with a system that has already lowered our monthly energy costs.',
+        'name' => 'John Doe',
+        'role' => 'Homeowner, Kingston',
+        'avatar' => asset('img/user-1.jpg'),
+        'image' => asset('img/testimonial.png'),
+    ];
+@endphp
 
-        <!-- Foreground Title -->
-        <h2 class="relative text-3xl md:text-5xl font-extrabold text-neutral-600" x-data="{ animate: false }"
-            x-intersect:enter="animate = true" x-intersect:leave="animate = false"
-            x-intersect:options="{ threshold: 0.5 }"
-            :class="animate
-                ?
-                'opacity-100 translate-y-0 transition duration-700' :
-                'opacity-0 -translate-y-10'">
-            TESTIMONIAL
-        </h2>
-    </div>
+<section class="bg-white px-6 py-24 md:px-12 md:py-28 lg:px-24 lg:py-32">
+    <div class="mx-auto max-w-7xl">
+        <div class="relative mb-10 text-center">
+            <h2 x-data="{ animate: false }" x-intersect.once="animate = true"
+                x-intersect:options="{ threshold: 0.5 }"
+                :class="animate ? 'opacity-40 translate-y-0 transition duration-900 ease-out' : 'opacity-0 -translate-y-6'"
+                class="section-title pointer-events-none absolute inset-x-0 top-1/2 hidden -translate-y-1/2 text-5xl font-extrabold uppercase leading-none tracking-wide text-gray-200 md:block md:text-7xl">
+                WHAT OUR CUSTOMERS SAY
+            </h2>
 
-    <div class="flex flex-col md:flex-row justify-center items-center relative" x-data="{ visible: false }"
-        x-intersect:enter="visible = true" x-intersect:leave="visible = false" x-intersect:options="{ threshold: 0.5 }"
-        :class="visible
-            ?
-            'opacity-100  transition duration-700' :
-            'opacity-0 '">
-        <!-- Testimonial Content -->
-        <div
-            class="w-full md:w-[550px] bg-white rounded-xl shadow-lg md:rounded-tl-xl md:rounded-bl-xl md:before:absolute md:before:hidden lg:block md:before:bg-neutral-800 md:before:w-1/3 md:before:content-[''] md:before:h-full md:before:-z-20 md:before:-right-20 md:before:-top-10 p-6 md:p-8">
-            <div class="flex flex-col justify-center items-center h-full">
-                <p class="text-lg text-gray-800 italic mb-4 text-center">
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                </p>
-                <div class="flex items-center">
-                    <img src="{{ asset('img/user-1.jpg') }}" alt="Customer Avatar"
-                        class="w-12 h-12 rounded-full border-2 border-gray-300 mr-4">
-                    <div>
-                        <p class="font-semibold text-gray-900">John Doe</p>
-                        <p class="text-sm text-gray-600">CEO, CompanyName</p>
-                    </div>
-                </div>
-            </div>
+            <h2 x-data="{ animate: false }" x-intersect.once="animate = true"
+                x-intersect:options="{ threshold: 0.5 }"
+                :class="animate ? 'opacity-100 translate-y-0 transition duration-900 ease-out' : 'opacity-0 -translate-y-8'"
+                class="relative text-4xl font-extrabold text-gray-900 md:text-5xl">
+                CUSTOMER <span class="block text-[#9a6700]">TESTIMONIAL</span>
+            </h2>
         </div>
 
-        <!-- Image Section -->
-        <div
-            class="w-full md:w-[650px] lg:block hidden rounded-tr-lg shadow-lg relative md:before:absolute md:before:bg-yellow-500 md:before:w-1/3 md:before:content-[''] md:before:h-full md:before:-z-20 md:before:-right-20 md:before:top-20">
-            <img src="{{ asset('img/testimonial.png') }}" class="h-full w-full object-cover rounded-lg md:rounded-none"
-                alt="">
+        <div class="relative" x-data="{ visible: false }" x-intersect.once="visible = true"
+            x-intersect:options="{ threshold: 0.35 }"
+            :class="visible ? 'opacity-100 translate-y-0 scale-100 transition duration-900 ease-out' : 'opacity-0 translate-y-10 scale-95'">
+            <div class="absolute -left-6 top-8 hidden h-40 w-40 bg-neutral-800 lg:block"></div>
+            <div class="absolute -right-6 bottom-8 hidden h-40 w-40 bg-general lg:block"></div>
+
+            <div
+                class="relative grid overflow-hidden rounded-xl bg-white shadow-xl ring-1 ring-gray-200 lg:grid-cols-[0.95fr_1.05fr]">
+                <figure class="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+                    <div class="mb-6 flex gap-1 text-[#9a6700]" aria-label="5 out of 5 stars">
+                        @for ($star = 0; $star < 5; $star++)
+                            <i class="fas fa-star text-sm"></i>
+                        @endfor
+                    </div>
+
+                    <blockquote class="text-lg font-medium leading-8 text-gray-800 sm:text-xl">
+                        &ldquo;{{ $testimonial['quote'] }}&rdquo;
+                    </blockquote>
+
+                    <figcaption class="mt-8 flex items-center gap-4">
+                        <img src="{{ $testimonial['avatar'] }}" alt="{{ $testimonial['name'] }}"
+                            class="h-14 w-14 rounded-full border-2 border-general object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900">{{ $testimonial['name'] }}</p>
+                            <p class="text-sm text-gray-600">{{ $testimonial['role'] }}</p>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <div class="min-h-72 lg:min-h-105">
+                    <img src="{{ $testimonial['image'] }}" alt="Installed solar panels on a home"
+                        class="h-full w-full object-cover">
+                </div>
+            </div>
         </div>
     </div>
 </section>

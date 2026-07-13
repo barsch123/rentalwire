@@ -1,58 +1,51 @@
 @props(['equipment'])
 
-<div
-    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-    <!-- Image -->
-    <div class="relative h-56 overflow-hidden">
-        <img src="{{ Str::startsWith($equipment->photo, 'http') ? $equipment->photo : asset('storage/' . $equipment->photo) }}"
-            alt="{{ $equipment->name }}"
-            class="w-full h-56 object-cover transition-transform duration-500 hover:scale-105">
+<article class="flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white transition-colors hover:border-neutral-400">
+    <a href="{{ route('rental-details', ['slug' => $equipment->slug]) }}" wire:navigate
+        class="block overflow-hidden bg-neutral-100">
+        <img src="{{ Str::startsWith($equipment->photo, 'http') ? $equipment->photo : asset('storage/'.$equipment->photo) }}"
+            alt="{{ $equipment->name }}" loading="lazy" decoding="async"
+            class="h-40 w-full object-cover sm:h-44">
+    </a>
 
-        <!-- Badge -->
-        <div
-            class="absolute top-2 right-2 bg-[#ffab00] text-white text-xs font-bold px-2 py-1 rounded max-w-[70%] truncate">
-            {{ $equipment->subcategory ?: $equipment->category }}
+    <div class="flex flex-1 flex-col p-4">
+        <div class="flex items-center justify-between gap-4 text-xs">
+            <span class="font-semibold text-[#9a6700]">{{ $equipment->category }}</span>
+            <span class="text-neutral-500">{{ $equipment->subcategory }}</span>
         </div>
-    </div>
 
-    <!-- Body -->
-    <div class="p-4 flex flex-col flex-1">
-        <!-- Title: clamp to 2 lines, allow breaks for very long words -->
-        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 break-words break-all min-h-[3.5rem]">
-            {{ $equipment->name }}
+        <h3 class="mt-2 text-base font-bold leading-snug text-neutral-950">
+            <a href="{{ route('rental-details', ['slug' => $equipment->slug]) }}" wire:navigate
+                class="transition-colors hover:text-[#9a6700]">
+                {{ $equipment->name }}
+            </a>
         </h3>
 
-        <!-- Description: clamp to 2 lines, safe word breaks -->
-        <p class="text-gray-600 text-sm mb-3 line-clamp-2 break-words break-all">
+        <p class="mt-1.5 truncate text-sm text-neutral-500" title="{{ $equipment->description }}">
             {{ $equipment->description }}
         </p>
 
-        <!-- Footer (sticks to bottom) -->
-        <div class="mt-auto">
-            <div class="flex items-center justify-between mt-4">
-                <span class="text-lg font-bold text-gray-900">
-                    ${{ number_format($equipment->price, 2) }}
-                </span>
+        <div class="mt-4 flex items-end justify-between gap-3 border-t border-neutral-100 pt-3">
+            <div>
+            <span class="text-xs text-neutral-500">Starting at</span>
+                <p class="text-lg font-bold text-neutral-950">${{ number_format($equipment->price, 0) }}</p>
             </div>
 
-            <div class="mt-4 flex space-x-2">
-                <flux:button wire:click="addToCart({{ $equipment->id }})"
-                    class="flex-1 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800 transition flex items-center justify-center text-sm font-medium">
-                    Add to Cart
-                </flux:button>
-
-                <a href="{{ route('rental-details', ['slug' => $equipment->slug]) }}"
-                    class="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 transition text-sm font-medium">
+            <div class="flex gap-2">
+                <a href="{{ route('rental-details', ['slug' => $equipment->slug]) }}" wire:navigate
+                    class="inline-flex h-8 items-center justify-center rounded-lg border border-neutral-200 bg-white px-3 text-xs font-semibold text-neutral-700 transition hover:border-general hover:text-neutral-950"
+                    aria-label="View {{ $equipment->name }} details">
                     Details
                 </a>
+                <flux:tooltip content="Add to estimate">
+                    <flux:button wire:click="addToCart({{ $equipment->id }})" variant="primary" size="sm"
+                        class="rounded-lg! data-loading:pointer-events-none data-loading:opacity-60"
+                        aria-label="Add {{ $equipment->name }} to estimate">
+                        <flux:icon.shopping-cart class="size-4" />
+                        <span class="sr-only">Add to Estimate</span>
+                    </flux:button>
+                </flux:tooltip>
             </div>
         </div>
     </div>
-</div>
-
-<script>
-    window.addEventListener('show-toast', (e) => {
-        console.log('show-toast event:', e);       // <--- inspect this in console
-        console.log('show-toast detail:', e.detail); // should contain { title, body, timeout }
-    });
-</script>
+</article>

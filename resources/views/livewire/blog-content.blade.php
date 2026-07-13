@@ -1,82 +1,44 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-12">
-
-    <!-- Blog Posts Section -->
-    <section class="w-full lg:w-2/3 py-12">
-        <div class="py-12">
-            <flux:breadcrumbs>
-                <flux:breadcrumbs.item icon="home" href="{{ route('welcome') }}" />
-                <flux:breadcrumbs.item>Blog</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
+<div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+    <div class="mb-8 flex flex-col gap-5 border-b border-zinc-200 pb-7 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#9a6700] mb-2">Solara journal</p>
+            <h1 class="text-3xl font-bold tracking-tight text-zinc-950">Ideas for better energy.</h1>
         </div>
-        <!-- Search Bar -->
-        <div class="relative w-full mb-12 flex items-center justify-start gap-x-2">
-            <div class="relative flex items-center">
-                <flux:input wire:model.live.debounce.300ms="search"
-                    placeholder="Search blogs by title, content, or tags..." icon="magnifying-glass" />
+        <div class="w-full sm:max-w-sm">
+            <label for="blog-search" class="sr-only">Search articles</label>
+            <div class="relative">
+                <svg class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+                <input id="blog-search" type="search" wire:model.live.debounce.300ms="search" placeholder="Search articles" class="w-full rounded-lg border border-zinc-300 bg-white py-3 pl-10 pr-3 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-general focus:ring-2 focus:ring-general/20">
             </div>
-
-            <!-- Search Button -->
-            {{-- <div class="flex justify-start">
-                <flux:button wire:click="applySearch">
-                    {{ __('Search') }}
-                </flux:button>
-            </div> --}}
         </div>
+    </div>
 
-        <!-- Featured Articles -->
-        <h2 class="text-3xl font-bold border-b-2 border-yellow-500 pb-2 mb-8">Featured Articles</h2>
-        <article class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            @forelse ($blogs as $blog)
-                <div class="p-6 bg-white border rounded-lg shadow-md hover:shadow-lg transition">
-                    @if ($blog->blog_photo)
-                        <img src="{{ asset('storage/' . $blog->blog_photo) }}" alt="{{ $blog->title }}"
-                            class="w-full h-48 object-cover mb-4 rounded-lg">
-                    @endif
-                    <h3 class="text-xl font-semibold mb-2">{{ $blog->title }}</h3>
-                    <p class="text-gray-700 text-sm mb-3 line-clamp-3">{{ $blog->content }}</p>
-                    <div class="py-5" x-data="{ animate: false }" x-intersect:enter="animate = true"
-                        x-intersect:leave="animate = false" x-intersect:options="{ threshold: 0.5 }" :class="animate
-                                    ?
-                                    'opacity-100 translate-y-0 transition duration-700' :
-                                    'opacity-0 translate-y-10'">
-                        <a class="relative inline-flex gap-2 rounded-sm bg-[#ffab00] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-yellow-600
-                           before:absolute before:-z-10 before:top-1 before:left-1 before:w-full before:h-full before:rounded-sm before:bg-neutral-800
-                            before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
-                            href="{{ route('blog.details', ['slug' => $blog->slug]) }}">
-                            <span class="relative z-10">READ MORE</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-4 w-4" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
+    @if ($blogs->count())
+        <div class="mb-6 flex items-center justify-between"><h2 class="text-sm font-bold uppercase tracking-[0.16em] text-zinc-500">Latest articles</h2><span class="text-xs text-zinc-400">{{ $blogs->total() }} {{ Str::plural('article', $blogs->total()) }}</span></div>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            @foreach ($blogs as $blog)
+                <article class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition hover:-translate-y-0.5 hover:border-general hover:shadow-md">
+                    <a href="{{ route('blog.details', ['slug' => $blog->slug]) }}" wire:navigate class="block h-48 overflow-hidden bg-zinc-100">
+                        @if ($blog->blog_photo)
+                            <img src="{{ asset('storage/' . $blog->blog_photo) }}" alt="{{ $blog->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+                        @else
+                            <div class="h-full w-full bg-gradient-to-br from-zinc-100 to-general/15"></div>
+                        @endif
+                    </a>
+                    <div class="flex flex-1 flex-col p-6">
+                        <time datetime="{{ optional($blog->modified_at)->format('Y-m-d') }}" class="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">{{ optional($blog->modified_at)->format('M j, Y') }}</time>
+                        <h3 class="mt-3 text-xl font-bold leading-snug text-zinc-950"><a href="{{ route('blog.details', ['slug' => $blog->slug]) }}" wire:navigate class="hover:text-[#9a6700]">{{ $blog->title }}</a></h3>
+                        <p class="mt-3 line-clamp-3 text-sm leading-6 text-zinc-600">{{ Str::limit(strip_tags($blog->content), 145) }}</p>
+                        <a href="{{ route('blog.details', ['slug' => $blog->slug]) }}" wire:navigate class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 mt-5 w-fit px-4! py-2.5!">Read article <span aria-hidden="true">&rarr;</span></a>
                     </div>
-                    <div>
-                        <span class="text-gray-400 text-xs italic">Last modified:
-                            {{ date_format($blog->modified_at, 'F j, Y, g:i a') }} </span>
-                    </div>
-                </div>
-            @empty
-                <p class="text-gray-500">No blogs found.</p>
-            @endforelse
-        </article>
-
-        {{ $blogs->links() }}
-    </section>
-
-    <!-- Sidebar -->
-    <aside class="w-full lg:w-1/3 py-12">
-        <!-- Popular Tags -->
-        <h2 class="text-xl font-bold border-b-2 border-yellow-500 pb-2 mb-6">Popular Tags</h2>
-        <div class="flex flex-wrap gap-2">
-            @foreach ($tags as $tag)
-                @if ($tag && $tag->name)
-                    <span class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">
-                        {{ $tag->name }}
-                    </span>
-                @endif
+                </article>
             @endforeach
         </div>
-    </aside>
+    @else
+        <div class="rounded-2xl border border-dashed border-zinc-300 bg-white px-6 py-16 text-center"><p class="text-lg font-semibold text-zinc-800">No articles found.</p><p class="mt-2 text-sm text-zinc-500">Try a different search term.</p></div>
+    @endif
+
+    <div class="mt-12">
+        <flux:pagination :paginator="$blogs" />
+    </div>
 </div>
