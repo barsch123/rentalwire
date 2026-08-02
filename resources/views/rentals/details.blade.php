@@ -42,11 +42,26 @@
                             <p class="pb-1 text-sm text-neutral-500">Starting estimate</p>
                         </div>
 
+                        <div class="mt-4 flex flex-wrap items-center gap-3">
+                            <flux:badge :color="$equipment->isAvailable() ? 'green' : 'red'">
+                                {{ $equipment->isAvailable() ? 'Available for estimate' : 'Currently unavailable' }}
+                            </flux:badge>
+                            @if ($equipment->isAvailable())
+                                <span class="text-sm text-neutral-500">{{ $equipment->stock_quantity }} allocation slots remaining</span>
+                            @endif
+                        </div>
+
+                        @auth
+                            @if (Auth::user()->discount_percent > 0)
+                                <p class="mt-3 text-sm font-semibold text-emerald-700">{{ ucfirst(Auth::user()->membership_tier) }} member pricing: {{ Auth::user()->discount_percent }}% discount at estimate</p>
+                            @endif
+                        @endauth
+
                         <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
                             <span class="inline-flex items-center gap-1 rounded-md border border-neutral-200 bg-neutral-50 px-2.5 py-1 font-semibold text-neutral-700">
                                 4 <i class="fas fa-star text-xs text-general"></i>
                             </span>
-                            <span class="text-neutral-500">253 ratings and 27 reviews</span>
+                            <span class="text-neutral-500">{{ $equipment->reviews_count }} customer reviews</span>
                         </div>
                     </div>
 
@@ -67,7 +82,7 @@
                             </a>
                             <form method="POST" action="{{ route('solutions.estimate.store', ['slug' => $equipment->slug]) }}">
                                 @csrf
-                                <flux:button type="submit" variant="primary" class="w-full rounded-md! py-5!">
+                                <flux:button type="submit" variant="primary" class="w-full rounded-md! py-5!" :disabled="! $equipment->isAvailable()">
                                     <flux:icon.shopping-cart class="mr-2 size-4" />
                                     Add to estimate
                                 </flux:button>
@@ -123,41 +138,22 @@
                         </details>
                     </div>
 
-                    <div class="border-t border-neutral-200 pt-5">
-                        <h2 class="text-sm font-bold text-neutral-950">Customer Reviews</h2>
-                        <div class="mt-4 flex items-center gap-3">
-                            <div class="flex text-general">
-                                @for ($star = 0; $star < 4; $star++)
-                                    <i class="fas fa-star text-sm"></i>
-                                @endfor
-                                <i class="fas fa-star-half-stroke text-sm"></i>
-                            </div>
-                        </div>
-                        <p class="mt-3 text-2xl font-bold text-neutral-950">
-                            4.0 <span class="text-sm font-medium text-neutral-500">/ 5 Based on 253 ratings</span>
-                        </p>
-
-                        <div class="mt-5 flex gap-3">
-                            <img src="{{ asset('img/user-1.jpg') }}" alt="John Doe" class="size-10 rounded-full object-cover">
-                            <div>
-                                <p class="text-sm font-bold text-neutral-950">John Doe</p>
-                                <div class="mt-1 flex items-center gap-2 text-xs text-neutral-500">
-                                    <span class="text-general">★ ★ ★ ★ ☆</span>
-                                    <span>2 mins ago</span>
-                                </div>
-                                <p class="mt-2 max-w-xl text-sm leading-6 text-neutral-600">
-                                    The consultation was clear, practical, and fast. The team explained the system options
-                                    and what the installation process would require.
-                                </p>
-                            </div>
-                        </div>
-
-                        <a href="{{ route('contact') }}" wire:navigate
-                            class="mt-5 inline-flex text-sm font-semibold text-blue-600 hover:text-blue-700">
-                            Ask about this solution
-                        </a>
-                    </div>
+                    <livewire:product-engagement :equipment="$equipment" />
                 </div>
+            </div>
+        </section>
+
+        <section class="mx-auto mt-16 max-w-7xl border-t border-neutral-200 pt-10">
+            <div class="flex items-center justify-between gap-4">
+                <h2 class="text-2xl font-bold">Related solutions</h2>
+                <a href="{{ route('rentals') }}" class="text-sm font-semibold text-blue-700">View all solutions</a>
+            </div>
+            <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                @forelse ($relatedEquipment as $related)
+                    <x-equipment-card :equipment="$related" :interactive="false" />
+                @empty
+                    <p class="text-sm text-neutral-500">No related solutions are currently available.</p>
+                @endforelse
             </div>
         </section>
     </main>

@@ -11,28 +11,28 @@
     </div>
 
     @if (! empty($cart))
-        <div class="space-y-4">
+        <div class="space-y-3">
             @foreach ($cart as $index => $item)
-                <article wire:key="checkout-item-{{ $item['id'] ?? $index }}-{{ $index }}" class="grid gap-4 rounded-2xl border border-neutral-200 bg-white p-4 transition hover:border-general sm:grid-cols-[6.5rem_minmax(0,1fr)_auto] sm:items-center sm:p-5">
-                    <div class="relative overflow-hidden rounded-xl bg-neutral-100">
+                <article wire:key="checkout-item-{{ $item['id'] ?? $index }}-{{ $index }}" class="grid gap-3 rounded-lg border border-neutral-200 bg-white p-3 transition hover:border-general sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:items-center sm:p-4">
+                    <div class="relative overflow-hidden rounded-md bg-neutral-100">
                         <img src="{{ Str::startsWith($item['photo'] ?? '', 'http') ? $item['photo'] : asset('storage/'.($item['photo'] ?? '')) }}" alt="{{ $item['name'] }}" class="aspect-square h-full w-full object-cover">
                     </div>
                     <div class="min-w-0">
-                        <p class="text-sm font-bold text-[#9a6700]">{{ $item['subcategory'] ?? 'Solar solution' }}</p>
-                        <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $item['name'] }}</h3>
-                        <p class="mt-2 line-clamp-2 text-base leading-7 text-neutral-500">{{ $item['description'] ?? 'Selected for estimate review and final sizing.' }}</p>
-                        <div class="mt-3 flex flex-wrap gap-2 text-sm font-bold uppercase tracking-wide text-neutral-500">
-                            <span class="rounded-full bg-general/15 px-2.5 py-1 text-[#9a6700]">Qty {{ $item['quantity'] ?? 1 }}</span>
-                            <span class="rounded-full bg-neutral-100 px-2.5 py-1">{{ $item['category'] ?? 'Solar' }}</span>
+                        <p class="text-xs font-bold text-[#9a6700]">{{ $item['subcategory'] ?? 'Solar solution' }}</p>
+                        <h3 class="mt-0.5 truncate text-base font-semibold leading-5 sm:text-lg">{{ $item['name'] }}</h3>
+                        <p class="mt-1 line-clamp-1 text-sm leading-5 text-neutral-500">{{ $item['description'] ?? 'Selected for estimate review and final sizing.' }}</p>
+                        <div class="mt-2 flex flex-wrap gap-1.5 text-xs font-bold uppercase text-neutral-500">
+                            <span class="rounded-md bg-general/15 px-2 py-1 text-[#9a6700]">Qty {{ $item['quantity'] ?? 1 }}</span>
+                            <span class="rounded-md bg-neutral-100 px-2 py-1">{{ $item['category'] ?? 'Solar' }}</span>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between gap-4 border-t border-neutral-100 pt-4 sm:block sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0 sm:text-right">
+                    <div class="flex items-center justify-between gap-3 border-t border-neutral-100 pt-3 sm:flex sm:min-w-28 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0 sm:text-right">
                         <div>
-                            <span class="text-sm font-black uppercase tracking-wider text-neutral-400">{{ ($item['quantity'] ?? 1) > 1 ? 'Line total' : 'Starting at' }}</span>
-                            <strong class="mt-1 block text-2xl font-semibold">${{ number_format($item['price'] * ($item['quantity'] ?? 1), 0) }}</strong>
+                            <span class="text-xs font-bold uppercase text-neutral-400">{{ ($item['quantity'] ?? 1) > 1 ? 'Line total' : 'Starting at' }}</span>
+                            <strong class="mt-0.5 block text-lg font-semibold">${{ number_format($item['price'] * ($item['quantity'] ?? 1), 0) }}</strong>
                         </div>
-                        <button wire:click="removeFromCart({{ $index }})" aria-label="Remove {{ $item['name'] }}" class="mt-0 rounded-full p-2 text-neutral-400 transition hover:bg-red-50 hover:text-red-600 data-loading:pointer-events-none data-loading:opacity-40 sm:mt-5">
-                            <flux:icon.trash class="size-5" />
+                        <button wire:click="removeFromCart({{ $index }})" aria-label="Remove {{ $item['name'] }}" class="rounded-md p-2 text-neutral-400 transition hover:bg-red-50 hover:text-red-600 data-loading:pointer-events-none data-loading:opacity-40">
+                            <flux:icon.trash class="size-4" />
                         </button>
                     </div>
                 </article>

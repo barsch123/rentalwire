@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminCheck
+class UserCheck
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()?->usertype !== 'admin') {
-            return redirect()->route('dashboard');
+        if ($request->user()?->usertype === 'admin') {
+            return redirect()->route('admin.dashboard');
         }
 
         return $next($request);

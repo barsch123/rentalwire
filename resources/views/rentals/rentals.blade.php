@@ -2,7 +2,6 @@
     @section('title', 'Solar Solutions | Solara')
     @section('description', 'Compare solar, battery, and energy management solutions designed for Caribbean homes and businesses.')
 
-    <section>
-        <livewire:rental-filters />
-    </section>
+    <livewire:rental-filters />
+
 </x-layouts.base>

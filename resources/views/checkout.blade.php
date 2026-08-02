@@ -115,9 +115,7 @@
                     </div>
 
                    <fieldset class="mt-12">
-                                <legend class="text-xl text-slate-900 font-semibold mb-6 ">Payment
-                                    method
-                                </legend>
+                                <legend class="mb-6 text-xl font-semibold text-slate-900">Payment method</legend>
                                 <div class="grid gap-4 lg:grid-cols-2">
                                     <div class="flex items-center">
                                         <input type="radio" name="method" id="card"

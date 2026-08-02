@@ -68,6 +68,8 @@ class EquipmentrentalFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name.'-'.fake()->unique()->numberBetween(1000, 9999)),
             'price' => $product['price'],
+            'stock_quantity' => fake()->numberBetween(1, 20),
+            'availability_status' => 'available',
             'description' => $product['description'],
             'photo' => $product['photo'],
             'category' => $product['category'],

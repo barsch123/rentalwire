@@ -125,13 +125,19 @@ class RentalFilters extends Component
             return;
         }
 
+        if (! $equipment->isAvailable()) {
+            Flux::toast(text: 'This solution cannot be added right now.', heading: 'Unavailable', variant: 'warning');
+
+            return;
+        }
+
         $cart = Session::get('cart', []);
         $existingIndex = collect($cart)->search(
             fn (array $item): bool => (int) ($item['id'] ?? 0) === $equipment->id
         );
 
         if ($existingIndex === false) {
-            $cart[] = [...$equipment->toArray(), 'quantity' => 1];
+            $cart[] = [...$equipment->toArray(), 'quantity' => 1, 'discount_percent' => (int) (auth()->user()?->discount_percent ?? 0)];
         } else {
             $cart[$existingIndex]['quantity'] = (int) ($cart[$existingIndex]['quantity'] ?? 1) + 1;
         }
@@ -142,6 +148,24 @@ class RentalFilters extends Component
         Flux::toast(
             text: $equipment->name,
             heading: 'Added to estimate',
+            variant: 'success',
+        );
+    }
+
+    public function toggleWishlist(int $equipmentId): void
+    {
+        if (! auth()->check()) {
+            $this->redirectRoute('login', navigate: true);
+
+            return;
+        }
+
+        $equipment = Equipmentrental::query()->findOrFail($equipmentId);
+        $attached = auth()->user()->wishlist()->toggle($equipment->id)['attached'];
+
+        Flux::toast(
+            text: $equipment->name,
+            heading: $attached === [] ? 'Removed from wishlist' : 'Saved to wishlist',
             variant: 'success',
         );
     }
@@ -209,7 +233,10 @@ class RentalFilters extends Component
 
     public function getFilteredEquipmentProperty()
     {
-        $query = Equipmentrental::query()->whereIn('category', $this->categories);
+        $query = Equipmentrental::query()
+            ->withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->whereIn('category', $this->categories);
 
         if (filled($this->search)) {
             $search = trim($this->search);
@@ -271,8 +298,11 @@ class RentalFilters extends Component
 
     public function render(): View
     {
+        $wishlistIds = auth()->user()?->wishlist()->pluck('equipmentrentals.id')->all() ?? [];
+
         return view('livewire.rental-filters', [
             'equipmentList' => $this->filteredEquipment,
+            'wishlistIds' => $wishlistIds,
         ]);
     }
 }

@@ -16,17 +16,17 @@
             <!-- Brand -->
             <div class="shrink-0">
                 <a href="/" class="font-bungee flex items-center space-x-2 text-3xl font-bold text-neutral-950">
-                    <span>Sol<span class="text-[#9a6700]">ara</span></span>
+                    <span>Sol<span class="text-general">ara</span></span>
                 </a>
                 <p class="mt-2 text-sm text-neutral-500">&copy; {{ Date('Y') }} Solara. All rights reserved.</p>
 
                 <!-- Socials -->
                 <div class="mt-4 flex items-center space-x-5">
-                    <a href="#" class="transition hover:text-[#9a6700]"><i class="fab fa-facebook text-xl"></i></a>
-                    <a href="#" class="transition hover:text-[#9a6700]"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="transition hover:text-[#9a6700]"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="#" class="transition hover:text-[#9a6700]"><i class="fab fa-youtube text-xl"></i></a>
-                    <a href="#" class="transition hover:text-[#9a6700]"><i class="fab fa-whatsapp text-xl"></i></a>
+                    <a href="#" class="transition hover:text-general"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="transition hover:text-general"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="transition hover:text-general"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="transition hover:text-general"><i class="fab fa-youtube text-xl"></i></a>
+                    <a href="#" class="transition hover:text-general"><i class="fab fa-whatsapp text-xl"></i></a>
                 </div>
             </div>
             <div class="flex h-52 w-full items-center justify-center overflow-hidden lg:w-80 lg:justify-end">
@@ -42,10 +42,10 @@
                 <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">Company</h4>
                 <ul class="space-y-3 text-sm">
                     <li><a href="javascript:void(0)" class="transition hover:text-neutral-950">Newsletter <span
-                                class="ml-1 text-xs text-[#9a6700]">— Coming soon</span></a></li>
+                                class="ml-1 text-xs text-general">— Coming soon</span></a></li>
                     <li><a href="{{route('about')}}" wire:navigate class="transition hover:text-neutral-950">About us</a></li>
                     <li><a href="{{route('careers')}}" wire:navigate class="transition hover:text-neutral-950">Careers <span
-                                class="ml-1 text-xs text-[#9a6700]">— We’re hiring</span></a></li>
+                                class="ml-1 text-xs text-general">— We’re hiring</span></a></li>
                     <li><button type="button" x-on:click="legalModal = 'privacy'" class="text-left transition hover:text-neutral-950">Privacy Policy</button></li>
                     <li><button type="button" x-on:click="legalModal = 'terms'" class="text-left transition hover:text-neutral-950">Terms & Conditions</button></li>
                 </ul>
@@ -98,7 +98,7 @@
             class="flex max-h-[88dvh] w-full max-w-3xl flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-2xl">
             <div class="flex items-start justify-between gap-4 border-b border-neutral-200 px-5 py-4 sm:px-6">
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#9a6700]">Solara</p>
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-general">Solara</p>
                     <h2 id="legal-modal-title" class="mt-1 text-xl font-semibold"
                         x-text="legalModal === 'privacy' ? 'Privacy Policy' : 'Terms and Conditions'"></h2>
                     <p class="mt-1 text-sm text-neutral-500">Last updated: July 10, 2026</p>

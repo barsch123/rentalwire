@@ -1,5 +1,4 @@
 @php
-    $discount = 0;
     $shipping = 0;
     $tax = 0;
     $grandTotal = $total - $discount + $shipping + $tax;
@@ -32,7 +31,7 @@
             <dd class="font-semibold text-neutral-950">${{ number_format($total, 0) }}</dd>
         </div>
         <div class="flex items-center justify-between gap-4">
-            <dt class="text-neutral-600">Discount</dt>
+            <dt class="text-neutral-600">Membership discount</dt>
             <dd class="font-semibold text-neutral-950">${{ number_format($discount, 0) }}</dd>
         </div>
         <div class="flex items-center justify-between gap-4">
@@ -44,6 +43,10 @@
             <dd class="font-semibold text-neutral-950">${{ number_format($tax, 0) }}</dd>
         </div>
     </dl>
+
+    @auth
+        <p class="mt-4 text-xs text-neutral-500">{{ ucfirst(Auth::user()->membership_tier) }} member · {{ Auth::user()->discount_percent }}% eligible discount</p>
+    @endauth
 
     <div class="mt-5 flex items-center justify-between border-t border-neutral-300 pt-5 text-base">
         <span class="font-bold text-neutral-950">Total</span>

@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\AdminCheck;
+use App\Http\Middleware\UserCheck;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Livewire::addPersistentMiddleware([
+            AdminCheck::class,
+            UserCheck::class,
+        ]);
+
         Model::preventLazyLoading();
         Model::automaticallyEagerLoadRelationships();
     }

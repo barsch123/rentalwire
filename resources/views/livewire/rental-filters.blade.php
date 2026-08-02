@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-white px-4 pb-16 pt-24 text-neutral-950 sm:px-6 lg:px-0" x-data="{ filtersOpen: false }">
-    <section id="solutions" class="mx-auto w-full max-w-[96rem] overflow-hidden rounded-lg border border-neutral-300 bg-white lg:max-w-none lg:rounded-none lg:border-x-0">
-        <div class="grid min-h-[42rem] lg:grid-cols-[19rem_minmax(0,1fr)]">
+    <section id="solutions" class="mx-auto w-full max-w-384 overflow-hidden rounded-lg bg-white lg:max-w-none lg:rounded-none lg:border-x-0">
+        <div class="grid min-h-168 lg:grid-cols-[19rem_minmax(0,1fr)] px-5 py-4 border border-neutral-200">
             <aside class="hidden border-r border-neutral-200 bg-neutral-50/80 lg:block">
                 <div class="sticky top-20 p-5">
                     <div class="flex items-center justify-between border-b border-neutral-300 pb-4">
@@ -109,7 +109,7 @@
             </aside>
 
             <div class="min-w-0 bg-white p-5 sm:p-6 lg:p-8">
-                <div class="flex flex-col gap-4 border-b border-neutral-100 pb-5 lg:flex-row lg:items-start lg:justify-between">
+                <div class="flex flex-col gap-4 pb-5 lg:flex-row lg:items-start lg:justify-between">
                     <div>
                         <h1 class="text-base font-bold text-neutral-950">Recent Searches</h1>
                         <div class="mt-3 flex flex-wrap gap-2">
@@ -170,9 +170,9 @@
                 </div>
 
                 @if ($equipmentList->count())
-                    <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
                         @foreach ($equipmentList as $equipment)
-                            <x-equipment-card wire:key="solution-card-{{ $equipment->id }}" :equipment="$equipment" />
+                            <x-equipment-card wire:key="solution-card-{{ $equipment->id }}" :equipment="$equipment" :wishlisted="in_array($equipment->id, $wishlistIds, true)" />
                         @endforeach
                     </div>
 

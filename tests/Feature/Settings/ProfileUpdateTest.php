@@ -2,14 +2,21 @@
 
 use App\Livewire\Settings\Profile;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 test('profile page is displayed', function () {
     $this->actingAs($user = User::factory()->create());
 
-    $this->get('/settings/profile')->assertOk();
+    $this->get('/settings/profile')
+        ->assertOk()
+        ->assertSee('Account settings')
+        ->assertSee('Back to account')
+        ->assertDontSee('livewire-starter-kit')
+        ->assertDontSee('Repository')
+        ->assertDontSee('Documentation');
 });
 
 test('profile information can be updated', function () {

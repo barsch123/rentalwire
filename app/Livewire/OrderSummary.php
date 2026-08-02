@@ -17,6 +17,8 @@ class OrderSummary extends Component
 
     public float $total = 0;
 
+    public float $discount = 0;
+
     protected $listeners = ['cartUpdated' => 'refreshCart'];
 
     public function render()
@@ -34,9 +36,12 @@ class OrderSummary extends Component
     public function calculateCart()
     {
         $this->total = 0;
+        $this->discount = 0;
 
         foreach ($this->cart as $item) {
-            $this->total += $item['price'] * ($item['quantity'] ?? 1);
+            $lineTotal = $item['price'] * ($item['quantity'] ?? 1);
+            $this->total += $lineTotal;
+            $this->discount += $lineTotal * ((int) ($item['discount_percent'] ?? 0) / 100);
         }
     }
 

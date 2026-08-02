@@ -15,6 +15,7 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\SupportCenter;
 use App\Livewire\User\Dashboard as UserDashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::get('/services', [ServicesController::class, 'index'])->name('services');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/support', SupportCenter::class)->name('support');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
@@ -45,7 +47,7 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(functio
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', UserDashboard::class)->name('dashboard');
+    Route::get('/dashboard', UserDashboard::class)->middleware('user')->name('dashboard');
     Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');

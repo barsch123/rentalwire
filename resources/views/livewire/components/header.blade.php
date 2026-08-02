@@ -81,11 +81,11 @@
                     @if (Auth::check())
                     <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
                         wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
-                        'dashboard'
+                        'dashboard', 'admin.dashboard'
                         ),
-                        'text-general font-bold' => request()->routeIs('dashboard'),
+                        'text-general font-bold' => request()->routeIs('dashboard', 'admin.dashboard'),
                         'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
-                        request()->routeIs('dashboard')
+                        request()->routeIs('dashboard', 'admin.dashboard')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
