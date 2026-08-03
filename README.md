@@ -22,7 +22,7 @@ It provides a complete rental workflow including **product listings, availabilit
 
 ## 🧰 Tech Stack
 
-- **Backend:** Laravel 12, Livewire, PHP 8.3  
+- **Backend:** Laravel 13, Livewire, PHP 8.3  
 - **Frontend:** TailwindCSS, Vite  
 - **Database:** SQLite (default), Laravel migrations  
 - **Testing:** Pest, PHPUnit  
@@ -59,3 +59,16 @@ php artisan serve
 
 # In another terminal, start Vite
 npm run dev
+```
+
+### Alternative: run all local development services
+
+```bash
+composer run dev
+```
+
+## ✅ Running Tests
+
+```bash
+composer run test
+```
