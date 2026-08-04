@@ -2,7 +2,7 @@
 
 <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white transition duration-300 hover:border-neutral-400 hover:shadow-lg">
     <div class="relative aspect-16/10 overflow-hidden bg-neutral-100">
-        <a href="{{ route('rental-details', ['slug' => $equipment->slug]) }}" wire:navigate class="block h-full">
+        <a href="{{ route('solution-details', ['slug' => $equipment->slug]) }}" wire:navigate class="block h-full">
             <img src="{{ Str::startsWith($equipment->photo, 'http') ? $equipment->photo : asset('storage/'.$equipment->photo) }}"
                 alt="{{ $equipment->name }}" loading="lazy" decoding="async"
                 class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
@@ -33,7 +33,7 @@
         </div>
 
         <h3 class="mt-2 line-clamp-2 min-h-10 text-base font-bold leading-5 text-neutral-950">
-            <a href="{{ route('rental-details', ['slug' => $equipment->slug]) }}" wire:navigate class="transition hover:text-[#8a5c00]">
+            <a href="{{ route('solution-details', ['slug' => $equipment->slug]) }}" wire:navigate class="transition hover:text-[#8a5c00]">
                 {{ $equipment->name }}
             </a>
         </h3>
@@ -55,7 +55,7 @@
         </div>
 
         <div @class(['mt-3 grid gap-2', 'grid-cols-2' => $interactive, 'grid-cols-1' => ! $interactive])>
-            <flux:button :href="route('rental-details', ['slug' => $equipment->slug])" wire:navigate variant="outline" size="sm" icon="eye">
+            <flux:button :href="route('solution-details', ['slug' => $equipment->slug])" wire:navigate variant="outline" size="sm" icon="eye">
                 Details
             </flux:button>
             @if ($interactive)

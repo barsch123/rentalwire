@@ -29,7 +29,7 @@
                     class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 px-6">
                     Request a quote
                 </a>
-                <a href="{{ route('rentals') }}" wire:navigate
+                <a href="{{ route('solutions') }}" wire:navigate
                     class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-black/15 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/10">
                     <span>VIEW OUR</span>
                     <span>SOLUTIONS</span>

@@ -1,5 +1,6 @@
 <div class="space-y-8">
-    <div class="flex flex-wrap items-center gap-3">
+    @unless ($reviewsOnly)
+        <div class="flex flex-wrap items-center gap-3 pt-5">
         @auth
             <flux:button wire:click="toggleWishlist" :icon="$isWishlisted ? 'heart' : 'heart'" variant="outline">
                 {{ $isWishlisted ? 'Remove from wishlist' : 'Save to wishlist' }}
@@ -8,9 +9,11 @@
         @else
             <flux:button :href="route('login')" wire:navigate icon="heart" variant="outline">Log in to save</flux:button>
         @endauth
-    </div>
+        </div>
+    @endunless
 
-    <section class="border-t border-neutral-200 pt-8" id="reviews">
+    @if ($reviewsOnly)
+        <section class="pt-6" id="reviews">
         <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
                 <h2 class="text-xl font-bold text-neutral-950">Customer reviews</h2>
@@ -48,5 +51,6 @@
                 <p class="py-6 text-sm text-neutral-500">No customer reviews yet.</p>
             @endforelse
         </div>
-    </section>
+        </section>
+    @endif
 </div>

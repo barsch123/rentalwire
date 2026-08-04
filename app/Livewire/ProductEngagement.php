@@ -16,9 +16,12 @@ class ProductEngagement extends Component
 
     public string $comment = '';
 
-    public function mount(Equipmentrental $equipment): void
+    public bool $reviewsOnly = false;
+
+    public function mount(Equipmentrental $equipment, bool $reviewsOnly = false): void
     {
         $this->equipment = $equipment;
+        $this->reviewsOnly = $reviewsOnly;
 
         if ($review = Auth::user()?->reviews()->whereBelongsTo($equipment, 'equipment')->first()) {
             $this->rating = $review->rating;

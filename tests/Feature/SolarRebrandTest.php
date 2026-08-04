@@ -29,6 +29,12 @@ test('public pages present the solar solutions brand', function () {
         ->assertSee('VIEW OUR')
         ->assertSee('SOLUTIONS');
 
+    $this->get(route('about'))
+        ->assertSuccessful()
+        ->assertSee('Energy independence, designed for real life.')
+        ->assertSee('From first question to dependable power.')
+        ->assertSee('Talk to Solara');
+
     $this->get('/solutions')
         ->assertSuccessful()
         ->assertSee('Recent Searches')
@@ -36,7 +42,7 @@ test('public pages present the solar solutions brand', function () {
         ->assertSee('Residential Solar Starter Kit')
         ->assertSee('Add to Estimate');
 
-    $this->get(route('rental-details', ['slug' => $solution->slug]))
+    $this->get(route('solution-details', ['slug' => $solution->slug]))
         ->assertSuccessful()
         ->assertSee('Product details')
         ->assertSee('Add to estimate');
@@ -70,7 +76,7 @@ test('admin solution manager renders redesigned controls', function () {
     ]);
 
     $this->actingAs($admin)
-        ->get(route('rental.index'))
+        ->get(route('solutions.index'))
         ->assertSuccessful()
         ->assertSee('Add solar offering')
         ->assertSee('Catalog manager')

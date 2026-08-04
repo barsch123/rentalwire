@@ -32,8 +32,8 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.details'
 
 Route::redirect('/rentals', '/solutions');
 Route::redirect('/solution', '/solutions');
-Route::get('/solutions', [RentalController::class, 'index'])->name('rentals');
-Route::get('/solutions/{slug}', [RentalController::class, 'show'])->name('rental-details');
+Route::get('/solutions', [RentalController::class, 'index'])->name('solutions');
+Route::get('/solutions/{slug}', [RentalController::class, 'show'])->name('solution-details');
 Route::post('/solutions/{slug}/estimate', [RentalController::class, 'addToEstimate'])->name('solutions.estimate.store');
 
 Route::get('/careers', [CareersController::class, 'index'])->name('careers');
@@ -42,7 +42,8 @@ Route::get('/estimate', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
-    Route::get('/rental', Adminupload::class)->name('rental.index');
+    Route::redirect('/rental', '/admin/solutions');
+    Route::get('/solutions', Adminupload::class)->name('solutions.index');
     Route::get('/blogs', Adminblog::class)->name('adminblog.index');
 });
 

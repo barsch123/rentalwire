@@ -55,7 +55,7 @@
         @else
             <div class="px-4 py-8 text-center">
                 <p class="text-sm text-neutral-500">Your estimate is empty.</p>
-                <a href="{{ route('rentals') }}" wire:navigate @click="open = false"
+                <a href="{{ route('solutions') }}" wire:navigate @click="open = false"
                     class="mt-3 inline-block text-sm font-semibold text-neutral-950 underline underline-offset-4">
                     Browse solutions
                 </a>

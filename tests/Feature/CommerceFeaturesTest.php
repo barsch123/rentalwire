@@ -25,12 +25,14 @@ test('catalog shows item availability pictures and details with related products
         'category' => 'Solar Panels',
     ]);
 
-    $this->get(route('rental-details', $equipment->slug))
+    $this->get(route('solution-details', $equipment->slug))
         ->assertSuccessful()
         ->assertSee('Available for estimate')
         ->assertSee('2 allocation slots remaining')
         ->assertSee('https://example.com/array.jpg', false)
         ->assertSee($equipment->description)
+        ->assertSee('Details')
+        ->assertSee('Reviews (0)')
         ->assertSee('Related Solar Array');
 });
 

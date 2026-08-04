@@ -38,13 +38,13 @@
                 </article>
             @endforeach
         </div>
-        <a href="{{ route('rentals') }}" wire:navigate class="inline-flex items-center gap-2 text-base font-semibold text-neutral-700 underline decoration-general decoration-2 underline-offset-4 hover:text-neutral-950"><flux:icon.plus class="size-4" /> Add another solution</a>
+        <a href="{{ route('solutions') }}" wire:navigate class="inline-flex items-center gap-2 text-base font-semibold text-neutral-700 underline decoration-general decoration-2 underline-offset-4 hover:text-neutral-950"><flux:icon.plus class="size-4" /> Add another solution</a>
     @else
         <div class="rounded-2xl border border-dashed border-neutral-300 bg-white px-6 py-14 text-center">
             <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-general/15 text-[#9a6700]"><flux:icon.bolt class="size-7" /></div>
             <h3 class="mt-5 text-2xl font-bold">Your energy plan is empty</h3>
             <p class="mx-auto mt-2 max-w-md text-base leading-7 text-neutral-500">Explore panels, storage, inverters, and complete solar kits to start a focused consultation.</p>
-            <flux:button :href="route('rentals')" wire:navigate variant="primary" class="mt-6 rounded-full! px-6!">Explore Solutions</flux:button>
+            <flux:button :href="route('solutions')" wire:navigate variant="primary" class="mt-6 rounded-full! px-6!">Explore Solutions</flux:button>
         </div>
     @endif
 </section>

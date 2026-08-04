@@ -20,7 +20,7 @@
                     <flux:heading size="lg">Solution catalog</flux:heading>
                     <flux:text class="mt-2">Create, update, and retire customer-facing solar offerings.</flux:text>
                 </div>
-                <flux:button :href="route('rental.index')" wire:navigate variant="primary" icon="arrow-right">
+                <flux:button :href="route('solutions.index')" wire:navigate variant="primary" icon="arrow-right">
                     Manage solutions
                 </flux:button>
             </flux:card>

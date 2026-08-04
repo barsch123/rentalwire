@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Blogs;
 use App\Models\Equipmentrental;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Newsletter;
 use App\Models\Product;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,10 +46,10 @@ class DatabaseSeeder extends Seeder
             );
         });
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        //     'usertype' => 'admin',
-        // ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'usertype' => 'admin',
+        ]);
     }
 }

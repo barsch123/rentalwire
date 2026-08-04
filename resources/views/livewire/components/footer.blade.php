@@ -12,7 +12,7 @@
     <footer class="w-full max-w-340 px-6 py-10 sm:px-12 lg:px-20 lg:py-12 mx-auto">
         <!-- Top: brand + socials + campfire -->
         <div class="mb-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-
+                   
             <!-- Brand -->
             <div class="shrink-0">
                 <a href="/" class="font-bungee flex items-center space-x-2 text-3xl font-bold text-neutral-950">
@@ -22,11 +22,11 @@
 
                 <!-- Socials -->
                 <div class="mt-4 flex items-center space-x-5">
-                    <a href="#" class="transition hover:text-general"><i class="fab fa-facebook text-xl"></i></a>
-                    <a href="#" class="transition hover:text-general"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="transition hover:text-general"><i class="fab fa-linkedin text-xl"></i></a>
+                    {{-- <a href="#" class="transition hover:text-general"><i class="fab fa-facebook text-xl"></i></a> --}}
+                    <a href="https://www.instagram.com/solarasync.ja" target="_blank" class="transition hover:text-general"><i class="fab fa-instagram text-xl"></i></a>
+                    {{-- <a href="#" class="transition hover:text-general"><i class="fab fa-linkedin text-xl"></i></a>
                     <a href="#" class="transition hover:text-general"><i class="fab fa-youtube text-xl"></i></a>
-                    <a href="#" class="transition hover:text-general"><i class="fab fa-whatsapp text-xl"></i></a>
+                    <a href="#" class="transition hover:text-general"><i class="fab fa-whatsapp text-xl"></i></a> --}}
                 </div>
             </div>
             <div class="flex h-52 w-full items-center justify-center overflow-hidden lg:w-80 lg:justify-end">
@@ -44,8 +44,7 @@
                     <li><a href="javascript:void(0)" class="transition hover:text-neutral-950">Newsletter <span
                                 class="ml-1 text-xs text-general">— Coming soon</span></a></li>
                     <li><a href="{{route('about')}}" wire:navigate class="transition hover:text-neutral-950">About us</a></li>
-                    <li><a href="{{route('careers')}}" wire:navigate class="transition hover:text-neutral-950">Careers <span
-                                class="ml-1 text-xs text-general">— We’re hiring</span></a></li>
+
                     <li><button type="button" x-on:click="legalModal = 'privacy'" class="text-left transition hover:text-neutral-950">Privacy Policy</button></li>
                     <li><button type="button" x-on:click="legalModal = 'terms'" class="text-left transition hover:text-neutral-950">Terms & Conditions</button></li>
                 </ul>
@@ -55,7 +54,7 @@
             <div>
                 <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">Solutions</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="{{ route('rentals') }}" class="transition hover:text-neutral-950">Solar Solutions</a></li>
+                    <li><a href="{{ route('solutions') }}" class="transition hover:text-neutral-950">Solar Solutions</a></li>
                     <li><a href="{{ route('projects') }}" wire:navigate class="transition hover:text-neutral-950">Projects</a>
                     </li>
                     <li><a href="{{ route('blog.index') }}" wire:navigate class="transition hover:text-neutral-950">Blog</a>
@@ -69,7 +68,7 @@
             <div>
                 <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">Contact</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="mailto:info@solara.example" class="transition hover:text-neutral-950">info@solara.example</a></li>
+                    <li><a href="mailto:info@solara.example" class="transition hover:text-neutral-950">support@solarasync.com</a></li>
                     <li class="text-neutral-500">Head office: 123 Energy Way, Kingston</li>
                     <li><a href="tel:18765430747" class="transition hover:text-neutral-950">1-123-456-7890</a></li>
                     <li><a href="#" class="transition hover:text-neutral-950">Support Portal</a></li>

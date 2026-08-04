@@ -59,7 +59,7 @@
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
                 Catalog manager
             </p>
-            <flux:heading size="xl" class="mt-1">Review and update offerings</flux:heading>
+            <flux:heading size="xl" class="mt-1">Solar solutions catalog</flux:heading>
             <flux:text class="mt-2">
                 Search, edit, and retire solution entries from the public explorer.
             </flux:text>

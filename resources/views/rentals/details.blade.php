@@ -105,8 +105,24 @@
                         </form>
                     </div>
 
-                    <div class="divide-y divide-neutral-200">
-                        <details class="group py-4" open>
+                    <div x-data="{ activeTab: 'details' }" class="mt-5">
+                        <div class="flex gap-6 border-b border-neutral-200" role="tablist" aria-label="Solution information">
+                            <button type="button" role="tab" :aria-selected="activeTab === 'details'"
+                                x-on:click="activeTab = 'details'"
+                                class="border-b-2 px-1 pb-3 text-sm font-bold transition"
+                                :class="activeTab === 'details' ? 'border-general text-neutral-950' : 'border-transparent text-neutral-500 hover:text-neutral-950'">
+                                Details
+                            </button>
+                            <button type="button" role="tab" :aria-selected="activeTab === 'reviews'"
+                                x-on:click="activeTab = 'reviews'"
+                                class="border-b-2 px-1 pb-3 text-sm font-bold transition"
+                                :class="activeTab === 'reviews' ? 'border-general text-neutral-950' : 'border-transparent text-neutral-500 hover:text-neutral-950'">
+                                Reviews ({{ $equipment->reviews_count }})
+                            </button>
+                        </div>
+
+                        <div x-show="activeTab === 'details'" role="tabpanel" class="divide-y divide-neutral-200">
+                            <details class="group py-4" open>
                             <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-bold text-neutral-950">
                                 Product details
                                 <flux:icon.chevron-down class="size-4 transition group-open:rotate-180" />
@@ -114,9 +130,9 @@
                             <p class="mt-4 rounded-md bg-neutral-50 p-4 text-sm leading-6 text-neutral-600">
                                 {{ $equipment->description }}
                             </p>
-                        </details>
+                            </details>
 
-                        <details class="group py-4">
+                            <details class="group py-4">
                             <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-bold text-neutral-950">
                                 Vendor details
                                 <flux:icon.chevron-down class="size-4 transition group-open:rotate-180" />
@@ -125,9 +141,9 @@
                                 Solara reviews your energy needs, confirms equipment availability, and prepares a clear
                                 quote after the consultation request.
                             </p>
-                        </details>
+                            </details>
 
-                        <details class="group py-4">
+                            <details class="group py-4">
                             <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-bold text-neutral-950">
                                 Return and exchange policy
                                 <flux:icon.chevron-down class="size-4 transition group-open:rotate-180" />
@@ -135,10 +151,17 @@
                             <p class="mt-4 text-sm leading-6 text-neutral-600">
                                 Final terms depend on the proposal, selected equipment, deposits, and installation stage.
                             </p>
-                        </details>
-                    </div>
+                            </details>
+                        </div>
 
-                    <livewire:product-engagement :equipment="$equipment" />
+                        <div x-cloak x-show="activeTab === 'details'" role="tabpanel">
+                            <livewire:product-engagement :equipment="$equipment" :reviews-only="false" />
+                        </div>
+
+                        <div x-cloak x-show="activeTab === 'reviews'" role="tabpanel">
+                            <livewire:product-engagement :equipment="$equipment" :reviews-only="true" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -146,7 +169,7 @@
         <section class="mx-auto mt-16 max-w-7xl border-t border-neutral-200 pt-10">
             <div class="flex items-center justify-between gap-4">
                 <h2 class="text-2xl font-bold">Related solutions</h2>
-                <a href="{{ route('rentals') }}" class="text-sm font-semibold text-blue-700">View all solutions</a>
+                <a href="{{ route('solutions') }}" class="text-sm font-semibold text-blue-700">View all solutions</a>
             </div>
             <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 @forelse ($relatedEquipment as $related)

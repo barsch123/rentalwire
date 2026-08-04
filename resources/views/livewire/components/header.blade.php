@@ -14,12 +14,12 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden sm:flex sm:items-center sm:space-x-6">
-                    <a href="{{ route('rentals') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
-                        'rentals'
+                    <a href="{{ route('solutions') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
+                        'solutions'
                         ),
-                        'text-general font-bold' => request()->routeIs('rentals'),
+                        'text-general font-bold' => request()->routeIs('solutions'),
                         'after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-general after:transition-all after:duration-300',
-                        request()->routeIs('rentals')
+                        request()->routeIs('solutions')
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
@@ -242,7 +242,7 @@
 
             <!-- Mobile Navigation -->
             <nav class="space-y-1">
-                <a href="{{ route('rentals') }}" wire:navigate
+                <a href="{{ route('solutions') }}" wire:navigate
                     x-on:click="mobileMenuIsOpen = false"
                     class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
                     Solutions

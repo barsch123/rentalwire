@@ -42,7 +42,7 @@
                             <h2 class="text-2xl font-bold">Your wishlist</h2>
                             <p class="mt-1 text-sm text-neutral-500">Solutions saved for comparison.</p>
                         </div>
-                        <flux:button :href="route('rentals')" wire:navigate icon="plus" variant="outline" size="sm">Browse solutions</flux:button>
+                        <flux:button :href="route('solutions')" wire:navigate icon="plus" variant="outline" size="sm">Browse solutions</flux:button>
                     </div>
                     <div class="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                         @forelse ($wishlist as $equipment)
@@ -70,7 +70,7 @@
                         @forelse ($reviews as $review)
                             <article class="py-5" wire:key="account-review-{{ $review->id }}">
                                 <div class="flex flex-wrap items-center justify-between gap-3">
-                                    <a href="{{ route('rental-details', $review->equipment->slug) }}" class="font-semibold hover:text-[#9a6700]">{{ $review->equipment->name }}</a>
+                                    <a href="{{ route('solution-details', $review->equipment->slug) }}" class="font-semibold hover:text-[#9a6700]">{{ $review->equipment->name }}</a>
                                     <span class="text-sm text-[#9a6700]">{{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}</span>
                                 </div>
                                 <p class="mt-2 text-sm leading-6 text-neutral-600">{{ $review->comment }}</p>

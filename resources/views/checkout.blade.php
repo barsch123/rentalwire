@@ -53,7 +53,7 @@
                 <div x-show="step === 1" x-transition.opacity>
                     <livewire:cart-items />
                     <div class="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <a href="{{ route('rentals') }}" wire:navigate
+                        <a href="{{ route('solutions') }}" wire:navigate
                             class="inline-flex items-center justify-center gap-2 rounded-md border border-neutral-300 px-5 py-3 text-base font-semibold text-neutral-800 transition hover:border-neutral-950">
                             <flux:icon.arrow-left class="size-4" />
                             Continue shopping

@@ -48,7 +48,7 @@
                 </p>
             </div>
 
-            <a href="{{ route('rentals') }}" wire:navigate
+            <a href="{{ route('solutions') }}" wire:navigate
                 class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 w-max rounded-sm! px-4!">
                 View all products
                 <i class="fas fa-arrow-right text-xs"></i>
@@ -59,7 +59,7 @@
             @foreach ($products as $product)
                 <article
                     class="transition-all duration-300 ease-out hover:-translate-y-1 hover:border-general hover:shadow-xl group overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
-                    <a href="{{ route('rentals') }}" wire:navigate class="block">
+                    <a href="{{ route('solutions') }}" wire:navigate class="block">
                         <div class="aspect-4/3 overflow-hidden bg-neutral-100">
                             <img src="{{ $product['image'] }}" alt="{{ $product['alt'] }}"
                                 class="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-105"
