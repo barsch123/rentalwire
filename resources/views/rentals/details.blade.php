@@ -1,6 +1,7 @@
 <x-layouts.base>
     @section('title', $equipment->name.' | Solara')
     @section('description', Str::limit($equipment->description, 150))
+    @section('keywords', $equipment->name.', solar solutions, Solara, Jamaica')
 
     @php
         $productImage = Str::startsWith($equipment->photo, 'http')

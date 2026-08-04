@@ -20,7 +20,7 @@
                 <article class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition hover:-translate-y-0.5 hover:border-general hover:shadow-md">
                     <a href="{{ route('blog.details', ['slug' => $blog->slug]) }}" wire:navigate class="block h-48 overflow-hidden bg-zinc-100">
                         @if ($blog->blog_photo)
-                            <img src="{{ asset('storage/' . $blog->blog_photo) }}" alt="{{ $blog->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+                            <img src="{{ str_starts_with($blog->blog_photo, 'img/') ? asset($blog->blog_photo) : asset('storage/' . $blog->blog_photo) }}" alt="{{ $blog->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
                         @else
                             <div class="h-full w-full bg-gradient-to-br from-zinc-100 to-general/15"></div>
                         @endif

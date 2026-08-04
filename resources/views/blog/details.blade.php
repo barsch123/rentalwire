@@ -1,4 +1,8 @@
 <x-layouts.base>
+    @section('title', $content->title.' | Solara Journal')
+    @section('description', Str::limit(strip_tags($content->content), 155))
+    @section('keywords', 'Solara journal, solar energy, '.$content->title)
+
     <main class="bg-neutral-50 text-zinc-900">
         <article class="mx-auto max-w-6xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
             <a href="{{ route('blog.index') }}" wire:navigate class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-bold text-zinc-700 transition hover:border-general hover:text-zinc-950">&larr; Back to journal</a>
@@ -8,7 +12,7 @@
             </div>
 
             @if ($content->blog_photo)
-                <div class="mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl bg-zinc-200"><img src="{{ asset('storage/' . $content->blog_photo) }}" alt="{{ $content->title }}" class="max-h-[520px] w-full object-cover"></div>
+                <div class="mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl bg-zinc-200"><img src="{{ str_starts_with($content->blog_photo, 'img/') ? asset($content->blog_photo) : asset('storage/' . $content->blog_photo) }}" alt="{{ $content->title }}" class="max-h-[520px] w-full object-cover"></div>
             @endif
 
             <div class="mx-auto mt-14 grid max-w-5xl gap-12 lg:grid-cols-[minmax(0,1fr)_220px]">

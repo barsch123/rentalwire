@@ -1,4 +1,8 @@
-<x-layouts.base>
+<x-layouts.base
+    title="Careers at Solara"
+    description="Join Solara's team and help deliver dependable solar energy solutions across Jamaica and the Caribbean."
+    keywords="solar careers Jamaica, solar installer jobs, Solara jobs, renewable energy careers"
+>
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <!-- Hero Section -->
         <div class="text-center mb-16 md:mb-24 relative">

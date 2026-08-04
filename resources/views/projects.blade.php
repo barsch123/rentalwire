@@ -1,4 +1,8 @@
-<x-layouts.base>
+<x-layouts.base
+    title="Solar Projects | Solara"
+    description="See how Solara delivers residential and commercial solar installations designed for dependable energy in Jamaica."
+    keywords="solar projects Jamaica, solar installation, commercial solar, residential solar, Solara"
+>
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28" x-data="{
       modalOpen: false,
       modalProject: { title:'', tag:'', date:'', status:'', summary:'', highlights:[], image:'', cost:'', duration:'', co2:'' },

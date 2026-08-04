@@ -1,4 +1,8 @@
-<x-layouts.base>
+<x-layouts.base
+    title="Contact Solara"
+    description="Contact Solara to discuss solar panels, battery backup, energy solutions, and a tailored estimate for your home or business."
+    keywords="contact Solara, solar estimate Jamaica, solar consultation, battery backup"
+>
     <section class="bg-neutral-50 px-6 py-20 md:px-12 md:py-24 lg:px-24">
         <div class="mx-auto max-w-6xl">
             <div class="mx-auto max-w-3xl text-center">
@@ -46,7 +50,7 @@
 
             <div class="relative mt-10 lg:mt-12">
                 <div class="overflow-hidden rounded-xl bg-neutral-200 shadow-sm lg:w-[73%]">
-                    <img src="{{ asset('img/testimonial.png') }}" alt="Installed solar panels"
+                    <img src="{{ asset('img/contact-consultation.png') }}" alt="Solara consultant outside a home with rooftop solar panels"
                         class="h-80 w-full object-cover md:h-[36rem]">
                 </div>
 

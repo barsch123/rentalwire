@@ -1,25 +1,30 @@
+@props([
+    'title' => config('app.name'),
+    'description' => 'Solara designs dependable solar energy systems for homes and businesses across Jamaica.',
+    'keywords' => 'Solara, solar energy, solar panels, battery storage, Jamaica',
+    'canonicalUrl' => url()->current(),
+])
+
+@php
+    $pageTitle = $__env->yieldContent('title', $title);
+    $pageDescription = $__env->yieldContent('description', $description);
+    $pageKeywords = $__env->yieldContent('keywords', $keywords);
+    $pageCanonicalUrl = $__env->yieldContent('canonical', $canonicalUrl);
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 
 <head>
-    <title>@yield('title')</title>
+    <title>{{ $pageTitle }}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
-    <meta name="author" content="">
-
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="googlebot-news" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="@yield('og:title', config('app.name'))">
-    <meta property="og:description" content="@yield('og:description', 'Default description here')">
-    <meta property="og:type" content="@yield('og:type', 'website')">
-    <meta property="og:url" content="@yield('og:url', request()->fullUrl())">
-    <meta property="og:image" content="@yield('og:image', asset('default-og-image.jpg'))">
-    <meta property="og:site_name" content="@yield('og:site_name', config('app.name'))">
+    @include('partials.seo', [
+        'title' => $pageTitle,
+        'description' => $pageDescription,
+        'keywords' => $pageKeywords,
+        'canonicalUrl' => $pageCanonicalUrl,
+    ])
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,13 +32,6 @@
 
 
     @stack('styles')
-    <!-- Canonical Link -->
-    @hasSection('canonical')
-    <link rel="canonical" href="@yield('canonical')">
-    @else
-    <link rel="canonical" href="{{ request()->fullUrl() }}">
-    @endif
-
     {{-- Prevent FOUC --}}
     <style>
         [x-cloak] {

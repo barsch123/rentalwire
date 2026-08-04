@@ -1,4 +1,8 @@
-<x-layouts.base>
+<x-layouts.base
+    title="Solar Services | Solara"
+    description="Explore Solara's residential and commercial solar, battery storage, monitoring, and maintenance services across Jamaica."
+    keywords="solar services Jamaica, residential solar, commercial solar, battery storage, Solara"
+>
     <section class="relative overflow-hidden py-32">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-20 px-6 md:px-8">
             <div class="md:col-span-6 z-10">

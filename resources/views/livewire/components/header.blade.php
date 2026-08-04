@@ -225,20 +225,34 @@
         </div>
 
         <div class="flex-1 overflow-y-auto px-3 py-4">
-            <div class="mb-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3">
-                <div class="flex items-center gap-3">
-                    <img class="h-10 w-10 rounded-full border-2 border-general" src="{{asset('img/user-1.jpg')}}"
-                        alt="User Profile">
-                    <div class="min-w-0">
-                        <p class="truncate text-sm font-semibold text-neutral-950">
-                            {{ Auth::check() ? Auth::user()->name : 'Guest' }}
-                        </p>
-                        <p class="truncate text-xs text-neutral-500">
-                            {{ Auth::check() ? Auth::user()->email : 'Sign in to manage your account' }}
-                        </p>
+            @if (Auth::check())
+                <div class="mb-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3">
+                    <div class="flex items-center gap-3">
+                        <img class="h-10 w-10 rounded-full border-2 border-general" src="{{ asset('img/user-1.jpg') }}"
+                            alt="User Profile">
+                        <div class="min-w-0">
+                            <p class="truncate text-sm font-semibold text-neutral-950">{{ Auth::user()->name }}</p>
+                            <p class="truncate text-xs text-neutral-500">{{ Auth::user()->email }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <a href="{{ route('login') }}" wire:navigate x-on:click="mobileMenuIsOpen = false"
+                    class="mb-4 block rounded-2xl border border-neutral-200 bg-neutral-50 px-3 py-3 transition hover:border-general hover:bg-general/5">
+                    <div class="flex items-center gap-3">
+                        <img class="h-10 w-10 rounded-full border-2 border-general" src="{{ asset('img/user-1.jpg') }}"
+                            alt="Guest account">
+                        <div class="min-w-0">
+                            <p class="truncate text-sm font-semibold text-neutral-950">Guest</p>
+                            <p class="truncate text-xs text-neutral-500">Sign in or sign up to manage your account</p>
+                        </div>
+                    </div>
+                </a>
+                <flux:button :href="route('login')" icon="arrow-right-end-on-rectangle" variant="primary"
+                    class="mb-4 w-full justify-center" wire:navigate x-on:click="mobileMenuIsOpen = false">
+                    Sign in / Sign up
+                </flux:button>
+            @endif
 
             <!-- Mobile Navigation -->
             <nav class="space-y-1">
@@ -273,12 +287,13 @@
             </nav>
 
             <div class="mt-4 border-t border-neutral-200 pt-4">
-                <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
-                    wire:navigate
-                    x-on:click="mobileMenuIsOpen = false"
-                    class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
-                    Dashboard
-                </a>
+                @if (Auth::check())
+                    <a href="{{ Auth::user()->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
+                        wire:navigate x-on:click="mobileMenuIsOpen = false"
+                        class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
+                        Dashboard
+                    </a>
+                @endif
 
                 @if (Auth::check())
                 <flux:button wire:click="logout" variant="primary" class="mt-3 w-full justify-center rounded-xl">

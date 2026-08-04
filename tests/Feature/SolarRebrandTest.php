@@ -35,6 +35,10 @@ test('public pages present the solar solutions brand', function () {
         ->assertSee('From first question to dependable power.')
         ->assertSee('Talk to Solara');
 
+    $this->get(route('contact'))
+        ->assertSuccessful()
+        ->assertSee('contact-consultation.png');
+
     $this->get('/solutions')
         ->assertSuccessful()
         ->assertSee('Recent Searches')

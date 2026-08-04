@@ -1,6 +1,7 @@
 <x-layouts.base>
     @section('title', 'Checkout | Solara')
     @section('description', 'Complete your solar product checkout and review your order summary.')
+    @section('keywords', 'solar estimate, solar checkout, Solara solutions, Jamaica')
 
     <main x-data="{ step: 1, summaryOpen: false }" x-on:keydown.escape.window="summaryOpen = false"
         class="min-h-screen bg-white py-32  text-neutral-950">
