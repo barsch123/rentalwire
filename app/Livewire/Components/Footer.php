@@ -22,7 +22,8 @@ class Footer extends Component
                 'email' => $this->email,
             ]);
         } catch (\Exception $e) {
-            session()->flash('error', 'Error sending email: ' . $e->getMessage());
+            session()->flash('error', 'Error sending email: '.$e->getMessage());
+
             return;
         }
 

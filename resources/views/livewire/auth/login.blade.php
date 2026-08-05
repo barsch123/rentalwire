@@ -35,8 +35,12 @@
             @endif
         </div>
 
-        <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        <div class="flex items-center justify-between gap-4">
+            <flux:button :href="route('welcome')" icon="home" variant="subtle" wire:navigate>
+                {{ __('Home') }}
+            </flux:button>
+            <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        </div>
 
         <div class="flex items-center justify-end">
             <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>

@@ -4,7 +4,7 @@
         'name' => 'John Doe',
         'role' => 'Homeowner, Kingston',
         'avatar' => asset('img/user-1.jpg'),
-        'image' => asset('img/testimonial.png'),
+        'image' => asset('img/solara-testimonial.png'),
     ];
 @endphp
 
@@ -15,14 +15,14 @@
                 x-intersect:options="{ threshold: 0.5 }"
                 :class="animate ? 'opacity-40 translate-y-0 transition duration-900 ease-out' : 'opacity-0 -translate-y-6'"
                 class="section-title pointer-events-none absolute inset-x-0 top-1/2 hidden -translate-y-1/2 text-5xl font-extrabold uppercase leading-none tracking-wide text-gray-200 md:block md:text-7xl">
-                WHAT OUR CUSTOMERS SAY
+                {{ __('WHAT OUR CUSTOMERS SAY') }}
             </h2>
 
             <h2 x-data="{ animate: false }" x-intersect.once="animate = true"
                 x-intersect:options="{ threshold: 0.5 }"
                 :class="animate ? 'opacity-100 translate-y-0 transition duration-900 ease-out' : 'opacity-0 -translate-y-8'"
                 class="relative text-4xl font-extrabold text-gray-900 md:text-5xl">
-                CUSTOMER <span class="block text-[#9a6700]">TESTIMONIAL</span>
+                {{ __('CUSTOMER') }} <span class="block text-[#9a6700]">{{ __('TESTIMONIAL') }}</span>
             </h2>
         </div>
 
@@ -56,7 +56,7 @@
                 </figure>
 
                 <div class="min-h-72 lg:min-h-105">
-                    <img src="{{ $testimonial['image'] }}" alt="Installed solar panels on a home"
+                    <img src="{{ $testimonial['image'] }}" alt="Solar panels and home battery installed on a tropical home"
                         class="h-full w-full object-cover">
                 </div>
             </div>

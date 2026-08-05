@@ -3,7 +3,7 @@
 <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white transition duration-300 hover:border-neutral-400 hover:shadow-lg">
     <div class="relative aspect-16/10 overflow-hidden bg-neutral-100">
         <a href="{{ route('solution-details', ['slug' => $equipment->slug]) }}" wire:navigate class="block h-full">
-            <img src="{{ Str::startsWith($equipment->photo, 'http') ? $equipment->photo : asset('storage/'.$equipment->photo) }}"
+            <img src="{{ Str::startsWith($equipment->photo, 'http') ? $equipment->photo : (Str::startsWith($equipment->photo, 'img/') ? asset($equipment->photo) : asset('storage/'.$equipment->photo)) }}"
                 alt="{{ $equipment->name }}" loading="lazy" decoding="async"
                 class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
         </a>

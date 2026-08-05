@@ -33,11 +33,16 @@ class ProductFactory extends Factory
             'description' => fake()->sentence(),
             'photo' => fake()->imageUrl(),
             'category' => fake()->randomElement([
-                'Residential Solar',
-                'Commercial Solar',
-                'Battery Storage',
-                'Inverters',
-                'Maintenance',
+                'Solar Panels',
+                'Solar Generators',
+                'Portable Power Stations',
+                'Solar Power Banks',
+                'Solar Lighting',
+                'Solar Fans',
+                'Solar Inverters',
+                'Solar Batteries',
+                'Installation Services',
+                'Maintenance Plans',
             ]),
         ];
     }

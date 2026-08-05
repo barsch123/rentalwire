@@ -9,6 +9,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+[data-flux-modal] > dialog::backdrop {
+    background-color: rgb(10 10 10 / 0.6);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
 @theme {
     --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",

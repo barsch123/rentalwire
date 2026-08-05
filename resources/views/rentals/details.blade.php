@@ -6,7 +6,7 @@
     @php
         $productImage = Str::startsWith($equipment->photo, 'http')
             ? $equipment->photo
-            : asset('storage/'.$equipment->photo);
+            : (Str::startsWith($equipment->photo, 'img/') ? asset($equipment->photo) : asset('storage/'.$equipment->photo));
     @endphp
 
     <main class="min-h-screen bg-white px-4 pb-16 pt-28 text-neutral-950 sm:px-6 lg:px-8">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mt-4 flex flex-wrap items-center gap-3">
-                            <flux:badge :color="$equipment->isAvailable() ? 'green' : 'red'">
+                            <flux:badge :color="$equipment->isAvailable() ? 'green' : 'red'" class="{{ $equipment->isAvailable() ? 'bg-emerald-100! text-emerald-800! dark:bg-emerald-900! dark:text-emerald-200!' : '' }}">
                                 {{ $equipment->isAvailable() ? 'Available for estimate' : 'Currently unavailable' }}
                             </flux:badge>
                             @if ($equipment->isAvailable())

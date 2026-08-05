@@ -1,7 +1,6 @@
 <div class="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
     <div class="mb-8 flex flex-col gap-5 border-b border-zinc-200 pb-7 sm:flex-row sm:items-end sm:justify-between">
         <div>
-            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#9a6700] mb-2">Solara journal</p>
             <h1 class="text-3xl font-bold tracking-tight text-zinc-950">Ideas for better energy.</h1>
         </div>
         <div class="w-full sm:max-w-sm">
@@ -22,7 +21,7 @@
                         @if ($blog->blog_photo)
                             <img src="{{ str_starts_with($blog->blog_photo, 'img/') ? asset($blog->blog_photo) : asset('storage/' . $blog->blog_photo) }}" alt="{{ $blog->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
                         @else
-                            <div class="h-full w-full bg-gradient-to-br from-zinc-100 to-general/15"></div>
+                            <div class="h-full w-full bg-linear-to-br from-zinc-100 to-general/15"></div>
                         @endif
                     </a>
                     <div class="flex flex-1 flex-col p-6">

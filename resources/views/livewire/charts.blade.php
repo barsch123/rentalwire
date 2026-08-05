@@ -1,76 +1,43 @@
-@props(['class'])
-<!--
+@php
+    $maximumCount = max(1, collect($monthlyCounts)->max('count'));
+@endphp
 
- * NOTE:
- * Couldn't find a well-maintained or suitable Laravel chart package for this project,
- * so I implemented the charts manually rawdogged it.
- * 36 hours
--->
+<div class="space-y-6" data-admin-chart>
+    <div class="grid gap-3 sm:grid-cols-3" aria-label="Publishing summary">
+        <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900">
+            <flux:text class="text-xs font-medium uppercase tracking-wide">Published</flux:text>
+            <flux:heading size="lg" class="mt-1">{{ $published }}</flux:heading>
+        </div>
+        <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900">
+            <flux:text class="text-xs font-medium uppercase tracking-wide">Untagged</flux:text>
+            <flux:heading size="lg" class="mt-1">{{ $untagged }}</flux:heading>
+        </div>
+        <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900">
+            <flux:text class="text-xs font-medium uppercase tracking-wide">Drafts</flux:text>
+            <flux:heading size="lg" class="mt-1">{{ $drafts }}</flux:heading>
+        </div>
+    </div>
 
-<div class="mb-10" x-data="chartComponent()">
-    <!-- Chart Canvas Container (prevent re-rendering with wire:ignore) -->
-    <div class="w-full h-72">
-        <canvas x-ref="canvas" class="w-full h-full"></canvas>
+    <div role="img" aria-label="Published articles over the last six months" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
+        <div class="mb-4 flex items-center justify-between gap-4">
+            <flux:text class="font-medium">Published articles over the last six months</flux:text>
+            <flux:text class="text-xs text-zinc-500">Articles</flux:text>
+        </div>
+
+        <div class="flex h-52 items-end gap-2 border-b border-zinc-200 sm:gap-4 dark:border-zinc-700">
+            @foreach ($monthlyCounts as $month)
+                @php
+                    $barHeight = $month['count'] > 0 ? max(10, ($month['count'] / $maximumCount) * 100) : 4;
+                @endphp
+
+                <div class="flex min-w-0 flex-1 flex-col items-center justify-end gap-2" title="{{ $month['full_label'] }}: {{ $month['count'] }} articles">
+                    <flux:text class="text-xs">{{ $month['count'] }}</flux:text>
+                    <div class="flex h-36 w-full items-end justify-center">
+                        <div class="w-full max-w-12 rounded-t-lg bg-amber-500 transition-all dark:bg-amber-400" style="height: {{ $barHeight }}%"></div>
+                    </div>
+                    <flux:text class="text-xs text-zinc-500">{{ $month['label'] }}</flux:text>
+                </div>
+            @endforeach
+        </div>
     </div>
 </div>
-
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
-    <script>
-        function chartComponent() {
-            return {
-                chartInstance: null,
-                published: @entangle('published'),
-                noTags: @entangle('noTags'),
-
-                init() {
-                    // Initialize chart once DOM is ready
-                    this.$nextTick(() => this.renderChart());
-
-                    // Re-render chart on Livewire event
-                    Livewire.on('updateTheChart', (payload) => {
-                        this.published = payload.published ?? this.published;
-                        this.noTags = payload.noTags ?? this.noTags;
-                        this.$nextTick(() => this.renderChart());
-                    });
-
-                    // Ensure chart re-renders after any Livewire DOM update
-                    Livewire.hook('message.processed', (message, component) => {
-                        if (this.$refs.canvas) this.renderChart();
-                    });
-                },
-
-                renderChart() {
-                    if (!this.$refs.canvas || typeof Chart === 'undefined') return;
-
-                    const ctx = this.$refs.canvas.getContext('2d');
-
-                    if (this.chartInstance) this.chartInstance.destroy();
-
-                    this.chartInstance = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Published Blogs', 'Blogs with no tags'],
-                            datasets: [{
-                                label: 'Blog Status',
-                                data: [this.published, this.noTags],
-                                backgroundColor: ['rgb(255, 171, 0)', 'rgba(244, 67, 54, 0.6)'],
-                                borderColor: ['rgb(255, 171, 0)', 'rgba(244, 67, 54, 1)'],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: true, position: 'top' }
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    </script>
-
-
-@endpush

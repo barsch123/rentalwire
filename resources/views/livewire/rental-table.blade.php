@@ -11,7 +11,7 @@
 
                 <div class="flex justify-end gap-3">
                     <flux:button type="button" variant="ghost" x-on:click="$flux.modal('modal').close()">Cancel</flux:button>
-                    <flux:button type="submit" wire:click="deleteEquipment" variant="danger">Delete</flux:button>
+                    <flux:button type="button" wire:click="deleteEquipment" variant="danger">Delete</flux:button>
                 </div>
             </div>
         </template>
@@ -62,6 +62,7 @@
                             <th class="px-4 py-3">Solution</th>
                             <th class="px-4 py-3">Category</th>
                             <th class="px-4 py-3">Price</th>
+                            <th class="px-4 py-3">Reviews</th>
                             <th class="px-4 py-3 text-right">Actions</th>
                         </tr>
                     </thead>
@@ -70,7 +71,7 @@
                             <tr wire:key="solution-row-{{ $rentals->id }}">
                                 <td class="px-4 py-4">
                                     <div class="flex min-w-72 items-center gap-3">
-                                        <img src="{{ Str::startsWith($rentals->photo, 'http') ? $rentals->photo : asset('storage/' . $rentals->photo) }}"
+                                        <img src="{{ Str::startsWith($rentals->photo, 'http') ? $rentals->photo : (Str::startsWith($rentals->photo, 'img/') ? asset($rentals->photo) : asset('storage/' . $rentals->photo)) }}"
                                             alt="{{ $rentals->name }}" class="size-14 rounded-lg object-cover">
                                         <div class="min-w-0">
                                             <div class="font-bold text-zinc-950 dark:text-white">{{ $rentals->name }}</div>
@@ -89,27 +90,27 @@
                                 <td class="px-4 py-4 font-black text-zinc-950 dark:text-white">
                                     ${{ number_format($rentals->price, 0) }}
                                 </td>
+                                <td class="px-4 py-4 text-zinc-700 dark:text-zinc-300">
+                                    {{ $rentals->reviews_count }}
+                                </td>
                                 <td class="px-4 py-4 text-right">
                                     <div class="flex justify-end gap-2">
                                         <flux:modal.trigger name="modal">
-                                            <flux:button size="sm" variant="ghost" wire:click="editEquipment({{ $rentals->id }})"
-                                                x-on:click="$store.modal.view = 'edit'">
-                                                Edit
-                                            </flux:button>
+                                            <flux:button size="sm" variant="ghost" icon="pencil" tooltip="Edit solution"
+                                                aria-label="Edit {{ $rentals->name }}" wire:click="editEquipment({{ $rentals->id }})"
+                                                x-on:click="$store.modal.view = 'edit'" />
                                         </flux:modal.trigger>
                                         <flux:modal.trigger name="modal">
-                                            <flux:button size="sm" variant="danger"
-                                                wire:click="$set('selectedId', {{ $rentals->id }})"
-                                                x-on:click="$store.modal.view = 'prompt'">
-                                                Delete
-                                            </flux:button>
+                                            <flux:button size="sm" variant="danger" icon="trash" tooltip="Delete solution"
+                                                aria-label="Delete {{ $rentals->name }}" wire:click="$set('selectedId', {{ $rentals->id }})"
+                                                x-on:click="$store.modal.view = 'prompt'" />
                                         </flux:modal.trigger>
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-6 py-12 text-center">
+                                <td colspan="5" class="px-6 py-12 text-center">
                                     <div class="mx-auto flex size-12 items-center justify-center rounded-lg bg-zinc-100 text-zinc-500">
                                         <flux:icon.magnifying-glass class="size-6" />
                                     </div>

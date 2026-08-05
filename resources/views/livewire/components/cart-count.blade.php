@@ -1,8 +1,8 @@
 <div class="relative" x-data="{ open: false }" @keydown.escape.window="open = false">
     <button type="button" @click="open = !open" :aria-expanded="open"
         class="relative flex size-9 items-center justify-center rounded-lg text-white transition hover:bg-white/10"
-        aria-haspopup="true" aria-label="Open estimate">
-        <flux:icon.bell class="size-5" />
+        aria-haspopup="true" aria-label="Open shopping cart">
+        <flux:icon.shopping-cart class="size-5" />
         @if ($count > 0)
             <span class="absolute -right-1 -top-1 flex min-w-4.5 items-center justify-center rounded-full bg-general px-1 text-[0.6rem] font-bold leading-4 text-neutral-950">
                 {{ $count > 9 ? '9+' : $count }}
@@ -28,7 +28,7 @@
                 @foreach ($items as $index => $item)
                     <article wire:key="estimate-notification-{{ $item['id'] ?? $index }}-{{ $index }}"
                         class="grid grid-cols-[2.5rem_1fr_auto] items-center gap-3 px-4 py-3">
-                        <img src="{{ Str::startsWith($item['photo'] ?? '', 'http') ? $item['photo'] : asset('storage/'.($item['photo'] ?? '')) }}"
+                        <img src="{{ Str::startsWith($item['photo'] ?? '', 'http') ? $item['photo'] : (Str::startsWith($item['photo'] ?? '', 'img/') ? asset($item['photo']) : asset('storage/'.($item['photo'] ?? ''))) }}"
                             alt="" class="size-10 rounded-lg bg-neutral-100 object-cover">
                         <div class="min-w-0">
                             <p class="truncate text-sm font-medium">{{ $item['name'] }}</p>

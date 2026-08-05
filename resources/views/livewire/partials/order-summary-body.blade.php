@@ -1,9 +1,3 @@
-@php
-    $shipping = 0;
-    $tax = 0;
-    $grandTotal = $total - $discount + $shipping + $tax;
-@endphp
-
 <section class="bg-white">
     <h2 class="text-2xl font-bold text-neutral-950">Order Summary</h2>
 
@@ -39,13 +33,16 @@
             <dd class="font-semibold text-neutral-950">${{ number_format($shipping, 0) }}</dd>
         </div>
         <div class="flex items-center justify-between gap-4">
-            <dt class="text-neutral-600">Tax</dt>
+            <dt class="text-neutral-600">Tax (3.5%)</dt>
             <dd class="font-semibold text-neutral-950">${{ number_format($tax, 0) }}</dd>
         </div>
     </dl>
 
     @auth
         <p class="mt-4 text-xs text-neutral-500">{{ ucfirst(Auth::user()->membership_tier) }} member · {{ Auth::user()->discount_percent }}% eligible discount</p>
+        @if ($promoCode)
+            <p class="mt-1 text-xs font-semibold text-emerald-700">Promo code applied: {{ $promoCode }}</p>
+        @endif
     @endauth
 
     <div class="mt-5 flex items-center justify-between border-t border-neutral-300 pt-5 text-base">
@@ -54,12 +51,12 @@
     </div>
 
     @if (Auth::check())
-        <button type="button" x-on:click="step = 3; summaryOpen = false; window.scrollTo({ top: 0, behavior: 'smooth' })" @disabled(empty($cart))
+        <button type="button" x-on:click="step = 2; summaryOpen = false; window.scrollTo({ top: 0, behavior: 'smooth' })" @disabled(empty($cart))
             class="mt-6 w-full rounded-md bg-neutral-950 px-5 py-3 text-base font-semibold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300">
-            Pay now
+            Continue to checkout
         </button>
     @else
-        <flux:button :href="route('login')" wire:navigate variant="primary" class="mt-6 w-full rounded-md! py-5!">
+        <flux:button :href="route('login', ['redirect' => route('checkout', absolute: false)])" wire:navigate variant="primary" class="mt-6 w-full rounded-md! py-5!">
             Log In to Continue
         </flux:button>
     @endif

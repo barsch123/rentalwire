@@ -6,10 +6,6 @@
 
             <div class="mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-16 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-16 lg:pb-28 lg:pt-24">
                 <div>
-                    <div class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-general">
-                        <span class="h-px w-10 bg-general"></span>
-                        About Solara
-                    </div>
                     <h1 class="mt-6 max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
                         Energy independence, designed for real life.
                     </h1>
@@ -63,7 +59,6 @@
 
         <section class="mx-auto grid max-w-7xl gap-12 px-6 py-20 sm:px-10 md:py-28 lg:grid-cols-[0.8fr_1.2fr] lg:px-16">
             <div>
-                <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#9a6700]">Why we exist</p>
                 <h2 class="mt-4 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">A better way to take control of energy.</h2>
             </div>
             <div class="grid gap-8 text-base leading-8 text-neutral-600 dark:text-neutral-300 sm:grid-cols-2">
@@ -75,7 +70,6 @@
         <section class="bg-neutral-900 px-6 py-20 text-white sm:px-10 md:py-28 lg:px-16">
             <div class="mx-auto max-w-7xl">
                 <div class="max-w-2xl">
-                    <p class="text-xs font-bold uppercase tracking-[0.22em] text-general">How we work</p>
                     <h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">From first question to dependable power.</h2>
                 </div>
                 <div class="mt-14 grid gap-8 md:grid-cols-4">

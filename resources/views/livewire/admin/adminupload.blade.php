@@ -1,9 +1,7 @@
 <div class="p-4 sm:p-6">
-    <div class="grid gap-6 xl:grid-cols-[24rem_1fr]">
-        <section class="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
-            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-amber-700 dark:text-amber-400">
-                New solution
-            </p>
+    <div class="grid gap-6 xl:grid-cols-1">
+        <section class="order-2 rounded-lg border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
+           
             <flux:heading size="xl" class="mt-1">Add solar offering</flux:heading>
             <flux:text class="mt-2">
                 Create catalog entries for panels, storage, inverters, maintenance, and custom service packages.
@@ -37,8 +35,9 @@
                 </div>
 
                 @if ($photo)
-                    <img src="{{ $photo->temporaryUrl() }}" class="h-40 w-full rounded-lg object-cover"
-                        alt="Solution image preview" />
+                    <div class="mx-auto flex h-40 w-full max-w-md items-center justify-center overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 p-3 dark:border-zinc-700 dark:bg-zinc-800">
+                        <img src="{{ $photo->temporaryUrl() }}" class="size-full object-contain" alt="Solution image preview" />
+                    </div>
                 @endif
 
                 @if (session()->has('message'))
@@ -55,7 +54,7 @@
             </form>
         </section>
 
-        <section class="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
+        <section class="order-1 rounded-lg border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-700 dark:bg-zinc-900">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
                 Catalog manager
             </p>

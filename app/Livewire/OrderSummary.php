@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\CartTotals;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class OrderSummary extends Component
@@ -19,33 +21,41 @@ class OrderSummary extends Component
 
     public float $discount = 0;
 
+    public float $shipping = 0;
+
+    public float $tax = 0;
+
+    public float $grandTotal = 0;
+
+    public ?string $promoCode = null;
+
     protected $listeners = ['cartUpdated' => 'refreshCart'];
 
-    public function render()
+    public function render(): View
     {
         $this->calculateCart();
 
         return view('livewire.order-summary');
     }
 
-    public function refreshCart()
+    public function refreshCart(): void
     {
         $this->cart = session()->get('cart', []);
     }
 
-    public function calculateCart()
+    public function calculateCart(): void
     {
-        $this->total = 0;
-        $this->discount = 0;
+        $totals = app(CartTotals::class)->calculate($this->cart, Auth::user());
 
-        foreach ($this->cart as $item) {
-            $lineTotal = $item['price'] * ($item['quantity'] ?? 1);
-            $this->total += $lineTotal;
-            $this->discount += $lineTotal * ((int) ($item['discount_percent'] ?? 0) / 100);
-        }
+        $this->total = $totals['subtotal'];
+        $this->discount = $totals['discount'];
+        $this->shipping = $totals['shipping'];
+        $this->tax = $totals['tax'];
+        $this->grandTotal = $totals['total'];
+        $this->promoCode = $totals['promo_code'];
     }
 
-    public function mount()
+    public function mount(): void
     {
         $user = Auth::user();
         $this->name = $user->name ?? 'No name provided';

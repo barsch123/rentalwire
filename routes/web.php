@@ -19,26 +19,28 @@ use App\Livewire\SupportCenter;
 use App\Livewire\User\Dashboard as UserDashboard;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [Welcome::class, 'index'])->name('welcome');
-Route::get('/services', [ServicesController::class, 'index'])->name('services');
-Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::get('/support', SupportCenter::class)->name('support');
-Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+Route::localize(function (): void {
+    Route::get('/', [Welcome::class, 'index'])->name('welcome');
+    Route::get('/services', [ServicesController::class, 'index'])->name('services');
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
+    Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('/support', SupportCenter::class)->name('support');
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.details');
+    Route::get('/solutions', [RentalController::class, 'index'])->name('solutions');
+    Route::get('/solutions/{slug}', [RentalController::class, 'show'])->name('solution-details');
+    Route::get('/careers', [CareersController::class, 'index'])->name('careers');
+    Route::get('/estimate', [CheckoutController::class, 'index'])->name('checkout');
+});
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.details');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 Route::redirect('/rentals', '/solutions');
 Route::redirect('/solution', '/solutions');
-Route::get('/solutions', [RentalController::class, 'index'])->name('solutions');
-Route::get('/solutions/{slug}', [RentalController::class, 'show'])->name('solution-details');
 Route::post('/solutions/{slug}/estimate', [RentalController::class, 'addToEstimate'])->name('solutions.estimate.store');
-
-Route::get('/careers', [CareersController::class, 'index'])->name('careers');
 Route::redirect('/checkout', '/estimate');
-Route::get('/estimate', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/estimate/complete', [CheckoutController::class, 'complete'])->name('checkout.complete');
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
@@ -47,8 +49,8 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(functio
     Route::get('/blogs', Adminblog::class)->name('adminblog.index');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', UserDashboard::class)->middleware('user')->name('dashboard');
+Route::middleware(['auth', 'verified', 'user'])->group(function () {
+    Route::get('/dashboard', UserDashboard::class)->name('dashboard');
     Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');

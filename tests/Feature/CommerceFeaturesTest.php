@@ -92,12 +92,16 @@ test('membership discount is included in the estimate summary', function () {
     $user = User::factory()->create(['membership_tier' => 'gold', 'discount_percent' => 10]);
     $equipment = Equipmentrental::factory()->create(['price' => 100000]);
 
-    Livewire::actingAs($user)->test(RentalFilters::class)->call('addToCart', $equipment->id);
+    session()->put('cart', [$equipment->toArray()]);
 
     Livewire::actingAs($user)
         ->test(OrderSummary::class)
         ->assertSet('total', 100000.0)
         ->assertSet('discount', 10000.0)
+        ->assertSet('shipping', 1500.0)
+        ->assertSet('tax', 3150.0)
+        ->assertSet('grandTotal', 94650.0)
+        ->assertSee('$94,650')
         ->assertSee('Gold member');
 });
 

@@ -6,7 +6,7 @@
                 x-intersect:options="{ threshold: 0.5 }"
                 :class="animate ? 'opacity-50 translate-x-0 transition duration-700' : 'opacity-0 translate-x-10'"
                 class="text-gray-100 section-title absolute inset-0 md:text-6xl lg:text-7xl text-5xl font-extrabold  border-gray-200 opacity-50 uppercase tracking-wide leading-none">
-                CLEAN ENERGY OPTIONS
+                {{ __('CLEAN ENERGY OPTIONS') }}
             </h2>
 
             <!-- Foreground Text -->
@@ -17,7 +17,7 @@
                     'opacity-100 translate-x-0 transition duration-700' :
                     'opacity-0 translate-x-10'"
                 class="text-white relative text-4xl md:text-5xl font-extrabold ">
-                VIEW OUR <span class="block w-max border-b-4 border-general text-general"> SOLUTIONS</span>
+                {{ __('VIEW OUR') }} <span class="block w-max border-b-4 border-general text-general"> {{ __('SOLUTIONS') }}</span>
             </h2>
         </div>
     </div>
@@ -52,7 +52,7 @@
             'opacity-0 translate-y-10'">
         <a class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 rounded-sm!"
             href="{{ route('contact') }}">
-            <span class="relative z-10">REQUEST A FREE QUOTE</span>
+            <span class="relative z-10">{{ __('REQUEST A FREE QUOTE') }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-4 w-4" viewBox="0 0 20 20"
                 fill="currentColor">
                 <path fill-rule="evenodd"

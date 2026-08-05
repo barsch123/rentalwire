@@ -23,6 +23,15 @@ class Login extends Component
 
     public bool $remember = false;
 
+    public function mount(): void
+    {
+        $redirect = request()->string('redirect')->toString();
+
+        if ($redirect !== '' && Str::startsWith($redirect, '/') && ! Str::startsWith($redirect, '//')) {
+            session()->put('url.intended', url($redirect));
+        }
+    }
+
     /**
      * Handle an incoming authentication request.
      */
@@ -43,9 +52,11 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirect(Auth::user()->usertype === 'admin' 
-        ? route('admin.dashboard') 
-        : route('dashboard', absolute: false), navigate: true);
+        $defaultRedirect = Auth::user()->usertype === 'admin'
+            ? route('admin.dashboard')
+            : route('dashboard', absolute: false);
+
+        $this->redirectIntended(default: $defaultRedirect, navigate: true);
     }
 
     /**
@@ -74,6 +85,6 @@ class Login extends Component
      */
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
     }
 }

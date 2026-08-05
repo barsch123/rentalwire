@@ -113,6 +113,7 @@ class RentalTable extends Component
         }
 
         $rentalEquipment = $query->select('id', 'name', 'price', 'description', 'photo', 'category', 'subcategory')
+            ->withCount('reviews')
             ->latest()
             ->paginate(5);
 

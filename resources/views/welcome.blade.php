@@ -5,8 +5,7 @@
     canonical-url="{{ url()->current() }}"
 >
     <x-partials.hero />
-    <x-partials.why />
+    <x-partials.why :products="$featuredProducts" />
     <x-partials.listings />
     <x-partials.testimonials />
-    <x-partials.cta />
 </x-layouts.base>

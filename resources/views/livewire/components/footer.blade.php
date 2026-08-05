@@ -15,7 +15,7 @@
                    
             <!-- Brand -->
             <div class="shrink-0">
-                <a href="/" class="font-bungee flex items-center space-x-2 text-3xl font-bold text-neutral-950">
+                <a href="{{ route('welcome') }}" wire:navigate class="font-bungee flex items-center space-x-2 text-3xl font-bold text-neutral-950">
                     <span>Sol<span class="text-general">ara</span></span>
                 </a>
                 <p class="mt-2 text-sm text-neutral-500">&copy; {{ Date('Y') }} Solara. All rights reserved.</p>
@@ -39,27 +39,27 @@
 
             <!-- Company -->
             <div>
-                <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">Company</h4>
+                <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">{{ __('Company') }}</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="javascript:void(0)" class="transition hover:text-neutral-950">Newsletter <span
-                                class="ml-1 text-xs text-general">— Coming soon</span></a></li>
-                    <li><a href="{{route('about')}}" wire:navigate class="transition hover:text-neutral-950">About us</a></li>
+                    <li><a href="javascript:void(0)" class="transition hover:text-neutral-950">{{ __('Newsletter') }} <span
+                                class="ml-1 text-xs text-general">— {{ __('Coming soon') }}</span></a></li>
+                    <li><a href="{{ route('about') }}" wire:navigate class="transition hover:text-neutral-950">{{ __('About us') }}</a></li>
 
-                    <li><button type="button" x-on:click="legalModal = 'privacy'" class="text-left transition hover:text-neutral-950">Privacy Policy</button></li>
-                    <li><button type="button" x-on:click="legalModal = 'terms'" class="text-left transition hover:text-neutral-950">Terms & Conditions</button></li>
+                    <li><button type="button" x-on:click="legalModal = 'privacy'" class="text-left transition hover:text-neutral-950">{{ __('Privacy Policy') }}</button></li>
+                    <li><button type="button" x-on:click="legalModal = 'terms'" class="text-left transition hover:text-neutral-950">{{ __('Terms & Conditions') }}</button></li>
                 </ul>
             </div>
 
             <!-- Services -->
             <div>
-                <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">Solutions</h4>
+                <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">{{ __('Solutions') }}</h4>
                 <ul class="space-y-3 text-sm">
-                    <li><a href="{{ route('solutions') }}" class="transition hover:text-neutral-950">Solar Solutions</a></li>
-                    <li><a href="{{ route('projects') }}" wire:navigate class="transition hover:text-neutral-950">Projects</a>
+                    <li><a href="{{ route('solutions') }}" wire:navigate class="transition hover:text-neutral-950">{{ __('Solar Solutions') }}</a></li>
+                    <li><a href="{{ route('projects') }}" wire:navigate class="transition hover:text-neutral-950">{{ __('Projects') }}</a>
                     </li>
-                    <li><a href="{{ route('blog.index') }}" wire:navigate class="transition hover:text-neutral-950">Blog</a>
+                    <li><a href="{{ route('blog.index') }}" wire:navigate class="transition hover:text-neutral-950">{{ __('Blog') }}</a>
                     </li>
-                    <li><a href="{{route('services')}}" wire:navigate class="transition hover:text-neutral-950">Services</a>
+                    <li><a href="{{ route('services') }}" wire:navigate class="transition hover:text-neutral-950">{{ __('Services') }}</a>
                     </li>
                 </ul>
             </div>
@@ -77,7 +77,7 @@
 
             <!-- Newsletter -->
             <div>
-                <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">Newsletter</h4>
+                <h4 class="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-950">{{ __('Newsletter') }}</h4>
                 <p class="mb-4 text-sm text-neutral-500">Subscribe for solar tips, incentives, and project updates.</p>
                 <form wire:submit.prevent="createNewsletter" class="space-y-3">
                     <flux:input id="footer-email" icon="envelope" type="email" wire:model="email"
@@ -86,6 +86,26 @@
                         class="inline-flex items-center justify-center gap-2 rounded-lg bg-general px-5 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-95 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-general/30 focus-visible:ring-offset-2 w-full py-2.5!">Subscribe</button>
                 </form>
                 <flux:error name="email" />
+            </div>
+
+            <div class="lg:col-span-4">
+                <label for="footer-locale" class="text-sm font-semibold text-neutral-950">{{ __('Language') }}</label>
+                <select id="footer-locale" x-data x-on:change="window.location.href = $event.target.value"
+                    class="mt-2 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 outline-none transition focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
+                    @php
+                        $localeNames = [
+                            'en' => 'English',
+                            'de' => 'Deutsch',
+                            'es' => 'Español',
+                            'fr' => 'Français',
+                        ];
+                    @endphp
+                    @foreach (config('localizer.supported_locales') as $locale)
+                        <option value="{{ Route::localizedSwitcherUrl($locale) }}" @selected(app()->getLocale() === $locale)>
+                            {{ $localeNames[$locale] ?? strtoupper($locale) }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </footer>

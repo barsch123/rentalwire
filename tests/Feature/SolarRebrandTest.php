@@ -2,6 +2,7 @@
 
 use App\Livewire\RentalFilters;
 use App\Models\Equipmentrental;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -12,8 +13,8 @@ test('public pages present the solar solutions brand', function () {
     $solution = Equipmentrental::factory()->create([
         'name' => 'Residential Solar Starter Kit',
         'description' => 'Rooftop solar panels with hybrid inverter and battery-ready monitoring.',
-        'category' => 'Complete Solar Kits',
-        'subcategory' => 'Grid-Tied Kits',
+        'category' => 'Solar Panels',
+        'subcategory' => 'Monocrystalline Panels',
     ]);
 
     $this->get('/')
@@ -26,6 +27,7 @@ test('public pages present the solar solutions brand', function () {
         ->assertSee('Terms and Conditions')
         ->assertSee('Solara respects your privacy')
         ->assertSee('These terms govern your use of the Solara website')
+        ->assertSee('img/solara-testimonial.png', false)
         ->assertSee('VIEW OUR')
         ->assertSee('SOLUTIONS');
 
@@ -68,6 +70,21 @@ test('public pages present the solar solutions brand', function () {
     $this->get('/checkout')->assertRedirect('/estimate');
 });
 
+test('homepage features catalog products in a three second carousel', function () {
+    $product = Equipmentrental::factory()->create([
+        'name' => 'Featured Home Solar System',
+        'photo' => 'img/solutions/home-solar-gen.jpg',
+    ]);
+
+    $this->get(route('welcome'))
+        ->assertSuccessful()
+        ->assertSee('Featured Home Solar System')
+        ->assertSee('img/solutions/home-solar-gen.jpg', false)
+        ->assertSee(route('solution-details', $product->slug), false)
+        ->assertSee('setInterval', false)
+        ->assertSee('3000', false);
+});
+
 test('admin solution manager renders redesigned controls', function () {
     $admin = User::factory()->create([
         'usertype' => 'admin',
@@ -79,11 +96,23 @@ test('admin solution manager renders redesigned controls', function () {
         'subcategory' => 'Bifacial Panels',
     ]);
 
+    $reviewedProduct = Equipmentrental::query()->where('name', 'Commercial Solar Array')->firstOrFail();
+    Review::create([
+        'equipmentrental_id' => $reviewedProduct->id,
+        'user_id' => $admin->id,
+        'rating' => 5,
+        'comment' => 'A dependable solar solution.',
+    ]);
+
     $this->actingAs($admin)
         ->get(route('solutions.index'))
         ->assertSuccessful()
         ->assertSee('Add solar offering')
         ->assertSee('Catalog manager')
+        ->assertSee('Reviews')
+        ->assertSee('1')
+        ->assertSee('wire:click="deleteEquipment"', false)
+        ->assertDontSee('type="submit" wire:click="deleteEquipment"', false)
         ->assertSee('Commercial Solar Array');
 });
 
@@ -91,8 +120,8 @@ test('solution explorer filters category price reset and sorting', function () {
     Equipmentrental::factory()->create([
         'name' => 'Residential Kit',
         'description' => 'Compact rooftop package for a family home.',
-        'category' => 'Complete Solar Kits',
-        'subcategory' => 'Grid-Tied Kits',
+        'category' => 'Solar Panels',
+        'subcategory' => 'Monocrystalline Panels',
         'price' => 500000,
     ]);
 
@@ -107,14 +136,14 @@ test('solution explorer filters category price reset and sorting', function () {
     Equipmentrental::factory()->create([
         'name' => 'Battery Backup',
         'description' => 'Battery storage for essential loads and outages.',
-        'category' => 'Battery Storage',
-        'subcategory' => 'Home Batteries',
+        'category' => 'Solar Batteries',
+        'subcategory' => 'Home Battery Storage',
         'price' => 800000,
     ]);
 
     Livewire::test(RentalFilters::class)
         ->set('tempSelectedCategory', 'Solar Panels')
-        ->assertSet('subcategories', ['Monocrystalline Panels', 'Bifacial Panels', 'Flexible Panels'])
+        ->assertSet('subcategories', ['Monocrystalline Panels', 'Polycrystalline Panels', 'Bifacial Panels', 'Flexible Panels'])
         ->set('tempSelectedSubcategory', 'Bifacial Panels')
         ->call('applyFilters')
         ->assertSee('Commercial Array')

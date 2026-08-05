@@ -26,6 +26,13 @@ class User extends Authenticatable
         'password',
         'membership_tier',
         'discount_percent',
+        'delivery_first_name',
+        'delivery_last_name',
+        'delivery_mobile_number',
+        'delivery_address',
+        'delivery_city',
+        'delivery_parish',
+        'delivery_postal_code',
     ];
 
     /**

@@ -1,26 +1,27 @@
 document.addEventListener('alpine:init', () => {
     Alpine.data('homeHero', () => ({
+        translations: window.solaraTranslations ?? {},
         active: 0,
         timer: null,
         slides: [
             {
                 label: 'Home solar',
-                title: 'Power your home with more predictable energy.',
-                description: 'A solar system designed around your roof, daily usage, and long-term savings goals.',
+                title: window.solaraTranslations?.hero_home_title ?? 'Power your home with more predictable energy.',
+                description: window.solaraTranslations?.hero_home_description ?? 'A solar system designed around your roof, daily usage, and long-term savings goals.',
                 image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=85',
                 alt: 'Solar panels installed on a modern home',
             },
             {
                 label: 'Battery backup',
-                title: 'Keep essential power available when it matters.',
-                description: 'Store solar energy for evenings, outages, and the appliances your household relies on.',
+                title: window.solaraTranslations?.hero_battery_title ?? 'Keep essential power available when it matters.',
+                description: window.solaraTranslations?.hero_battery_description ?? 'Store solar energy for evenings, outages, and the appliances your household relies on.',
                 image: 'https://images.unsplash.com/photo-1624397640148-949b1732bb0a?auto=format&fit=crop&w=1600&q=85',
                 alt: 'Home solar and battery energy system',
             },
             {
                 label: 'Commercial',
-                title: 'Turn business energy use into a smarter investment.',
-                description: 'Commercial solar and storage planned around operating hours, demand, and available space.',
+                title: window.solaraTranslations?.hero_commercial_title ?? 'Turn business energy use into a smarter investment.',
+                description: window.solaraTranslations?.hero_commercial_description ?? 'Commercial solar and storage planned around operating hours, demand, and available space.',
                 image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=85',
                 alt: 'Large commercial solar panel installation',
             },
@@ -39,7 +40,7 @@ document.addEventListener('alpine:init', () => {
             this.pause();
             this.timer = window.setInterval(() => {
                 this.active = (this.active + 1) % this.slides.length;
-            }, 6000);
+            }, 5000);
         },
 
         pause() {

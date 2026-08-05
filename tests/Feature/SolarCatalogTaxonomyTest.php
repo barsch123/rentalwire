@@ -25,7 +25,7 @@ test('catalog exposes only the configured solar taxonomy', function () {
         ->assertDontSee('Dozers')
         ->call('selectCategory', 'Solar Panels')
         ->assertSet('selectedCategory', 'Solar Panels')
-        ->assertSet('subcategories', ['Monocrystalline Panels', 'Bifacial Panels', 'Flexible Panels'])
+        ->assertSet('subcategories', ['Monocrystalline Panels', 'Polycrystalline Panels', 'Bifacial Panels', 'Flexible Panels'])
         ->assertSee('Bifacial Panels')
         ->assertDontSee('Bulldozer');
 });
@@ -39,7 +39,7 @@ test('admin rejects categories and subcategories outside the solar taxonomy', fu
 
     Livewire::test(Adminupload::class)
         ->set('category', 'Solar Panels')
-        ->set('subcategory', 'Home Batteries')
+        ->set('subcategory', 'Home Battery Storage')
         ->call('save')
         ->assertHasErrors(['subcategory']);
 });

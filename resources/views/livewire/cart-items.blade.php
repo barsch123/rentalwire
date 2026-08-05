@@ -15,7 +15,7 @@
             @foreach ($cart as $index => $item)
                 <article wire:key="checkout-item-{{ $item['id'] ?? $index }}-{{ $index }}" class="grid gap-3 rounded-lg border border-neutral-200 bg-white p-3 transition hover:border-general sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:items-center sm:p-4">
                     <div class="relative overflow-hidden rounded-md bg-neutral-100">
-                        <img src="{{ Str::startsWith($item['photo'] ?? '', 'http') ? $item['photo'] : asset('storage/'.($item['photo'] ?? '')) }}" alt="{{ $item['name'] }}" class="aspect-square h-full w-full object-cover">
+                        <img src="{{ Str::startsWith($item['photo'] ?? '', 'http') ? $item['photo'] : (Str::startsWith($item['photo'] ?? '', 'img/') ? asset($item['photo']) : asset('storage/'.($item['photo'] ?? ''))) }}" alt="{{ $item['name'] }}" class="aspect-square h-full w-full object-cover">
                     </div>
                     <div class="min-w-0">
                         <p class="text-xs font-bold text-[#9a6700]">{{ $item['subcategory'] ?? 'Solar solution' }}</p>
