@@ -18,7 +18,7 @@
                         <span x-show="step === 1" class="size-2 rounded-full bg-current"></span>
                     </button>
                     <button type="button" x-on:click="step = 1" class="text-base font-semibold"
-                        x-bind:class="step >= 1 ? 'text-neutral-950' : 'text-neutral-500'">Cart</button>
+                        x-bind:class="step >= 1 ? 'text-neutral-950' : 'text-neutral-500'">{{ __('Cart') }}</button>
                 </li>
                 <li class="mt-3 h-px" x-bind:class="step >= 2 ? 'bg-neutral-950' : 'bg-neutral-300'"></li>
                 <li class="flex flex-col items-center gap-2">
@@ -30,7 +30,7 @@
                         <span x-show="step < 2" class="text-base font-semibold">2</span>
                     </button>
                     <button type="button" x-on:click="step = 2" class="text-base font-semibold"
-                        x-bind:class="step >= 2 ? 'text-neutral-950' : 'text-neutral-500'">Checkout</button>
+                        x-bind:class="step >= 2 ? 'text-neutral-950' : 'text-neutral-500'">{{ __('Checkout') }}</button>
                 </li>
                 <li class="mt-3 h-px" x-bind:class="step >= 3 ? 'bg-neutral-950' : 'bg-neutral-300'"></li>
                 <li class="flex flex-col items-center gap-2">
@@ -38,14 +38,14 @@
                         class="flex size-6 items-center justify-center rounded-full text-base font-semibold transition"
                         x-bind:class="step >= 3 ? 'bg-neutral-950 text-white' : 'bg-neutral-200 text-neutral-500'">3</button>
                     <button type="button" x-on:click="step = 3" class="text-base font-semibold"
-                        x-bind:class="step >= 3 ? 'text-neutral-950' : 'text-neutral-700'">Order</button>
+                        x-bind:class="step >= 3 ? 'text-neutral-950' : 'text-neutral-700'">{{ __('Order') }}</button>
                 </li>
             </ol>
 
             <button type="button" x-on:click="summaryOpen = true"
                 class="mt-8 inline-flex items-center gap-2 rounded-md border border-neutral-300 bg-white px-4 py-2.5 text-base font-semibold text-neutral-800 transition hover:border-neutral-950 lg:hidden">
                 <flux:icon.shopping-bag class="size-4" />
-                View summary
+                {{ __('View summary') }}
             </button>
         </div>
 
@@ -77,46 +77,46 @@
                         $savedDeliveryDetails = auth()->user();
                     @endphp
                     <div>
-                        <h1 class="text-2xl font-bold text-neutral-950">Delivery Details</h1>
+                        <h1 class="text-2xl font-bold text-neutral-950">{{ __('Delivery Details') }}</h1>
 
                         <div class="mt-7 grid gap-6 sm:grid-cols-2">
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                First Name
+                                {{ __('First Name') }}
                                 <input type="text" name="first_name" value="{{ auth()->check() ? old('first_name', $savedDeliveryDetails->delivery_first_name ?: $customerFirstName) : old('first_name') }}" placeholder="John" required @if (auth()->check()) readonly @endif
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                Last Name
+                                {{ __('Last Name') }}
                                 <input type="text" name="last_name" value="{{ auth()->check() ? old('last_name', $savedDeliveryDetails->delivery_last_name ?: $customerLastName) : old('last_name') }}" placeholder="Doe" required @if (auth()->check()) readonly @endif
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                Email
+                                {{ __('Email') }}
                                 <input type="email" name="email" value="{{ auth()->user()?->email ?? old('email') }}" placeholder="john@solara.example" required @if (auth()->check()) readonly @endif
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                Mobile Number
+                                {{ __('Mobile Number') }}
                                 <input type="tel" name="mobile_number" value="{{ old('mobile_number', auth()->user()?->delivery_mobile_number) }}" placeholder="123-456-7890" required
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                Address Line
+                                {{ __('Address Line') }}
                                 <input type="text" name="address" value="{{ old('address', auth()->user()?->delivery_address) }}" placeholder="123 Main Street" required
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                City
+                                {{ __('City') }}
                                 <input type="text" name="city" value="{{ old('city', auth()->user()?->delivery_city) }}" placeholder="Kingston" required
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                Parish / State
+                                {{ __('Parish / State') }}
                                 <input type="text" name="parish" value="{{ old('parish', auth()->user()?->delivery_parish) }}" placeholder="St. Andrew" required
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
                             <label class="grid gap-2 text-base font-semibold text-neutral-950">
-                                Postal code
+                                {{ __('Postal code') }}
                                 <input type="text" name="postal_code" value="{{ old('postal_code', auth()->user()?->delivery_postal_code) }}" placeholder="00000" required
                                     class="rounded-md border border-neutral-300 bg-white px-3 py-3 text-base font-normal text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             </label>
@@ -124,7 +124,7 @@
                     </div>
 
                    <fieldset class="mt-12">
-                                <legend class="mb-6 text-xl font-semibold text-slate-900">Payment method</legend>
+                                <legend class="mb-6 text-xl font-semibold text-slate-900">{{ __('Payment method') }}</legend>
                                 <div class="grid gap-4 lg:grid-cols-2">
                                     <div class="flex items-center">
                                         <input type="radio" name="payment_method" value="card" id="card"
@@ -152,32 +152,32 @@
                                     <div class="flex items-center">
                                         <input type="radio" name="payment_method" value="cash_on_delivery" id="cash-on-delivery"
                                             class="h-[18px] w-[18px] appearance-none rounded-full border border-slate-300 bg-white focus:outline-blue-500 checked:ring-2 checked:ring-inset checked:ring-white checked:bg-blue-600 dark:checked:ring-neutral-900 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-600" />
-                                        <label for="cash-on-delivery" class="ml-4 cursor-pointer text-base font-semibold text-slate-900">Cash on delivery</label>
+                                        <label for="cash-on-delivery" class="ml-4 cursor-pointer text-base font-semibold text-slate-900">{{ __('Cash on delivery') }}</label>
                                     </div>
 
                                     <div class="flex items-center">
                                         <input type="radio" name="payment_method" value="bitcoin" id="bitcoin"
                                             class="h-[18px] w-[18px] appearance-none rounded-full border border-slate-300 bg-white focus:outline-blue-500 checked:ring-2 checked:ring-inset checked:ring-white checked:bg-blue-600 dark:checked:ring-neutral-900 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-600" />
                                         <label for="bitcoin" class="ml-4 cursor-pointer text-base font-semibold text-slate-900">
-                                            <span class="mr-1 text-orange-500">₿</span>Bitcoin
+                                            <span class="mr-1 text-orange-500">₿</span>{{ __('Bitcoin') }}
                                         </label>
                                     </div>
                                 </div>
                             </fieldset>
 
                     <div>
-                        <label class="text-base font-semibold text-neutral-950" for="promo-code">Do you have a promo code?</label>
+                        <label class="text-base font-semibold text-neutral-950" for="promo-code">{{ __('Do you have a promo code?') }}</label>
                         <div class="mt-3 flex max-w-md gap-3">
                             @php
                                 $membershipPromoCode = auth()->user()?->discount_percent > 0
                                     ? 'MEMBER-'.strtoupper(auth()->user()->membership_tier)
                                     : '';
                             @endphp
-                            <input id="promo-code" name="promo_code" type="text" value="{{ old('promo_code', $membershipPromoCode) }}" placeholder="Enter promo code"
+                            <input id="promo-code" name="promo_code" type="text" value="{{ old('promo_code', $membershipPromoCode) }}" placeholder="{{ __('Enter promo code') }}"
                                 @if ($membershipPromoCode) readonly @endif
                                 class="min-w-0 flex-1 rounded-md border border-neutral-300 bg-white px-3 py-3 text-base outline-none transition placeholder:text-neutral-400 focus:border-neutral-950 focus:ring-2 focus:ring-neutral-950/10">
                             <button type="button" class="rounded-md bg-neutral-950 px-5 py-3 text-base font-semibold text-white transition hover:bg-neutral-800">
-                                Apply
+                                {{ __('Apply') }}
                             </button>
                         </div>
                         @if ($membershipPromoCode)
@@ -202,13 +202,13 @@
                     <div class="flex size-12 items-center justify-center rounded-full bg-neutral-950 text-white">
                         <flux:icon.check class="size-6" />
                     </div>
-                    <h1 class="mt-6 text-2xl font-bold text-neutral-950">Order received</h1>
+                    <h1 class="mt-6 text-2xl font-bold text-neutral-950">{{ __('Order received') }}</h1>
                     <p class="mt-3 max-w-xl text-base leading-7 text-neutral-600">
-                        Your solar product order has been received. An invoice was sent to {{ session('invoice_email') }}.
+                        {{ __('Your solar product order has been received. An invoice was sent to :email.', ['email' => session('invoice_email')]) }}
                     </p>
                     <p class="mt-2 text-sm font-semibold text-neutral-700">Order {{ session('order_number') }}</p>
                     <button type="button" x-on:click="step = 1" class="mt-6 rounded-md border border-neutral-300 px-5 py-3 text-base font-semibold text-neutral-800 transition hover:border-neutral-950">
-                        Review cart
+                        {{ __('Review cart') }}
                     </button>
                 </section>
             </section>

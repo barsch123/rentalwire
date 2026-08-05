@@ -23,7 +23,7 @@
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
-                        Solutions
+                        {{ __('Solutions') }}
                     </a>
 
                     <a href="{{ route('blog.index') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
@@ -35,7 +35,7 @@
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
-                        Blog
+                        {{ __('Blog') }}
                     </a>
 
                     <a href="{{ route('about') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
@@ -47,7 +47,7 @@
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
-                        About
+                        {{ __('About') }}
                     </a>
 
                     {{-- <a href="{{ route('careers') }}" wire:navigate
@@ -75,7 +75,7 @@
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
-                        Contact
+                        {{ __('Contact') }}
                     </a>
 
                     @if (Auth::check())
@@ -89,7 +89,7 @@
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
-                        Dashboard
+                        {{ __('Dashboard') }}
                     </a>
                     @else
                     <a href="{{ route('login') }}" wire:navigate @class([ 'px-1 py-2 text-sm font-medium transition-colors duration-200 relative' , 'text-white hover:text-general dark:hover:text-general'=> !request()->routeIs(
@@ -101,7 +101,7 @@
                         ? 'after:w-full'
                         : 'after:w-0 hover:after:w-full',
                         ])>
-                        Login
+                        {{ __('Login') }}
                     </a>
 
                     @endif
@@ -148,7 +148,7 @@
                             <a href="{{ Auth::user()?->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
                                 wire:navigate
                                 class="block px-4 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-general/10 hover:text-neutral-950">
-                                Dashboard
+                                {{ __('Dashboard') }}
                             </a>
 
 
@@ -259,22 +259,22 @@
                 <a href="{{ route('solutions') }}" wire:navigate
                     x-on:click="mobileMenuIsOpen = false"
                     class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
-                    Solutions
+                    {{ __('Solutions') }}
                 </a>
                 <a href="{{ route('blog.index') }}" wire:navigate
                     x-on:click="mobileMenuIsOpen = false"
                     class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
-                    Blog
+                    {{ __('Blog') }}
                 </a>
                 <a href="{{ route('about') }}" wire:navigate
                     x-on:click="mobileMenuIsOpen = false"
                     class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
-                    About
+                    {{ __('About') }}
                 </a>
                 <a href="{{ route('contact') }}" wire:navigate
                     x-on:click="mobileMenuIsOpen = false"
                     class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
-                    Contact
+                    {{ __('Contact') }}
                 </a>
 
                 <!-- Estimate Link -->
@@ -291,7 +291,7 @@
                     <a href="{{ Auth::user()->usertype === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
                         wire:navigate x-on:click="mobileMenuIsOpen = false"
                         class="block rounded-xl px-3 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-100 hover:text-general">
-                        Dashboard
+                        {{ __('Dashboard') }}
                     </a>
                 @endif
 
